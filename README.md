@@ -258,4 +258,33 @@ We used the above marker genes to annotate our celltypes as follows:
 
 
 
+## Celltypes similarities between samples
+
+### Method 1: Cosine similarity 
+
+- Cosine similarity measures the **angle** between two vectors. **1** = same direction. **0** = perpendicular.
+
+- It only cares about **pattern**, not total expression level. If all genes are 2x higher in one sample but relative pattern is the same → similarity = 1.
+
+- It shows the **pattern** of which genes are high and low in cell type A is the same as in cell type B.
+
+- It doesn't tell you how much higher or lower a specific gene is (e.g., 3 vs 30). Magnitude is ignored.
+
+
+## When to use: Cell identity
+You want to know: Is the Fibroblast from sample A the same cell type as Fibroblast from sample B?
+
+Cosine similarity = 0.95 → Yes, same pattern. Magnitude difference doesn't matter.
+
+## When NOT to use: Differential expression
+You want to know: Is Gene X upregulated in disease vs control (3 in control, 30 in disease)?
+
+Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about the 10x change. Use log fold change instead.
+
+![](figures/axt_cosine_similarity.png?v=1) 
+
+
+
+
+
 
