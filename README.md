@@ -41,11 +41,11 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 
 ### Pre-filtering 
 
-![](figures/violin_axt_preQC.png?v=2)
+![](figures/violin_axt_preQC.png?v=3)
 
 ### Post filtering 
 
-![](figures/violin_axt_AfterQC.png?v=2) 
+![](figures/violin_axt_AfterQC.png?v=3) 
 
 ## Analysing 
 
@@ -80,11 +80,11 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 - Similar cells cluster together visually
 
 #### UMAP
-![](figures/umap_axt.png?v=2) 
+![](figures/umap_axt.png?v=3) 
 
 #### Per sample UMAP 
 
-<img src="figures/umap_axt_Reg.png?v=2" width="600" /> <img src="figures/umap_axt_nonReg.png?v=2" width="600" />
+<img src="figures/umap_axt_Reg.png?v=3" width="600" /> <img src="figures/umap_axt_nonReg.png?v=3" width="600" />
 
 
 ## Clustering 
@@ -120,7 +120,7 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 - **High resolution (e.g. 1.0+)** → more, smaller clusters  
 
 
-![](figures/umap_axt_leiden.png?v=2) 
+![](figures/umap_axt_leiden.png?v=3) 
 
 
 ## QC per Leiden Cluster
@@ -128,7 +128,7 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 QC metrics were visualized across Leiden clusters to assess cluster quality.
 Check QC per cluster to spot and remove **low-quality or suspicious cell groups**
 
-<img src="figures/violin_axt_QC_n_genes_by_counts.png?v=2" width="33%" /><img src="figures/violin_axt_QC_total_counts.png?v=2" width="33%" /> <img src="figures/violin_axt_QC_pct_counts_mt.png?v=2" width="33%" />
+<img src="figures/violin_axt_QC_n_genes_by_counts.png?v=3" width="33%" /><img src="figures/violin_axt_QC_total_counts.png?v=3" width="33%" /> <img src="figures/violin_axt_QC_pct_counts_mt.png?v=3" width="33%" />
 
 ## Marker genes 
 
@@ -142,63 +142,83 @@ These markers were then used to validate and assign identities to clusters.
 
 ```python
 marker_genes = {
-    "Fibroblast": ["Prrx1", "Pdgfra", "Col1a1", "Col1a2", "Dcn", "Pi16"],
-    "Endothelial": ["Cdh5", "Pecam1", "Kdr", "Emcn", "Erg"],
-    "Macrophage": ["Adgre1", "Csf1r", "Cd68", "Mrc1"],
-    "Keratinocyte": ["Krt14", "Krt5", "Krt17", "Krt6a"],
-    "Osteoblast": ["Sp7", "Bglap", "Alpl", "Ibsp"],
-    "Pericyte": ["Cspg4", "Pdgfrb", "Kcnj8", "Abcc9"],
-    "SMC": ["Myh11", "Tagln", "Acta2", "Cnn1"],
-    "Chondrocyte": ["Col2a1", "Acan", "Sox9"],
-    "Schwann": ["Mbp", "Plp1", "Sox10", "S100b"],
-    "T-cell": ["Cd3d", "Cd3e", "Cd8a", "Cd4"],
-    "Osteoclast": ["Nfatc1", "Oscar", "Ctsk", "Acp5", "Mmp9", "Dcstamp"],
+    "Fibroblast": ["Prrx1", "Pdgfra", "Col1a1", "Dcn", "Pi16", "Cd34"],
+    "Endothelial": ["Cdh5", "Pecam1", "Kdr", "Emcn", "Erg", "Cd34"],
+    "Macrophage": ["Adgre1", "Csf1r", "Cd68", "Mrc1", "Cd163"],
+    "Keratinocyte": ["Krt14", "Krt5", "Epcam", "Cdh1", "Krt17", "Dsg3"],
+    "Osteoblast": ["Sp7", "Bglap", "Alpl", "Ibsp", "Col1a1"],
+    "Pericyte": ["Cspg4", "Pdgfrb", "Kcnj8", "Abcc9", "Rgs5"],
+    "SMC": ["Myh11", "Tagln", "Acta2", "Cnn1", "Des"],
+    "Chondrocyte": ["Col2a1", "Acan", "Sox9", "Matn1", "Col9a1", "Comp"],
+    "Schwann": ["Mbp", "Plp1", "Sox10", "S100b", "Pmp22"],
+    "T-cell": ["Cd3d", "Cd3e", "Cd4", "Cd8a", "Cd28"],
+    "Osteoclast": ["Ctsk", "Acp5", "Calcr", "Oscar", "Nfatc1", "Dcstamp", "Tnfrsf11a"],
     "Synoviocyte": ["Prg4", "Ucma", "Gdf5", "Cilp2", "Frzb"],
-    "Neutrophil": ["Ly6g", "S100a8", "S100a9", "Mpo"],
-    "Lymphatic_Endothelial": ["Prox1", "Lyve1", "Pdpn", "Flt4"],
-    "B-cell": ["Cd79a", "Cd19", "Ms4a1", "Ighm", "Pax5"],
+    "Neutrophil": ["Ly6g", "S100a8", "S100a9", "Mpo", "Csf3r"],
+    "Lymphatic_Endothelial": ["Prox1", "Lyve1", "Pdpn", "Flt4", "Pecam1"],
+    "B-cell": ["Cd79a", "Cd19", "Ms4a1", "Ighm", "Pax5", "Cd22"],
     "Rspo3_Col23a1": ["Rspo3", "Col23a1"],
-    "MSC": ["Lepr", "Cxcl12", "Pdgfra", "Eng"]
+    "MSC": ["Lepr", "Cxcl12", "Ngfr", "Nes", "Cd44", "Scf"]
 }
 ```
 
 ### Dotplot for marker genes 
 
-![](figures/dotplot__axt_dotplot.png?v=2) 
+![](figures/dotplot__axt_dotplot.png?v=3) 
 
 
 ### Feature plots for marker genes 
 
-<img src="figures/umap_axt_Abcc9.png?v=2" width="33%" /><img src="figures/umap_axt_Cd8a.png?v=2" width="33%" /><img src="figures/umap_axt_Cxcr2.png?v=2" width="33%" />
-<img src="figures/umap_axt_Krt17.png?v=2" width="33%" /><img src="figures/umap_axt_Oscar.png?v=2" width="33%" /><img src="figures/umap_axt_Runx2.png?v=2" width="33%" />
+<img src="figures/umap_axt_Abcc9.png?v=3" width="33%" /><img src="figures/umap_axt_Cd4.png?v=3" width="33%" /><img src="figures/umap_axt_Csf1r.png?v=3" width="33%" />
+<img src="figures/umap_axt_Ibsp.png?v=3" width="33%" /><img src="figures/umap_axt_Mrc1.png?v=3" width="33%" /><img src="figures/umap_axt_Prox1.png?v=3" width="33%" />
 
-<img src="figures/umap_axt_Acan.png?v=2" width="33%" /><img src="figures/umap_axt_Cdh5.png?v=2" width="33%" /><img src="figures/umap_axt_Dcn.png?v=2" width="33%" />
-<img src="figures/umap_axt_Krt5.png?v=2" width="33%" /><img src="figures/umap_axt_Pax5.png?v=2" width="33%" /><img src="figures/umap_axt_S100a8.png?v=2" width="33%" />
+<img src="figures/umap_axt_Acan.png?v=3" width="33%" /><img src="figures/umap_axt_Cd68.png?v=3" width="33%" /><img src="figures/umap_axt_Csf3r.png?v=3" width="33%" />
+<img src="figures/umap_axt_Ighm.png?v=3" width="33%" /><img src="figures/umap_axt_Ms4a1.png?v=3" width="33%" /><img src="figures/umap_axt_Prrx1.png?v=3" width="33%" />
 
-<img src="figures/umap_axt_Acp5.png?v=2" width="33%" /><img src="figures/umap_axt_Dcstamp.png?v=2" width="33%" /><img src="figures/umap_axt_Krt6a.png?v=2" width="33%" />
-<img src="figures/umap_axt_Pdgfra.png?v=2" width="33%" /><img src="figures/umap_axt_S100a9.png?v=2" width="33%" /><img src="figures/umap_axt_S100b.png?v=2" width="33%" />
+<img src="figures/umap_axt_Acp5.png?v=3" width="33%" /><img src="figures/umap_axt_Cd79a.png?v=3" width="33%" /><img src="figures/umap_axt_Cspg4.png?v=3" width="33%" />
+<img src="figures/umap_axt_Il2rb.png?v=3" width="33%" /><img src="figures/umap_axt_Myh11.png?v=3" width="33%" /><img src="figures/umap_axt_Reg.png?v=3" width="33%" />
 
-<img src="figures/umap_axt_Acta1.png?v=2" width="33%" /><img src="figures/umap_axt_Emcn.png?v=2" width="33%" /><img src="figures/umap_axt_leiden.png?v=2" width="33%" />
-<img src="figures/umap_axt_Pdgfrb.png?v=2" width="33%" /><img src="figures/umap_axt_Cilp2.png?v=2" width="33%" /><img src="figures/umap_axt_Eng.png?v=2" width="33%" />
+<img src="figures/umap_axt_Acta1.png?v=3" width="33%" /><img src="figures/umap_axt_Cd8a.png?v=3" width="33%" /><img src="figures/umap_axt_Ctsk.png?v=3" width="33%" />
+<img src="figures/umap_axt_Kcnj8.png?v=3" width="33%" /><img src="figures/umap_axt_Nes.png?v=3" width="33%" /><img src="figures/umap_axt_Rgs5.png?v=3" width="33%" />
 
-<img src="figures/umap_axt_Erg.png?v=2" width="33%" /><img src="figures/umap_axt_Ly6g.png?v=2" width="33%" /><img src="figures/umap_axt_Pecam1.png?v=2" width="33%" />
-<img src="figures/umap_axt_Adgre1.png?v=2" width="33%" /><img src="figures/umap_axt_Cnn1.png?v=2" width="33%" /><img src="figures/umap_axt_Lyve1.png?v=2" width="33%" />
+<img src="figures/umap_axt_Acta2.png?v=3" width="33%" /><img src="figures/umap_axt_Cdh1.png?v=3" width="33%" /><img src="figures/umap_axt_Cxcl12.png?v=3" width="33%" />
+<img src="figures/umap_axt_Kdr.png?v=3" width="33%" /><img src="figures/umap_axt_Nfatc1.png?v=3" width="33%" /><img src="figures/umap_axt_Rspo3.png?v=3" width="33%" />
 
-<img src="figures/umap_axt_Alpl.png?v=2" width="33%" /><img src="figures/umap_axt_Col10a1.png?v=2" width="33%" /><img src="figures/umap_axt_Pi16.png?v=2" width="33%" />
-<img src="figures/umap_axt_Bglap.png?v=2" width="33%" /><img src="figures/umap_axt_Col1a1.png?v=2" width="33%" /><img src="figures/umap_axt_Plp1.png?v=2" width="33%" />
+<img src="figures/umap_axt_Adgre1.png?v=3" width="33%" /><img src="figures/umap_axt_Cdh5.png?v=3" width="33%" /><img src="figures/umap_axt_Cxcr2.png?v=3" width="33%" />
+<img src="figures/umap_axt_Krt14.png?v=3" width="33%" /><img src="figures/umap_axt_Ngfr.png?v=3" width="33%" /><img src="figures/umap_axt_Runx2.png?v=3" width="33%" />
 
-<img src="figures/umap_axt_Cd163.png?v=2" width="33%" /><img src="figures/umap_axt_Col1a2.png?v=2" width="33%" /><img src="figures/umap_axt_Pmp22.png?v=2" width="33%" />
-<img src="figures/umap_axt_Cd19.png?v=2" width="33%" /><img src="figures/umap_axt_Col23a1.png?v=2" width="33%" /><img src="figures/umap_axt_Prg4.png?v=2" width="33%" />
+<img src="figures/umap_axt_Alpl.png?v=3" width="33%" /><img src="figures/umap_axt_celltypeON.png?v=3" width="33%" /><img src="figures/umap_axt_Dcn.png?v=3" width="33%" />
+<img src="figures/umap_axt_Krt17.png?v=3" width="33%" /><img src="figures/umap_axt_nonReg.png?v=3" width="33%" /><img src="figures/umap_axt_S100a8.png?v=3" width="33%" />
 
-<img src="figures/umap_axt_Cd3d.png?v=2" width="33%" /><img src="figures/umap_axt_Col2a1.png?v=2" width="33%" /><img src="figures/umap_axt_Prox1.png?v=2" width="33%" />
-<img src="figures/umap_axt_Cd3e.png?v=2" width="33%" /><img src="figures/umap_axt_Csf1r.png?v=2" width="33%" /><img src="figures/umap_axt_Prrx1.png?v=2" width="33%" />
+<img src="figures/umap_axt_Bglap.png?v=3" width="33%" /><img src="figures/umap_axt_celltype.png?v=3" width="33%" /><img src="figures/umap_axt_Dcstamp.png?v=3" width="33%" />
+<img src="figures/umap_axt_Krt5.png?v=3" width="33%" /><img src="figures/umap_axt_Oscar.png?v=3" width="33%" /><img src="figures/umap_axt_S100a9.png?v=3" width="33%" />
 
-<img src="figures/umap_axt_Cd4.png?v=2" width="33%" /><img src="figures/umap_axt_Cspg4.png?v=2" width="33%" /><img src="figures/umap_axt_Kcnj8.png?v=2" width="33%" />
-<img src="figures/umap_axt_Cd68.png?v=2" width="33%" /><img src="figures/umap_axt_Ctsk.png?v=2" width="33%" /><img src="figures/umap_axt_Kdr.png?v=2" width="33%" />
+<img src="figures/umap_axt_Calcr.png?v=3" width="33%" /><img src="figures/umap_axt_Cilp2.png?v=3" width="33%" /><img src="figures/umap_axt_Des.png?v=3" width="33%" />
+<img src="figures/umap_axt_Krt6a.png?v=3" width="33%" /><img src="figures/umap_axt_Pax5.png?v=3" width="33%" /><img src="figures/umap_axt_S100b.png?v=3" width="33%" />
 
-<img src="figures/umap_axt_Cd79a.png?v=2" width="33%" /><img src="figures/umap_axt_Cxcl12.png?v=2" width="33%" /><img src="figures/umap_axt_Krt14.png?v=2" width="33%" />
-<img src="figures/umap_axt_Cd3e.png?v=2" width="33%" /><img src="figures/umap_axt_Rgs5.png?v=2" width="33%" /><img src="figures/umap_axt_Rspo3.png?v=2" width="33%" />
+<img src="figures/umap_axt_Cd163.png?v=3" width="33%" /><img src="figures/umap_axt_Cnn1.png?v=3" width="33%" /><img src="figures/umap_axt_Dsg3.png?v=3" width="33%" />
+<img src="figures/umap_axt_leiden.png?v=3" width="33%" /><img src="figures/umap_axt_Pdgfra.png?v=3" width="33%" /><img src="figures/umap_axt_Sox10.png?v=3" width="33%" />
 
+<img src="figures/umap_axt_Cd19.png?v=3" width="33%" /><img src="figures/umap_axt_Col10a1.png?v=3" width="33%" /><img src="figures/umap_axt_Emcn.png?v=3" width="33%" />
+<img src="figures/umap_axt_Lepr.png?v=3" width="33%" /><img src="figures/umap_axt_Pdgfrb.png?v=3" width="33%" /><img src="figures/umap_axt_Sox9.png?v=3" width="33%" />
+
+<img src="figures/umap_axt_Cd22.png?v=3" width="33%" /><img src="figures/umap_axt_Col1a1.png?v=3" width="33%" /><img src="figures/umap_axt_Eng.png?v=3" width="33%" />
+<img src="figures/umap_axt_Ly6g.png?v=3" width="33%" /><img src="figures/umap_axt_Pdpn.png?v=3" width="33%" /><img src="figures/umap_axt_Sp7.png?v=3" width="33%" />
+
+<img src="figures/umap_axt_Cd28.png?v=3" width="33%" /><img src="figures/umap_axt_Col1a2.png?v=3" width="33%" /><img src="figures/umap_axt_Epcam.png?v=3" width="33%" />
+<img src="figures/umap_axt_Lyve1.png?v=3" width="33%" /><img src="figures/umap_axt_Pecam1.png?v=3" width="33%" /><img src="figures/umap_axt_Tagln.png?v=3" width="33%" />
+
+<img src="figures/umap_axt_Cd34.png?v=3" width="33%" /><img src="figures/umap_axt_Col23a1.png?v=3" width="33%" /><img src="figures/umap_axt_Erg.png?v=3" width="33%" />
+<img src="figures/umap_axt_Matn1.png?v=3" width="33%" /><img src="figures/umap_axt_Pi16.png?v=3" width="33%" /><img src="figures/umap_axt_Thy1.png?v=3" width="33%" />
+
+<img src="figures/umap_axt_Cd3d.png?v=3" width="33%" /><img src="figures/umap_axt_Col2a1.png?v=3" width="33%" /><img src="figures/umap_axt_Flt4.png?v=3" width="33%" />
+<img src="figures/umap_axt_Mbp.png?v=3" width="33%" /><img src="figures/umap_axt_Plp1.png?v=3" width="33%" /><img src="figures/umap_axt_Tnfrsf11a.png?v=3" width="33%" />
+
+<img src="figures/umap_axt_Cd3e.png?v=3" width="33%" /><img src="figures/umap_axt_Col9a1.png?v=3" width="33%" /><img src="figures/umap_axt_Frzb.png?v=3" width="33%" />
+<img src="figures/umap_axt_Mmp9.png?v=3" width="33%" /><img src="figures/umap_axt_Pmp22.png?v=3" width="33%" /><img src="figures/umap_axt_Traf6.png?v=3" width="33%" />
+
+<img src="figures/umap_axt_Cd44.png?v=3" width="33%" /><img src="figures/umap_axt_Comp.png?v=3" width="33%" /><img src="figures/umap_axt_Gdf5.png?v=3" width="33%" />
+<img src="figures/umap_axt_Mpo.png?v=3" width="33%" /><img src="figures/umap_axt_Prg4.png?v=3" width="33%" /><img src="figures/umap_axt_Ucma.png?v=3" width="33%" />
 
 
 
