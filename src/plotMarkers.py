@@ -4,23 +4,23 @@ import argparse
 import scanpy as sc
 
 marker_genes = {
-    "Fibroblast": ["Col1a1", "Col1a2", "Dcn", "Pdgfra", "Prrx1", "Pi16"],
+    "Fibroblast": ["Prrx1", "Pdgfra", "Col1a1", "Col1a2", "Dcn", "Pi16"],
     "Endothelial": ["Cdh5", "Pecam1", "Kdr", "Emcn", "Erg"],
-    "Macrophage": ["Cd68", "Csf1r", "Adgre1", "Cd163", "Mrc1"],
-    "Keratinocyte": ["Krt5", "Krt14", "Krt6a", "Krt17"],
-    "Osteoblast": ["Sp7", "Runx2", "Alpl", "Bglap", "Ibsp"],
-    "Pericyte": ["Pdgfrb", "Cspg4", "Rgs5", "Kcnj8", "Abcc9"],
-    "SMC": ["Acta2", "Tagln", "Myh11", "Cnn1", "Acta1"],
-    "Chondrocyte": ["Sox9", "Col2a1", "Acan", "Col10a1"],
-    "Schwann": ["Sox10", "S100b", "Mbp", "Plp1", "Pmp22"],
-    "T-cell": ["Cd3e", "Cd3d", "Cd4", "Cd8a", "Il2rb"],
-    "Osteoclast": ["Ctsk", "Acp5", "Mmp9", "Dcstamp", "Traf6"],
+    "Macrophage": ["Adgre1", "Csf1r", "Cd68", "Mrc1"],
+    "Keratinocyte": ["Krt14", "Krt5", "Krt17", "Krt6a"],
+    "Osteoblast": ["Sp7", "Bglap", "Alpl", "Ibsp"],
+    "Pericyte": ["Cspg4", "Pdgfrb", "Kcnj8", "Abcc9"],
+    "SMC": ["Myh11", "Tagln", "Acta2", "Cnn1"],
+    "Chondrocyte": ["Col2a1", "Acan", "Sox9"],
+    "Schwann": ["Mbp", "Plp1", "Sox10", "S100b"],
+    "T-cell": ["Cd3d", "Cd3e", "Cd8a", "Cd4"],
+    "Osteoclast": ["Nfatc1", "Oscar", "Ctsk", "Acp5", "Mmp9", "Dcstamp"],
     "Synoviocyte": ["Prg4", "Ucma", "Gdf5", "Cilp2", "Frzb"],
-    "Neutrophil": ["Ly6g", "S100a8", "S100a9", "Cxcr2", "Mpo"],
+    "Neutrophil": ["Ly6g", "S100a8", "S100a9", "Mpo"],
     "Lymphatic_Endothelial": ["Prox1", "Lyve1", "Pdpn", "Flt4"],
-    "B-cell": ["Cd19", "Ms4a1", "Cd79a", "Ighm", "Pax5"],
+    "B-cell": ["Cd79a", "Cd19", "Ms4a1", "Ighm", "Pax5"],
     "Rspo3_Col23a1": ["Rspo3", "Col23a1"],
-    "MSC": ["Lepr", "Prrx1", "Cxcl12", "Pdgfra", "Eng", "Thy1"]
+    "MSC": ["Lepr", "Cxcl12", "Pdgfra", "Eng"]
 }
 
 parser = argparse.ArgumentParser()
