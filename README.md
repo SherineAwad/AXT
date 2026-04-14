@@ -254,7 +254,7 @@ We used the above marker genes to annotate our celltypes as follows:
 | **Total**                |**11795**|**19778**|**31573**|
 
 
-![](figures/axt_celltype_ratio.png?v=1)
+![](figures/axt_cell_ratios.png?v=1)
 
 
 
