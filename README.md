@@ -187,17 +187,16 @@ marker_genes = {
 <img src="figures/umap_axt_Adgre1.png?v=3" width="33%" /><img src="figures/umap_axt_Cdh5.png?v=3" width="33%" /><img src="figures/umap_axt_Cxcr2.png?v=3" width="33%" />
 <img src="figures/umap_axt_Krt14.png?v=3" width="33%" /><img src="figures/umap_axt_Ngfr.png?v=3" width="33%" /><img src="figures/umap_axt_Runx2.png?v=3" width="33%" />
 
-<img src="figures/umap_axt_Alpl.png?v=3" width="33%" /><img src="figures/umap_axt_celltypeON.png?v=3" width="33%" /><img src="figures/umap_axt_Dcn.png?v=3" width="33%" />
-<img src="figures/umap_axt_Krt17.png?v=3" width="33%" /><img src="figures/umap_axt_nonReg.png?v=3" width="33%" /><img src="figures/umap_axt_S100a8.png?v=3" width="33%" />
+<img src="figures/umap_axt_Alpl.png?v=3" width="33%" /><img src="figures/umap_axt_Dcn.png?v=3" width="33%" /><img src="figures/umap_axt_Krt17.png?v=3" width="33%" />
 
-<img src="figures/umap_axt_Bglap.png?v=3" width="33%" /><img src="figures/umap_axt_celltype.png?v=3" width="33%" /><img src="figures/umap_axt_Dcstamp.png?v=3" width="33%" />
+
+<img src="figures/umap_axt_Bglap.png?v=3" width="33%" /><img src="figures/umap_axt_Dcstamp.png?v=3" width="33%" /><img src="figures/umap_axt_S100a8.png?v=3" width="33%" />
 <img src="figures/umap_axt_Krt5.png?v=3" width="33%" /><img src="figures/umap_axt_Oscar.png?v=3" width="33%" /><img src="figures/umap_axt_S100a9.png?v=3" width="33%" />
 
 <img src="figures/umap_axt_Calcr.png?v=3" width="33%" /><img src="figures/umap_axt_Cilp2.png?v=3" width="33%" /><img src="figures/umap_axt_Des.png?v=3" width="33%" />
 <img src="figures/umap_axt_Krt6a.png?v=3" width="33%" /><img src="figures/umap_axt_Pax5.png?v=3" width="33%" /><img src="figures/umap_axt_S100b.png?v=3" width="33%" />
 
 <img src="figures/umap_axt_Cd163.png?v=3" width="33%" /><img src="figures/umap_axt_Cnn1.png?v=3" width="33%" /><img src="figures/umap_axt_Dsg3.png?v=3" width="33%" />
-<img src="figures/umap_axt_leiden.png?v=3" width="33%" /><img src="figures/umap_axt_Pdgfra.png?v=3" width="33%" /><img src="figures/umap_axt_Sox10.png?v=3" width="33%" />
 
 <img src="figures/umap_axt_Cd19.png?v=3" width="33%" /><img src="figures/umap_axt_Col10a1.png?v=3" width="33%" /><img src="figures/umap_axt_Emcn.png?v=3" width="33%" />
 <img src="figures/umap_axt_Lepr.png?v=3" width="33%" /><img src="figures/umap_axt_Pdgfrb.png?v=3" width="33%" /><img src="figures/umap_axt_Sox9.png?v=3" width="33%" />
@@ -220,6 +219,7 @@ marker_genes = {
 <img src="figures/umap_axt_Cd44.png?v=3" width="33%" /><img src="figures/umap_axt_Comp.png?v=3" width="33%" /><img src="figures/umap_axt_Gdf5.png?v=3" width="33%" />
 <img src="figures/umap_axt_Mpo.png?v=3" width="33%" /><img src="figures/umap_axt_Prg4.png?v=3" width="33%" /><img src="figures/umap_axt_Ucma.png?v=3" width="33%" />
 
+<img src="figures/umap_axt_Pdgfra.png?v=3" width="33%" /><img src="figures/umap_axt_Sox10.png?v=3" width="33%" />
 
 
 
