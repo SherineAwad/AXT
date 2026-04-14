@@ -235,6 +235,27 @@ We used the above marker genes to annotate our celltypes as follows:
 🚨🚨⚠️ WARNING: Cluster 23 removed due to low-quality cells (133 cells were removed) ⚠️ 🚨🚨
 
 
+## Some stats for samples and cells 
+
+| Celltype                 | Reg   | nonReg | Total |
+|--------------------------|-------|--------|-------|
+| B-Cells                  | 260   | 295    | 555   |
+| Endothelial              | 1541  | 1065   | 2606  |
+| Fibroblast               | 5360  | 11936  | 17296 |
+| Keratinocyte             | 679   | 498    | 1177  |
+| Lymphatic_Endothelial    | 147   | 208    | 355   |
+| Macrophage               | 1616  | 2969   | 4585  |
+| Macrophge                | 299   | 721    | 1020  |
+| Neutrophil               | 225   | 428    | 653   |
+| Pericyte_SMC             | 569   | 580    | 1149  |
+| Schwann                  | 391   | 56     | 447   |
+| Synoviocyte_Chondrocyte  | 185   | 3      | 188   |
+| T-Cells                  | 523   | 1019   | 1542  |
+| **Total**                |**11795**|**19778**|**31573**|
+
+
+![](figures/axt_celltype_ratio.png?v=1)
+
 
 
 
