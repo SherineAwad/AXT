@@ -47,9 +47,6 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 
 ![](figures/violin_axt_AfterQC.png?v=1) 
 
-
-
-
 ## Analysing 
 
 1. Normalization
@@ -87,7 +84,7 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 
 #### Per sample UMAP 
 
-<img src="figures/umap_axt_Reg.png?v=1" width="45%" /> <img src="figures/umap_axt_nonReg?v=1" width="45%" />
+<img src="figures/umap_axt_Reg.png?v=1" width="45%" /> <img src="figures/umap_axt_nonReg.png?v=1" width="45%" />
 
 
 ## Clustering 
