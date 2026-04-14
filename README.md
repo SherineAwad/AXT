@@ -128,12 +128,9 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 QC metrics were visualized across Leiden clusters to assess cluster quality.
 Check QC per cluster to spot and remove **low-quality or suspicious cell groups**
 
-<img src="figures/violin_axt_QC_n_genes_by_counts.png?v=1" width="33%" /><img src="figures/violin_axt_QC_pct_counts_mt.png?v=1" width="33%" /><img src="figures/violin_axt_QC_total_counts.png?v=1" width="33%" />
-
+<img src="figures/violin_axt_QC_n_genes_by_counts.png?v=1" width="33%" /><img src="figures/violin_axt_QC_total_counts.png?v=1" width="33%" /> <img src="figures/violin_axt_QC_pct_counts_mt.png?v=1" width="33%" />
 
 ## Marker genes 
-
-## Marker Gene Annotation Strategy
 
 To annotate cell types, I **manually selected (guessed) canonical marker genes** based on known biology from literature.
 
@@ -200,9 +197,8 @@ marker_genes = {
 <img src="figures/umap_axt_Csf1r.png?v=1" width="33%" /><img src="figures/umap_axt_S100b.png?v=1" width="33%" /><img src="figures/umap_axt_Sox10.png?v=1" width="33%" />
 <img src="figures/umap_axt_Sox9.png?v=1" width="33%" /><img src="figures/umap_axt_Sp7.png?v=1" width="33%" /><img src="figures/umap_axt_Tagln.png?v=1" width="33%" />
 <img src="figures/umap_axt_Thy1.png?v=1" width="33%" /><img src="figures/umap_axt_Traf6.png?v=1" width="33%" /><img src="figures/umap_axt_Ucma.png?v=1" width="33%" />
-<img src="figures/umap_axt_leiden.png?v=1" width="33%" /><img src="figures/umap_axt_Eng.png?v=1" width="33%" /><img src="figures/umap_axt_Erg.png?v=1" width="33%" />
-<img src="figures/umap_axt_Flt4.png?v=1" width="33%" /><img src="figures/umap_axt_Kdr.png?v=1" width="33%" /><img src="figures/umap_axt_Rspo3.png?v=1" width="33%" />
-<img src="figures/umap_axt_Reg.png?v=1" width="33%" />
+<img src="figures/umap_axt_Eng.png?v=1" width="33%" /><img src="figures/umap_axt_Erg.png?v=1" width="33%" /> <img src="figures/umap_axt_Flt4.png?v=1" width="33%" />
+<img src="figures/umap_axt_Kdr.png?v=1" width="33%" /><img src="figures/umap_axt_Rspo3.png?v=1" width="33%" />
 
 
 
