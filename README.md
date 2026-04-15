@@ -259,59 +259,10 @@ We used the above marker genes to annotate our celltypes as follows:
 
 ## Differential gene expression 
 
-#### Genes in the heatmap are sorted using Wilcoxon score and adj pvalue
-
-# Understanding Scanpy's Differential Expression: Wilcoxon Score vs Log Fold Change
-
-## The Problem
-Scanpy's `rank_genes_groups` with `method="wilcoxon"` does **not** calculate log fold change. Instead, it returns a **Wilcoxon score** (signed rank statistic). This causes confusion because most biologists expect log fold change values.
-
-## What Each Metric Tells You
-
-### Log Fold Change (logFC)
-- **What it measures:** How **big** the average expression difference is between two groups
-- **Direction:** Positive = higher in test group, Negative = higher in reference
-- **Magnitude:** Tells you fold change (e.g., logFC = 2 means 4x higher)
-- **Limitation:** Can be driven by outliers (a few cells with very high expression)
-
-### Wilcoxon Score (Scanpy's method)
-- **What it measures:** How **consistent** the difference is across individual cells
-- **Direction:** Positive = higher in test group, Negative = higher in reference (Scanpy adds sign)
-- **Magnitude:** Tells you consistency (higher score = more cells follow the pattern)
-- **Limitation:** Does NOT tell you how big the expression change is
-
-| Feature | Log Fold Change | Wilcoxon Score |
-|---------|----------------|----------------|
-| Tells you direction | Yes (sign) | Yes (sign) |
-| Tells you how big | Yes | No |
-| Tells you how consistent | No | Yes |
-| Affected by outliers | Yes | No |
-| Requires normally distributed data | No | No |
-
-## Example Scenario
-
-A gene that is **1.1x higher in every single Reg cell**:
-- Log fold change = small (0.14)
-- Wilcoxon score = high (very consistent)
-
-A gene that is **100x higher in only 10% of Reg cells**, same in the rest:
-- Log fold change = high (6.6)
-- Wilcoxon score = low (inconsistent)
-
-## Why Scanpy Uses Wilcoxon
-
-Single-cell RNA-seq data is noisy. Wilcoxon is **non-parametric** and more robust to:
-- Outliers
-- Non-normal distributions
-- Variable sequencing depth
-
-The developers prioritize **consistency** over **magnitude** because a gene that reliably separates groups is often more biologically meaningful for cell identity.
-
-
 
 #### Group by sample 
 
-![](figures/axt_sample_dge_heatmap.png?v=1) 
+![](figures/axt_sample_dge_heatmap.png?v=2) 
 
 ##### For full list of differential gene expressions use the link below 
 

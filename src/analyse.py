@@ -17,7 +17,7 @@ def main():
     # Normalise & log transform
     sc.pp.normalize_total(adata, target_sum=1e4)
     sc.pp.log1p(adata)
-
+    adata.layers['log1p'] = adata.X
     # Scale, PCA, neighbours, UMAP
     sc.pp.scale(adata, max_value=10)
     sc.tl.pca(adata)
@@ -45,7 +45,7 @@ def main():
             save=f"_{args.prefix}_{s}.png"
         )
 
-    # Save processed object
+        # Save processed object
     adata.write(args.output)
 
 if __name__ == "__main__":
