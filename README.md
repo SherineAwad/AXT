@@ -257,6 +257,18 @@ We used the above marker genes to annotate our celltypes as follows:
 ![](figures/axt_cell_ratios.png?v=1)
 
 
+## Differential gene expression 
+
+#### Genes in the heatmap are sorted using Wilcoxon score and adj pvalue
+
+#### Group by sample 
+
+![](figures/axt_sample_dge_heatmap.png?v=1) 
+
+##### For full list of differential gene expressions use the link below 
+
+[Full DGE Reg vs nonReg](https://docs.google.com/spreadsheets/d/1h_QbwB3hxaHrxOji_rLUNgqMeTQ27Viz2-I5nvQ7wB8/edit?usp=sharing)
+
 
 ## Celltypes similarities between samples
 
