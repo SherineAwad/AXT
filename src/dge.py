@@ -11,86 +11,90 @@ parser.add_argument("--output", required=True)
 parser.add_argument("--prefix", required=True)
 parser.add_argument("--N", type=int, required=True)
 parser.add_argument("--pvalue", type=float, default=0.05)
+parser.add_argument("--reference", required=True)
 args = parser.parse_args()
 
 adata = sc.read_h5ad(args.input)
 
 # ----------------------------
-# GLOBAL DGE
+# GLOBAL DE
 # ----------------------------
 sc.tl.rank_genes_groups(
     adata,
     groupby="sample",
+    reference=args.reference,
     method="wilcoxon",
     layer="log1p",
     use_raw=False
 )
 
-r = adata.uns["rank_genes_groups"]
-groups = r["names"].dtype.names
+# ----------------------------
+# CLEAN EXTRACTION (NO r["..."][0])
+# ----------------------------
+df = sc.get.rank_genes_groups_df(adata, group=None)
 
-all_rows = []
+df = df[["names", "logfoldchanges", "pvals_adj"]].rename(
+    columns={"names": "gene"}
+)
 
-for g in groups:
-    for i in range(len(r["names"][g])):
-        all_rows.append({
-            "gene": r["names"][g][i],
-            "logfoldchanges": r["logfoldchanges"][g][i],
-            "pvals_adj": r["pvals_adj"][g][i]
-        })
-
-df = pd.DataFrame(all_rows)
-
+# ----------------------------
+# SAVE CSV
+# ----------------------------
 df.to_csv(f"{args.prefix}_global_dge.csv", index=False)
 
 # ----------------------------
-# TOP GENES
+# FILTER
 # ----------------------------
-up = df[
-    (df["logfoldchanges"] > 0) &
-    (df["pvals_adj"] < args.pvalue)
-].sort_values("logfoldchanges", ascending=False).head(args.N)
+sig = df[df["pvals_adj"] < args.pvalue].copy()
 
-down = df[
-    (df["logfoldchanges"] < 0) &
-    (df["pvals_adj"] < args.pvalue)
-].sort_values("logfoldchanges", ascending=True).head(args.N)
+# remove duplicates (keep strongest signal)
+sig = sig.sort_values("logfoldchanges", key=lambda x: x.abs(), ascending=False)
+sig = sig.drop_duplicates("gene")
+
+# ----------------------------
+# TOP N UP / DOWN
+# ----------------------------
+up = sig[sig["logfoldchanges"] > 0].sort_values(
+    "logfoldchanges", ascending=False
+).head(args.N)
+
+down = sig[sig["logfoldchanges"] < 0].sort_values(
+    "logfoldchanges", ascending=True
+).head(args.N)
 
 plot_df = pd.concat([up, down]).drop_duplicates("gene")
 
-if len(plot_df) == 0:
+if plot_df.empty:
     raise ValueError("No significant genes found")
 
 # ----------------------------
-# HEATMAP = DIRECT FROM CSV (NO RECOMPUTATION)
+# HEATMAP
 # ----------------------------
 heatmap_df = plot_df.set_index("gene")[["logfoldchanges"]]
 
-# sort for readability
-heatmap_df = heatmap_df.sort_values("logfoldchanges", ascending=False)
+heatmap_df = heatmap_df.reindex(
+    heatmap_df["logfoldchanges"].abs().sort_values(ascending=False).index
+)
 
 # ----------------------------
 # PLOT
 # ----------------------------
-plt.figure(figsize=(6, max(6, len(heatmap_df) * 0.25)))
+plt.figure(figsize=(6, max(6, len(heatmap_df) * 0.3)))
 
 sns.heatmap(
     heatmap_df,
     cmap="RdBu_r",
     center=0,
     annot=False,
-    cbar_kws={"label": "logFC (Reg vs non-Reg)"}
+    cbar_kws={"label": "logFC"}
 )
 
-plt.title("Global DE (Reg vs non-Reg)")
+plt.title(f"Global DE ({args.reference})")
 plt.ylabel("Genes")
 plt.xlabel("")
 
 plt.tight_layout()
-plt.savefig(
-    f"figures/{args.prefix}_heatmap.png",
-    dpi=300,
-    bbox_inches="tight"
-)
+plt.savefig(f"figures/{args.prefix}_heatmap.png", dpi=300, bbox_inches="tight")
+plt.close()
 
 adata.write_h5ad(args.output)

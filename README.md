@@ -260,9 +260,10 @@ We used the above marker genes to annotate our celltypes as follows:
 ## Differential gene expression 
 
 ### Global Regenerative vs non Regenerative 
-We performed global differential gene expression analysis between Reg and non-Reg samples using the Wilcoxon rank-sum test. We then selected the top N significantly upregulated and top N significantly downregulated genes (adjusted p-value < 0.05) based on log fold change. These genes were used to generate a heatmap showing their mean expression across cell types. The heatmap visualizes expression patterns of globally differentially expressed genes and is not itself used for differential testing.
 
-![](figures/axt_heatmap.png?v=2)
+We performed global differential gene expression analysis between Reg and non-Reg samples using the Wilcoxon rank-sum test. Genes were filtered using an adjusted p-value threshold of < 0.05. The top N genes with the highest positive and lowest negative log fold change values were selected as upregulated and downregulated genes, respectively. These genes were visualized in a heatmap displaying their global log fold change values (Reg vs non-Reg). The heatmap represents differential expression effect sizes and is used for visualization only, not for statistical testing.
+
+![](figures/axt_heatmap.png?v=3)
 
 
 
