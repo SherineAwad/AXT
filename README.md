@@ -263,9 +263,15 @@ We used the above marker genes to annotate our celltypes as follows:
 
 We performed global differential gene expression analysis between Reg and non-Reg samples using the Wilcoxon rank-sum test. Genes were filtered using an adjusted p-value threshold of < 0.05. The top N genes with the highest positive and lowest negative log fold change values were selected as upregulated and downregulated genes, respectively. These genes were visualized in a heatmap displaying their global log fold change values (Reg vs non-Reg). The heatmap represents differential expression effect sizes and is used for visualization only, not for statistical testing.
 
+### N=20
+
 ![](figures/axt_heatmap.png?v=3)
 
+### Now deeper look into celltypes
 
+We performed differential gene expression analysis stratified by cell type to compare Reg and nonReg conditions. For each cell type, cells were subsetted and a Wilcoxon rank-sum test was applied using Scanpy’s `rank_genes_groups` function with `sample` as the grouping variable and nonReg set as the reference. This approach identifies genes that are differentially expressed in Reg relative to nonReg within each individual cell type, rather than across the full dataset. For each cell type, we extracted log fold-changes and adjusted p-values, filtered for statistically significant genes (adjusted p-value < threshold), and removed duplicate gene entries by retaining the strongest signal. The top N upregulated and downregulated genes per cell type were selected based on log fold-change and visualised in a heatmap summarising Reg versus nonReg effects across all cell types.
+
+![](figures/axt_celltype_heatmap.png?v=2)
 
 ## Celltypes similarities between samples
 
