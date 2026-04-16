@@ -20,7 +20,7 @@ adata = sc.read_h5ad(args.input)
 all_results = []
 
 # ----------------------------
-# PER CELLTYPE DE (FIXED COLUMN NAME ONLY)
+# PER CELLTYPE DE
 # ----------------------------
 for ct in adata.obs["celltype"].unique():
 
@@ -32,7 +32,7 @@ for ct in adata.obs["celltype"].unique():
     sc.tl.rank_genes_groups(
         adata_ct,
         groupby="sample",
-        reference=args.reference,   # nonReg
+        reference=args.reference,
         method="wilcoxon",
         layer="log1p",
         use_raw=False
@@ -93,9 +93,9 @@ heatmap_df = plot_df.pivot(
     values="logfoldchanges"
 ).fillna(0)
 
-heatmap_df = heatmap_df.loc[
-    heatmap_df.abs().max(axis=1).sort_values(ascending=False).index
-]
+# keep previous improved ordering (unchanged)
+gene_order = heatmap_df.mean(axis=1).sort_values(ascending=False).index
+heatmap_df = heatmap_df.loc[gene_order]
 
 # ----------------------------
 # PLOT

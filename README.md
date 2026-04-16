@@ -271,7 +271,7 @@ We performed global differential gene expression analysis between Reg and non-Re
 
 We performed differential gene expression analysis stratified by cell type to compare Reg and nonReg conditions. For each cell type, cells were subsetted and a Wilcoxon rank-sum test was applied using Scanpy’s `rank_genes_groups` function with `sample` as the grouping variable and nonReg set as the reference. This approach identifies genes that are differentially expressed in Reg relative to nonReg within each individual cell type, rather than across the full dataset. For each cell type, we extracted log fold-changes and adjusted p-values, filtered for statistically significant genes (adjusted p-value < threshold), and removed duplicate gene entries by retaining the strongest signal. The top N upregulated and downregulated genes per cell type were selected based on log fold-change and visualised in a heatmap summarising Reg versus nonReg effects across all cell types.
 
-![](figures/axt_celltype_heatmap.png?v=2)
+![](figures/axt_celltype_heatmap.png?v=3)
 
 ## Celltypes similarities between samples
 
