@@ -268,7 +268,7 @@ We performed global differential gene expression analysis between Reg and non-Re
 
 #### List of DGE with adj-pvalue \< 0.05 is in the link below
 
-[Globale DGE `<0.05`](https://docs.google.com/spreadsheets/d/1mC9Rs9Ny3Ow8B8jCypt01D4kYfwcTChExBcoxymkcUo/edit?usp=sharing)
+[Download here Global DGE `<0.05`](https://docs.google.com/spreadsheets/d/1mC9Rs9Ny3Ow8B8jCypt01D4kYfwcTChExBcoxymkcUo/edit?usp=sharing)
 
 
 ### Now deeper look into celltypes
@@ -281,10 +281,86 @@ We performed differential gene expression analysis stratified by cell type to co
 
 #### List of DGE with adj-pvalue \< 0.05 is in the link below
 
-[DGE per celltype `<0.05`](https://docs.google.com/spreadsheets/d/1hkJZaX6G9UtaQD9wd0y1bGVQt0DOQvs9gjLa56vJJdU/edit?usp=sharing)
+[Download here DGE per celltype `<0.05`](https://docs.google.com/spreadsheets/d/1hkJZaX6G9UtaQD9wd0y1bGVQt0DOQvs9gjLa56vJJdU/edit?usp=sharing)
 
 
-######⚠️  ⚠️ I have the full list of DGE, but the file is too large to upload here
+###### ⚠️ ⚠️ I have the full list of DGE, but the file is too large to upload here
+
+
+
+## 🧬 Cell–Cell Interaction Analysis (LIANA)
+
+This pipeline identifies potential **ligand–receptor interactions** from single-cell RNA-seq data using the LIANA framework. LIANA integrates multiple established methods into a single consensus scoring system.
+
+![](figures/axt_liana_dotplot.png?=1)
+
+### Ligand–receptor inference (LIANA)
+The script runs `liana.mt.rank_aggregate`, which integrates multiple tools:
+
+- 📡 **CellPhoneDB** → permutation-based statistical testing of ligand–receptor pairs  
+- 🧠 **CellChat** → probabilistic modeling of signaling pathway activity  
+- 🔗 **NATMI** → network-based interaction scoring  
+- 🌐 **Connectome** → expression-based interaction networks  
+- 🧬 **SingleCellSignalR** → statistical inference of signaling relationships  
+
+---
+
+### Consensus scoring
+LIANA combines all methods into unified metrics:
+
+- **`lrscore`** → Overall interaction confidence (0–1)  
+  → Higher = stronger agreement across methods
+
+- **`lr_logfc`** → Differential interaction strength  
+  → Positive = enriched in condition A (e.g. Reg)  
+  → Negative = enriched in condition B (e.g. nonReg)
+
+---
+
+### Filtering and ranking
+- Filter interactions by **|lr_logfc| threshold**
+- Rank interactions by **`lrscore`**
+- Select top N ligand–receptor pairs
+
+---
+
+###  Visualization
+- Each dot represents a ligand–receptor interaction:
+  - X-axis: ligand (source cell type)
+  - Y-axis: receptor (target cell type)
+  - Dot size: `lrscore` (interaction strength)
+  - Color: `lr_logfc` (condition bias)
+
+---
+
+## 📌 Interpretation
+
+This analysis reveals:
+- Which cells are sending signals
+- Which cells are receiving signals
+- Which interactions are:
+  - Strong and consistent (`lrscore`)
+  - Condition-specific (`lr_logfc`)
+
+## 📊 LIANA Output Metrics
+
+| Column | Meaning | Interpretation |
+|--------|--------|----------------|
+| **source** | Sending cell type | Cell type producing the ligand (signal sender) |
+| **target** | Receiving cell type | Cell type expressing the receptor (signal receiver) |
+| **ligand_complex** | Ligand gene / complex | Signaling molecule produced by source cells |
+| **receptor_complex** | Receptor gene / complex | Molecule on target cells receiving the signal |
+| **lr_means** | Mean expression of ligand and receptor | Indicates whether both ligand and receptor are moderately/highly expressed |
+| **expr_prod** | Product of ligand × receptor expression | Measures co-expression strength (high only if both are expressed) |
+| **lr_logfc** | Log fold-change (e.g. Reg vs nonReg) | Positive = enriched in Reg, negative = enriched in nonReg |
+| **cellphone_pvals** | Permutation p-value (CellPhoneDB) | Statistical significance of interaction (lower = more significant) |
+| **scaled_weight** | Normalized interaction strength | Consensus-scaled interaction magnitude across methods |
+| **spec_weight** | Specificity score | How unique the interaction is to specific cell–cell pairs |
+| **lrscore** | LIANA consensus score (0–1) | Overall confidence of interaction across methods |
+| **specificity_rank** | Rank of specificity | Lower rank = more cell-type-specific interaction |
+| **magnitude_rank** | Rank of interaction strength | Lower rank = stronger interaction compared to others |
+
+
  
 ## Celltypes similarities between samples
 
@@ -310,26 +386,4 @@ You want to know: Is Gene X upregulated in disease vs control (3 in control, 30 
 Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about the 10x change. Use log fold change instead.
 
 ![](figures/axt_cosine_similarity.png?v=2) 
-
-## Cell to cell interactions 
-
-
-# 📊 LIANA Ligand–Receptor Output Metrics
-
-| Column | Meaning | How to interpret it |
-|--------|--------|---------------------|
-| **source** | Sending cell type | Cell type producing the ligand (signal sender) |
-| **target** | Receiving cell type | Cell type expressing the receptor (signal receiver) |
-| **ligand_complex** | Ligand gene or complex | Signaling molecule produced by source cells |
-| **receptor_complex** | Receptor gene or complex | Molecule on target cells receiving the signal |
-| **lr_means** | Average expression of ligand and receptor | Indicates whether both ligand and receptor are expressed at moderate/high levels |
-| **expr_prod** | Product of ligand × receptor expression | Measures co-expression strength; high only when both are strongly expressed |
-| **lr_logfc** | Log fold-change of interaction strength (e.g. Reg vs nonReg) | Positive = enriched in Reg, negative = enriched in nonReg |
-| **cellphone_pvals** | Permutation-based p-value (CellPhoneDB) | Statistical significance of interaction (lower = more significant) |
-| **scaled_weight** | Normalized interaction strength across methods | Consensus-based interaction magnitude |
-| **spec_weight** | Specificity score | How unique the interaction is to specific cell–cell pairs |
-| **lrscore** | LIANA consensus score (0–1) | Overall confidence of interaction across methods (higher = stronger confidence) |
-| **specificity_rank** | Rank of interaction specificity | Lower rank = more cell-type-specific interaction |
-| **magnitude_rank** | Rank of interaction strength | Lower rank = stronger interaction compared to others |
-
 
