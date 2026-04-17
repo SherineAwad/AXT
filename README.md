@@ -287,14 +287,18 @@ We performed differential gene expression analysis stratified by cell type to co
 ###### ⚠️ ⚠️ I have the full list of DGE, but the file is too large to upload here
 
 
-
 ## 🧬 Cell–Cell Interaction Analysis (LIANA)
 
 This pipeline identifies potential **ligand–receptor interactions** from single-cell RNA-seq data using the LIANA framework. LIANA integrates multiple established methods into a single consensus scoring system.
 
-#### Top lrScores interactions with minimum logFC 0.5 
+#### Top lrScores interactions with minimum |logFC| 0.5
 
-![](figures/axt_liana_dotplot.png?=1)
+![](figures/axt_liana_dotplot.png?=2)
+
+
+#### Click the link below for full list of cell-cell interactions
+
+[Download here cell to cell interactions](https://docs.google.com/spreadsheets/d/1VtInno4Q76C13Vv6o5JfKcFpQNqcrKQCM6R3tSVKv_Y/edit?usp=sharing)
 
 ### Ligand–receptor inference (LIANA)
 The script runs `liana.mt.rank_aggregate`, which integrates multiple tools:
@@ -305,9 +309,7 @@ The script runs `liana.mt.rank_aggregate`, which integrates multiple tools:
 - 🌐 **Connectome** → expression-based interaction networks  
 - 🧬 **SingleCellSignalR** → statistical inference of signaling relationships  
 
----
-
-### Consensus scoring
+#### Consensus scoring
 LIANA combines all methods into unified metrics:
 
 - **`lrscore`** → Overall interaction confidence (0–1)  
@@ -317,25 +319,19 @@ LIANA combines all methods into unified metrics:
   → Positive = enriched in condition A (e.g. Reg)  
   → Negative = enriched in condition B (e.g. nonReg)
 
----
-
-### Filtering and ranking
-- Filter interactions by **|lr_logfc| threshold**
-- Rank interactions by **`lrscore`**
+#### Filtering and ranking
+- Filter interactions by **|lr_logfc| threshold (absolute log fold-change)**  
+- Rank interactions by **`lrscore`**  
 - Select top N ligand–receptor pairs
 
----
-
-###  Visualization
+#### Visualization
 - Each dot represents a ligand–receptor interaction:
   - X-axis: ligand (source cell type)
   - Y-axis: receptor (target cell type)
   - Dot size: `lrscore` (interaction strength)
   - Color: `lr_logfc` (condition bias)
 
----
-
-## 📌 Interpretation
+#### Interpretation
 
 This analysis reveals:
 - Which cells are sending signals
@@ -344,7 +340,7 @@ This analysis reveals:
   - Strong and consistent (`lrscore`)
   - Condition-specific (`lr_logfc`)
 
-## 📊 LIANA Output Metrics
+#### LIANA Output Metrics
 
 | Column | Meaning | Interpretation |
 |--------|--------|----------------|
@@ -361,8 +357,6 @@ This analysis reveals:
 | **lrscore** | LIANA consensus score (0–1) | Overall confidence of interaction across methods |
 | **specificity_rank** | Rank of specificity | Lower rank = more cell-type-specific interaction |
 | **magnitude_rank** | Rank of interaction strength | Lower rank = stronger interaction compared to others |
-
-
  
 ## Celltypes similarities between samples
 
