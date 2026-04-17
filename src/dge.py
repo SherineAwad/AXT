@@ -40,8 +40,9 @@ df = df[["names", "logfoldchanges", "pvals_adj"]].rename(
 # ----------------------------
 # SAVE CSV
 # ----------------------------
-df.to_csv(f"{args.prefix}_global_dge.csv", index=False)
 
+df[df["pvals_adj"] < args.pvalue].to_csv(
+    f"{args.prefix}_global_dge.csv", index=False)
 # ----------------------------
 # FILTER
 # ----------------------------
@@ -89,7 +90,7 @@ sns.heatmap(
     cbar_kws={"label": "logFC"}
 )
 
-plt.title(f"Global DE ({args.reference})")
+plt.title(f"Global DE: Reg vs non Reg")
 plt.ylabel("Genes")
 plt.xlabel("")
 

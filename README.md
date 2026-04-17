@@ -227,34 +227,33 @@ marker_genes = {
 
 We used the above marker genes to annotate our celltypes as follows:
 
-![](figures/umap_axt_celltype.png?v=1)
+![](figures/umap_axt_celltype.png?v=2)
 
 
-![](figures/umap_axt_celltypeON.png?v=1) 
+![](figures/umap_axt_celltypeON.png?v=2) 
 
 🚨🚨⚠️ WARNING: Cluster 23 removed due to low-quality cells (133 cells were removed) ⚠️ 🚨🚨
 
 
 ## Some stats for samples and cells 
 
-| Celltype                 | Reg   | nonReg | Total |
-|--------------------------|-------|--------|-------|
-| B-Cells                  | 260   | 295    | 555   |
-| Endothelial              | 1541  | 1065   | 2606  |
-| Fibroblast               | 5360  | 11936  | 17296 |
-| Keratinocyte             | 679   | 498    | 1177  |
-| Lymphatic_Endothelial    | 147   | 208    | 355   |
-| Macrophage               | 1616  | 2969   | 4585  |
-| Macrophge                | 299   | 721    | 1020  |
-| Neutrophil               | 225   | 428    | 653   |
-| Pericyte_SMC             | 569   | 580    | 1149  |
-| Schwann                  | 391   | 56     | 447   |
-| Synoviocyte_Chondrocyte  | 185   | 3      | 188   |
-| T-Cells                  | 523   | 1019   | 1542  |
-| **Total**                |**11795**|**19778**|**31573**|
+| Cell Type                  | Reg  | nonReg | Total |
+|---------------------------|------|--------|-------|
+| B-Cells                   | 260  | 295    | 555   |
+| Endothelial               | 1541 | 1065   | 2606  |
+| Fibroblast                | 5360 | 11936  | 17296 |
+| Keratinocyte              | 679  | 498    | 1177  |
+| Lymphatic_Endothelial     | 147  | 208    | 355   |
+| Macrophage                | 1915 | 3690   | 5605  |
+| Neutrophil                | 225  | 428    | 653   |
+| Pericyte_SMC              | 569  | 580    | 1149  |
+| Schwann                   | 391  | 56     | 447   |
+| Synoviocyte_Chondrocyte   | 185  | 3      | 188   |
+| T-Cells                   | 523  | 1019   | 1542  |
+| **Total**                 | 11795| 19778  | 31573 |
 
 
-![](figures/axt_cell_ratios.png?v=1)
+![](figures/axt_cell_ratios.png?v=2)
 
 
 ## Differential gene expression 
@@ -265,14 +264,28 @@ We performed global differential gene expression analysis between Reg and non-Re
 
 ### N=20
 
-![](figures/axt_heatmap.png?v=3)
+![](figures/axt_heatmap.png?v=4)
+
+#### List of DGE with adj-pvalue \< 0.05 is in the link below
+
+[Globale DGE `<0.05`](https://docs.google.com/spreadsheets/d/1mC9Rs9Ny3Ow8B8jCypt01D4kYfwcTChExBcoxymkcUo/edit?usp=sharing)
+
 
 ### Now deeper look into celltypes
 
 We performed differential gene expression analysis stratified by cell type to compare Reg and nonReg conditions. For each cell type, cells were subsetted and a Wilcoxon rank-sum test was applied using Scanpy’s `rank_genes_groups` function with `sample` as the grouping variable and nonReg set as the reference. This approach identifies genes that are differentially expressed in Reg relative to nonReg within each individual cell type, rather than across the full dataset. For each cell type, we extracted log fold-changes and adjusted p-values, filtered for statistically significant genes (adjusted p-value < threshold), and removed duplicate gene entries by retaining the strongest signal. The top N upregulated and downregulated genes per cell type were selected based on log fold-change and visualised in a heatmap summarising Reg versus nonReg effects across all cell types.
 
-![](figures/axt_celltype_heatmap.png?v=3)
+### N=5 per celltype 
 
+![](figures/axt_celltype_heatmap.png?v=4)
+
+#### List of DGE with adj-pvalue \< 0.05 is in the link below
+
+[DGE per celltype `<0.05`](https://docs.google.com/spreadsheets/d/1hkJZaX6G9UtaQD9wd0y1bGVQt0DOQvs9gjLa56vJJdU/edit?usp=sharing)
+
+
+######⚠️  ⚠️ I have the full list of DGE, but the file is too large to upload here
+ 
 ## Celltypes similarities between samples
 
 ### Method 1: Cosine similarity 
@@ -296,10 +309,27 @@ You want to know: Is Gene X upregulated in disease vs control (3 in control, 30 
 
 Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about the 10x change. Use log fold change instead.
 
-![](figures/axt_cosine_similarity.png?v=1) 
+![](figures/axt_cosine_similarity.png?v=2) 
+
+## Cell to cell interactions 
 
 
+# 📊 LIANA Ligand–Receptor Output Metrics
 
-
+| Column | Meaning | How to interpret it |
+|--------|--------|---------------------|
+| **source** | Sending cell type | Cell type producing the ligand (signal sender) |
+| **target** | Receiving cell type | Cell type expressing the receptor (signal receiver) |
+| **ligand_complex** | Ligand gene or complex | Signaling molecule produced by source cells |
+| **receptor_complex** | Receptor gene or complex | Molecule on target cells receiving the signal |
+| **lr_means** | Average expression of ligand and receptor | Indicates whether both ligand and receptor are expressed at moderate/high levels |
+| **expr_prod** | Product of ligand × receptor expression | Measures co-expression strength; high only when both are strongly expressed |
+| **lr_logfc** | Log fold-change of interaction strength (e.g. Reg vs nonReg) | Positive = enriched in Reg, negative = enriched in nonReg |
+| **cellphone_pvals** | Permutation-based p-value (CellPhoneDB) | Statistical significance of interaction (lower = more significant) |
+| **scaled_weight** | Normalized interaction strength across methods | Consensus-based interaction magnitude |
+| **spec_weight** | Specificity score | How unique the interaction is to specific cell–cell pairs |
+| **lrscore** | LIANA consensus score (0–1) | Overall confidence of interaction across methods (higher = stronger confidence) |
+| **specificity_rank** | Rank of interaction specificity | Lower rank = more cell-type-specific interaction |
+| **magnitude_rank** | Rank of interaction strength | Lower rank = stronger interaction compared to others |
 
 

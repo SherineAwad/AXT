@@ -50,7 +50,8 @@ for ct in adata.obs["celltype"].unique():
 
 df = pd.concat(all_results, ignore_index=True)
 
-df.to_csv(f"{args.prefix}_per_celltype_dge.csv", index=False)
+df[df["pvals_adj"] < args.pvalue].to_csv(
+    f"{args.prefix}_perCelltype_dge.csv", index=False)
 
 # ----------------------------
 # FILTER

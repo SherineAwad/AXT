@@ -14,7 +14,7 @@ leiden,celltype
 18,Lymphatic_Endothelial
 4,Macrophage
 7,Macrophage
-14,Macrophge
+14,Macrophage
 20,Macrophage
 12,Keratinocyte
 13,Pericyte_SMC
