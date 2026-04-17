@@ -371,14 +371,6 @@ This analysis reveals:
 - It doesn't tell you how much higher or lower a specific gene is (e.g., 3 vs 30). Magnitude is ignored.
 
 
-## When to use: Cell identity
-You want to know: Is the Fibroblast from sample A the same cell type as Fibroblast from sample B?
-
-Cosine similarity = 0.95 → Yes, same pattern. Magnitude difference doesn't matter.
-
-## When NOT to use: Differential expression
-You want to know: Is Gene X upregulated in disease vs control (3 in control, 30 in disease)?
-
 Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about the 10x change. Use log fold change instead.
 
 ![](figures/axt_cosine_similarity.png?v=2) 
