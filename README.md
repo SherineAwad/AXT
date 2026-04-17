@@ -47,6 +47,17 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 
 ![](figures/violin_axt_AfterQC.png?v=3) 
 
+
+## Doublet Detection using Scrublet 
+
+
+![](figures/axt_scrublet_scores.png?v=1) 
+
+- Detected 72 doublets (0.2%)
+
+- Scrublet predicted a doublet rate of 0.2%. Given the negligible proportion, no cells were removed."
+
+
 ## Analysing 
 
 1. Normalization
@@ -374,4 +385,48 @@ This analysis reveals:
 Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about the 10x change. Use log fold change instead.
 
 ![](figures/axt_cosine_similarity.png?v=2) 
+
+
+## MORE ANALYSIS ON THE WAY 
+
+
+## REFERENCES 
+
+
+---
+
+## 📚 Software and Method Citations
+
+This analysis pipeline is built using the following tools and methods:
+
+- 🧬 **LIANA**  
+  Dimitrov et al., 2022. *LIANA: a toolbox for cell–cell communication inference.*  
+  https://github.com/saezlab/liana
+
+- 📡 **CellPhoneDB**  
+  Efremova et al., 2020. *CellPhoneDB: inferring cell–cell communication from single-cell data.*  
+  https://www.cellphonedb.org/
+
+- 🧠 **CellChat**  
+  Jin et al., 2021. *CellChat: inference and analysis of cell–cell communication.*  
+  https://www.nature.com/articles/s41467-021-21246-9
+
+- 🔗 **NATMI**  
+  Hou et al., 2020. *NATMI: network analysis toolkit for multilayer interactions.*  
+  https://github.com/asrhou/NATMI
+
+- 🌐 **Connectome**  
+  Raredon et al., 2021. *Connectome: multi-modal analysis of cell–cell communication networks.*  
+  https://www.nature.com/articles/s41598-022-07959-x
+
+- 🧬 **SingleCellSignalR**  
+  Cabello-Aguilar et al., 2020. *SingleCellSignalR: inference of intercellular communication networks.*  
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC7261168/
+
+- 📊 **Scanpy**  
+  Wolf et al., 2018. *Scanpy: large-scale single-cell gene expression analysis.*  
+  https://scanpy.readthedocs.io/
+
+
+
 
