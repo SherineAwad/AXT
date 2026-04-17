@@ -80,7 +80,7 @@ plt.figure(figsize=(len(ligands) * 0.6, len(receptors) * 0.5))
 plt.scatter(
     plot_df["x"],
     plot_df["y"],
-    s=plot_df["lrscore"] * 800,   # scale dots properly
+    s=plot_df["lrscore"] * 500,   # scale dots properly
     c=plot_df["lr_logfc"],
     cmap="coolwarm",
     edgecolors="black"
@@ -92,7 +92,7 @@ plt.yticks(range(len(receptors)), receptors)
 
 plt.xlabel("Ligand")
 plt.ylabel("Receptor")
-plt.title(f"Top {args.N} ligand–receptor interactions ({args.prefix})")
+plt.title(f"Top ligand–receptor interactions ({args.prefix})")
 
 plt.colorbar(label="lr_logfc")
 

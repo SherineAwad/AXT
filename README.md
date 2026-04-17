@@ -292,6 +292,8 @@ We performed differential gene expression analysis stratified by cell type to co
 
 This pipeline identifies potential **ligand–receptor interactions** from single-cell RNA-seq data using the LIANA framework. LIANA integrates multiple established methods into a single consensus scoring system.
 
+#### Top lrScores interactions with minimum logFC 0.5 
+
 ![](figures/axt_liana_dotplot.png?=1)
 
 ### Ligand–receptor inference (LIANA)
