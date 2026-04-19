@@ -12,107 +12,78 @@ parser.add_argument("--output", required=True)
 parser.add_argument("--prefix", required=True)
 parser.add_argument("--N", type=int, required=True)
 parser.add_argument("--pvalue", type=float, default=0.05)
-parser.add_argument("--reference", required=True)
 args = parser.parse_args()
 
 adata = sc.read_h5ad(args.input)
 
-all_results = []
+if "celltype" not in adata.obs.columns:
+    raise ValueError("celltype column not found in adata.obs")
 
-# ----------------------------
-# PER CELLTYPE DE
-# ----------------------------
-for ct in adata.obs["celltype"].unique():
+sc.tl.rank_genes_groups(
+    adata,
+    groupby="celltype",
+    method="wilcoxon",
+    layer="log1p",
+    use_raw=False,
+    n_genes=None
+)
 
-    adata_ct = adata[adata.obs["celltype"] == ct].copy()
+df = sc.get.rank_genes_groups_df(adata, group=None)
+df = df[["names", "logfoldchanges", "pvals_adj", "group"]].rename(
+    columns={"names": "gene", "group": "celltype"}
+)
 
-    if adata_ct.n_obs < 10:
-        continue
+df.to_csv(f"{args.prefix}_perCelltypeAll.csv", index=False)
+df_sig = df[df["pvals_adj"] < args.pvalue].copy()
+df_sig.to_csv(f"{args.prefix}_perCelltype_{args.pvalue}.csv", index=False)
 
-    sc.tl.rank_genes_groups(
-        adata_ct,
-        groupby="sample",
-        reference=args.reference,
-        method="wilcoxon",
-        layer="log1p",
-        use_raw=False
-    )
+if df_sig.empty:
+    raise ValueError("No significant genes found")
 
-    df_ct = sc.get.rank_genes_groups_df(adata_ct, group=None)
-
-    df_ct = df_ct[["names", "logfoldchanges", "pvals_adj"]].rename(
-        columns={"names": "gene"}
-    )
-
-    df_ct["celltype"] = ct
-
-    all_results.append(df_ct)
-
-df = pd.concat(all_results, ignore_index=True)
-
-df[df["pvals_adj"] < args.pvalue].to_csv(
-    f"{args.prefix}_perCelltype_dge.csv", index=False)
-
-# ----------------------------
-# FILTER
-# ----------------------------
-sig = df[df["pvals_adj"] < args.pvalue].copy()
-
-sig = sig.sort_values("logfoldchanges", key=lambda x: x.abs(), ascending=False)
-sig = sig.drop_duplicates(["celltype", "gene"])
-
-# ----------------------------
-# TOP N
-# ----------------------------
 top_list = []
-
-for ct in sig["celltype"].unique():
-    ct_df = sig[sig["celltype"] == ct]
-
+for ct in df_sig["celltype"].unique():
+    ct_df = df_sig[df_sig["celltype"] == ct]
+    
     up = ct_df[ct_df["logfoldchanges"] > 0].sort_values(
         "logfoldchanges", ascending=False
     ).head(args.N)
-
+    
     down = ct_df[ct_df["logfoldchanges"] < 0].sort_values(
         "logfoldchanges", ascending=True
     ).head(args.N)
-
+    
     top_list.append(up)
     top_list.append(down)
 
 plot_df = pd.concat(top_list).drop_duplicates(["celltype", "gene"])
 
-if plot_df.empty:
-    raise ValueError("No significant genes found")
-
-# ----------------------------
-# HEATMAP
-# ----------------------------
 heatmap_df = plot_df.pivot(
     index="gene",
     columns="celltype",
     values="logfoldchanges"
 ).fillna(0)
 
-# keep previous improved ordering (unchanged)
-gene_order = heatmap_df.mean(axis=1).sort_values(ascending=False).index
-heatmap_df = heatmap_df.loc[gene_order]
+celltype_order = heatmap_df.columns.tolist()
+diag_sort = []
+for gene in heatmap_df.index:
+    max_ct = heatmap_df.loc[gene].abs().idxmax()
+    diag_sort.append((gene, max_ct))
 
-# ----------------------------
-# PLOT
-# ----------------------------
-plt.figure(figsize=(max(6, len(heatmap_df.columns)), max(6, len(heatmap_df) * 0.3)))
+heatmap_df = heatmap_df.loc[[g for g, _ in sorted(diag_sort, key=lambda x: celltype_order.index(x[1]))]]
+
+plt.figure(figsize=(max(8, len(heatmap_df.columns) * 0.5), max(6, len(heatmap_df) * 0.3)))
 
 sns.heatmap(
     heatmap_df,
-    cmap="RdBu_r",
+    cmap="coolwarm",
     center=0,
-    cbar_kws={"label": "logFC (Reg vs nonReg)"}
+    cbar_kws={"label": "logFC"}
 )
 
-plt.title("Per-celltype DE: Reg vs nonReg")
+plt.title(f"Top {args.N} up and down genes per cell type")
 plt.ylabel("Genes")
-plt.xlabel("celltype")
+plt.xlabel("Cell Type")
+plt.xticks(rotation=45, ha='right')
 
 plt.tight_layout()
 
@@ -121,3 +92,5 @@ plt.savefig(f"figures/{args.prefix}_celltype_heatmap.png", dpi=300, bbox_inches=
 plt.close()
 
 adata.write_h5ad(args.output)
+
+print("Done.")

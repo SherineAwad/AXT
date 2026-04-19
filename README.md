@@ -288,11 +288,11 @@ We performed differential gene expression analysis stratified by cell type to co
 
 ### N=5 per celltype 
 
-![](figures/axt_celltype_heatmap.png?v=4)
+![](figures/axt_celltype_heatmap.png?v=5)
 
 #### List of DGE with adj-pvalue \< 0.05 is in the link below
 
-[Download here DGE per celltype `<0.05`](https://docs.google.com/spreadsheets/d/1hkJZaX6G9UtaQD9wd0y1bGVQt0DOQvs9gjLa56vJJdU/edit?usp=sharing)
+[Download here DGE per celltype `<0.05`](https://docs.google.com/spreadsheets/d/1vQ1NTK9NPs96PkLrH0t7gtZ_ebCgXK9MNRALG19bNdw/edit?usp=sharing)
 
 
 ###### ⚠️ ⚠️ I have the full list of DGE, but the file is too large to upload here
