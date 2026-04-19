@@ -387,6 +387,27 @@ Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about 
 ![](figures/axt_cosine_similarity.png?v=2) 
 
 
+## Pathways and GO analysis 
+
+#### KEGG
+![](figures/axt_enrichment_KEGG_dotplot.png?v=1)
+
+#### REAC
+![](figures/axt_enrichment_REAC_dotplot.png?v=1)
+
+#### WP
+![](figures/axt_enrichment_WP_dotplot.png?v=1)
+
+##### GO
+![](figures/axt_enrichment_GO_dotplot.png?v=1)
+
+##### TFs 
+![](figures/axt_enrichment_TF_dotplot.png?v=1)
+
+#### CORUM
+![](figures/axt_enrichment_CORUM_dotplot.png?v=1)
+
+
 ## MORE ANALYSIS ON THE WAY 
 
 
