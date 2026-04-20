@@ -20,7 +20,11 @@ marker_genes = {
     "Lymphatic_Endothelial": ["Prox1", "Lyve1", "Pdpn", "Flt4", "Pecam1"],
     "B-cell": ["Cd79a", "Cd19", "Ms4a1", "Ighm", "Pax5", "Cd22"],
     "Rspo3_Col23a1": ["Rspo3", "Col23a1"],
-    "MSC": ["Lepr", "Cxcl12", "Ngfr", "Nes", "Cd44", "Scf"]
+    "MSC": ["Lepr", "Cxcl12", "Ngfr", "Nes", "Cd44", "Scf"],
+    "Osteosarcoma": ["EGFP"],
+    "Nail_Epithelium": ["Lgr6", "Sp6", "Sp8"],
+    "Sweat_glands": ["Aqp5","Scnn1a","Scnn1b","Scnn1g","Krt19","Krt7","Krt8","Krt18","Krt5","Krt14","Foxa1"]
+
 }
 
 parser = argparse.ArgumentParser()

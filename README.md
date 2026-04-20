@@ -41,21 +41,19 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 
 ### Pre-filtering 
 
-![](figures/violin_axt_preQC.png?v=3)
+![](figures/violin_axt_preQC.png?v=4)
 
 ### Post filtering 
 
-![](figures/violin_axt_AfterQC.png?v=3) 
+![](figures/violin_axt_AfterQC.png?v=4) 
 
 
 ## Doublet Detection using Scrublet 
 
 
-![](figures/axt_scrublet_scores.png?v=1) 
+![](figures/axt_scrublet_scores.png?v=2) 
 
-- Detected 72 doublets (0.2%)
-
-- Scrublet predicted a doublet rate of 0.2%. Given the negligible proportion, no cells were removed."
+- Detected 82 doublets (0.3%) and were removed. 
 
 
 ## Analysing 
@@ -91,11 +89,11 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 - Similar cells cluster together visually
 
 #### UMAP
-![](figures/umap_axt.png?v=3) 
+![](figures/umap_axt.png?v=4) 
 
 #### Per sample UMAP 
 
-<img src="figures/umap_axt_Reg.png?v=3" width="600" /> <img src="figures/umap_axt_nonReg.png?v=3" width="600" />
+<img src="figures/umap_axt_Reg.png?v=4" width="600" /> <img src="figures/umap_axt_nonReg.png?v=4" width="600" />
 
 
 ## Clustering 
@@ -131,7 +129,7 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 - **High resolution (e.g. 1.0+)** → more, smaller clusters  
 
 
-![](figures/umap_axt_leiden.png?v=3) 
+![](figures/umap_axt_leiden.png?v=4) 
 
 
 ## QC per Leiden Cluster
@@ -139,7 +137,7 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 QC metrics were visualized across Leiden clusters to assess cluster quality.
 Check QC per cluster to spot and remove **low-quality or suspicious cell groups**
 
-<img src="figures/violin_axt_QC_n_genes_by_counts.png?v=3" width="33%" /><img src="figures/violin_axt_QC_total_counts.png?v=3" width="33%" /> <img src="figures/violin_axt_QC_pct_counts_mt.png?v=3" width="33%" />
+<img src="figures/violin_axt_QC_n_genes_by_counts.png?v=5" width="33%" /><img src="figures/violin_axt_QC_total_counts.png?v=5" width="33%" /> <img src="figures/violin_axt_QC_pct_counts_mt.png?v=5" width="33%" />
 
 ## Marker genes 
 
@@ -169,104 +167,93 @@ marker_genes = {
     "Lymphatic_Endothelial": ["Prox1", "Lyve1", "Pdpn", "Flt4", "Pecam1"],
     "B-cell": ["Cd79a", "Cd19", "Ms4a1", "Ighm", "Pax5", "Cd22"],
     "Rspo3_Col23a1": ["Rspo3", "Col23a1"],
-    "MSC": ["Lepr", "Cxcl12", "Ngfr", "Nes", "Cd44", "Scf"]
+    "MSC": ["Lepr", "Cxcl12", "Ngfr", "Nes", "Cd44", "Scf"],
+    "Osteosarcoma": ["EGFP"],
+    "Nail_Epithelium": ["Lgr6", "Sp6", "Sp8"],
+    "Sweat_glands": ["Aqp5","Scnn1a","Scnn1b","Scnn1g","Krt19","Krt7","Krt8","Krt18","Krt5","Krt14","Foxa1"]
 }
 ```
 
 ### Dotplot for marker genes 
 
-![](figures/dotplot__axt_dotplot.png?v=3) 
+![](figures/dotplot__axt_dotplot.png?v=5) 
 
 
 ### Feature plots for marker genes 
 
-<img src="figures/umap_axt_Abcc9.png?v=3" width="33%" /><img src="figures/umap_axt_Cd4.png?v=3" width="33%" /><img src="figures/umap_axt_Csf1r.png?v=3" width="33%" />
-<img src="figures/umap_axt_Ibsp.png?v=3" width="33%" /><img src="figures/umap_axt_Mrc1.png?v=3" width="33%" /><img src="figures/umap_axt_Prox1.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Acan.png?v=3" width="33%" /><img src="figures/umap_axt_Cd68.png?v=3" width="33%" /><img src="figures/umap_axt_Csf3r.png?v=3" width="33%" />
-<img src="figures/umap_axt_Ighm.png?v=3" width="33%" /><img src="figures/umap_axt_Ms4a1.png?v=3" width="33%" /><img src="figures/umap_axt_Prrx1.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Acp5.png?v=3" width="33%" /><img src="figures/umap_axt_Cd79a.png?v=3" width="33%" /><img src="figures/umap_axt_Cspg4.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Acta1.png?v=3" width="33%" /><img src="figures/umap_axt_Cd8a.png?v=3" width="33%" /><img src="figures/umap_axt_Ctsk.png?v=3" width="33%" />
-<img src="figures/umap_axt_Kcnj8.png?v=3" width="33%" /><img src="figures/umap_axt_Nes.png?v=3" width="33%" /><img src="figures/umap_axt_Rgs5.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Acta2.png?v=3" width="33%" /><img src="figures/umap_axt_Cdh1.png?v=3" width="33%" /><img src="figures/umap_axt_Cxcl12.png?v=3" width="33%" />
-<img src="figures/umap_axt_Kdr.png?v=3" width="33%" /><img src="figures/umap_axt_Nfatc1.png?v=3" width="33%" /><img src="figures/umap_axt_Rspo3.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Adgre1.png?v=3" width="33%" /><img src="figures/umap_axt_Cdh5.png?v=3" width="33%" /><img src="figures/umap_axt_Cxcr2.png?v=3" width="33%" />
-<img src="figures/umap_axt_Krt14.png?v=3" width="33%" /><img src="figures/umap_axt_Ngfr.png?v=3" width="33%" /><img src="figures/umap_axt_Runx2.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Alpl.png?v=3" width="33%" /><img src="figures/umap_axt_Dcn.png?v=3" width="33%" /><img src="figures/umap_axt_Krt17.png?v=3" width="33%" />
-
-
-<img src="figures/umap_axt_Bglap.png?v=3" width="33%" /><img src="figures/umap_axt_Dcstamp.png?v=3" width="33%" /><img src="figures/umap_axt_S100a8.png?v=3" width="33%" />
-<img src="figures/umap_axt_Krt5.png?v=3" width="33%" /><img src="figures/umap_axt_Oscar.png?v=3" width="33%" /><img src="figures/umap_axt_S100a9.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Calcr.png?v=3" width="33%" /><img src="figures/umap_axt_Cilp2.png?v=3" width="33%" /><img src="figures/umap_axt_Des.png?v=3" width="33%" />
-<img src="figures/umap_axt_Krt6a.png?v=3" width="33%" /><img src="figures/umap_axt_Pax5.png?v=3" width="33%" /><img src="figures/umap_axt_S100b.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Cd163.png?v=3" width="33%" /><img src="figures/umap_axt_Cnn1.png?v=3" width="33%" /><img src="figures/umap_axt_Dsg3.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Cd19.png?v=3" width="33%" /><img src="figures/umap_axt_Col10a1.png?v=3" width="33%" /><img src="figures/umap_axt_Emcn.png?v=3" width="33%" />
-<img src="figures/umap_axt_Lepr.png?v=3" width="33%" /><img src="figures/umap_axt_Pdgfrb.png?v=3" width="33%" /><img src="figures/umap_axt_Sox9.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Cd22.png?v=3" width="33%" /><img src="figures/umap_axt_Col1a1.png?v=3" width="33%" /><img src="figures/umap_axt_Eng.png?v=3" width="33%" />
-<img src="figures/umap_axt_Ly6g.png?v=3" width="33%" /><img src="figures/umap_axt_Pdpn.png?v=3" width="33%" /><img src="figures/umap_axt_Sp7.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Cd28.png?v=3" width="33%" /><img src="figures/umap_axt_Col1a2.png?v=3" width="33%" /><img src="figures/umap_axt_Epcam.png?v=3" width="33%" />
-<img src="figures/umap_axt_Lyve1.png?v=3" width="33%" /><img src="figures/umap_axt_Pecam1.png?v=3" width="33%" /><img src="figures/umap_axt_Tagln.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Cd34.png?v=3" width="33%" /><img src="figures/umap_axt_Col23a1.png?v=3" width="33%" /><img src="figures/umap_axt_Erg.png?v=3" width="33%" />
-<img src="figures/umap_axt_Matn1.png?v=3" width="33%" /><img src="figures/umap_axt_Pi16.png?v=3" width="33%" /><img src="figures/umap_axt_Thy1.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Cd3d.png?v=3" width="33%" /><img src="figures/umap_axt_Col2a1.png?v=3" width="33%" /><img src="figures/umap_axt_Flt4.png?v=3" width="33%" />
-<img src="figures/umap_axt_Mbp.png?v=3" width="33%" /><img src="figures/umap_axt_Plp1.png?v=3" width="33%" /><img src="figures/umap_axt_Tnfrsf11a.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Cd3e.png?v=3" width="33%" /><img src="figures/umap_axt_Col9a1.png?v=3" width="33%" /><img src="figures/umap_axt_Frzb.png?v=3" width="33%" />
-<img src="figures/umap_axt_Mmp9.png?v=3" width="33%" /><img src="figures/umap_axt_Pmp22.png?v=3" width="33%" /><img src="figures/umap_axt_Traf6.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Cd44.png?v=3" width="33%" /><img src="figures/umap_axt_Comp.png?v=3" width="33%" /><img src="figures/umap_axt_Gdf5.png?v=3" width="33%" />
-<img src="figures/umap_axt_Mpo.png?v=3" width="33%" /><img src="figures/umap_axt_Prg4.png?v=3" width="33%" /><img src="figures/umap_axt_Ucma.png?v=3" width="33%" />
-
-<img src="figures/umap_axt_Pdgfra.png?v=3" width="33%" /><img src="figures/umap_axt_Sox10.png?v=3" width="33%" /><img src="figures/umap_axt_Il2rb.png?v=3" width="33%" />
-<img src="figures/umap_axt_Myh11.png?v=3" width="33%" />
-
+<img src="figures/umap_axt_Rgs5.png?v=4" width="33%" /><img src="figures/umap_axt_Krt5.png?v=4" width="33%" /><img src="figures/umap_axt_Ms4a1.png?v=4" width="33%" />
+<img src="figures/umap_axt_Prrx1.png?v=4" width="33%" /><img src="figures/umap_axt_Krt14.png?v=4" width="33%" /><img src="figures/umap_axt_Krt17.png?v=4" width="33%" />
+<img src="figures/umap_axt_Sp6.png?v=4" width="33%" /><img src="figures/umap_axt_Nfatc1.png?v=4" width="33%" /><img src="figures/umap_axt_Cd68.png?v=4" width="33%" />
+<img src="figures/umap_axt_Lgr6.png?v=4" width="33%" /><img src="figures/umap_axt_Cd22.png?v=4" width="33%" /><img src="figures/umap_axt_Ibsp.png?v=4" width="33%" />
+<img src="figures/umap_axt_Mbp.png?v=4" width="33%" /><img src="figures/umap_axt_Cd79a.png?v=4" width="33%" /><img src="figures/umap_axt_Cd8a.png?v=4" width="33%" />
+<img src="figures/umap_axt_Dcn.png?v=4" width="33%" /><img src="figures/umap_axt_Rspo3.png?v=4" width="33%" /><img src="figures/umap_axt_Cdh1.png?v=4" width="33%" />
+<img src="figures/umap_axt_Oscar.png?v=4" width="33%" /><img src="figures/umap_axt_Cd44.png?v=4" width="33%" /><img src="figures/umap_axt_Mrc1.png?v=4" width="33%" />
+<img src="figures/umap_axt_Col2a1.png?v=4" width="33%" /><img src="figures/umap_axt_Ucma.png?v=4" width="33%" /><img src="figures/umap_axt_Cd34.png?v=4" width="33%" />
+<img src="figures/umap_axt_Ngfr.png?v=4" width="33%" /><img src="figures/umap_axt_Comp.png?v=4" width="33%" /><img src="figures/umap_axt_Epcam.png?v=4" width="33%" />
+<img src="figures/umap_axt_Pax5.png?v=4" width="33%" /><img src="figures/umap_axt_Ctsk.png?v=4" width="33%" /><img src="figures/umap_axt_Lepr.png?v=4" width="33%" />
+<img src="figures/umap_axt_Cd28.png?v=4" width="33%" /><img src="figures/umap_axt_Sox10.png?v=4" width="33%" /><img src="figures/umap_axt_Cspg4.png?v=4" width="33%" />
+<img src="figures/umap_axt_Nes.png?v=4" width="33%" /><img src="figures/umap_axt_Cilp2.png?v=4" width="33%" /><img src="figures/umap_axt_Mpo.png?v=4" width="33%" />
+<img src="figures/umap_axt_Prg4.png?v=4" width="33%" /><img src="figures/umap_axt_Tnfrsf11a.png?v=4" width="33%" /><img src="figures/umap_axt_Lyve1.png?v=4" width="33%" />
+<img src="figures/umap_axt_Krt19.png?v=4" width="33%" /><img src="figures/umap_axt_Pecam1.png?v=4" width="33%" /><img src="figures/umap_axt_Pi16.png?v=4" width="33%" />
+<img src="figures/umap_axt_Kcnj8.png?v=4" width="33%" /><img src="figures/umap_axt_Scnn1b.png?v=4" width="33%" /><img src="figures/umap_axt_Pdgfrb.png?v=4" width="33%" />
+<img src="figures/umap_axt_Acp5.png?v=4" width="33%" /><img src="figures/umap_axt_Dcstamp.png?v=4" width="33%" /><img src="figures/umap_axt_Sp8.png?v=4" width="33%" />
+<img src="figures/umap_axt_Acta2.png?v=4" width="33%" /><img src="figures/umap_axt_Frzb.png?v=4" width="33%" /><img src="figures/umap_axt_Cd163.png?v=4" width="33%" />
+<img src="figures/umap_axt_Cd19.png?v=4" width="33%" /><img src="figures/umap_axt_Pdgfra.png?v=4" width="33%" /><img src="figures/umap_axt_S100a8.png?v=4" width="33%" />
+<img src="figures/umap_axt_Cnn1.png?v=4" width="33%" /><img src="figures/umap_axt_Krt7.png?v=4" width="33%" /><img src="figures/umap_axt_leiden.png?v=4" width="33%" />
+<img src="figures/umap_axt_Myh11.png?v=4" width="33%" /><img src="figures/umap_axt_Prox1.png?v=4" width="33%" /><img src="figures/umap_axt_Gdf5.png?v=4" width="33%" />
+<img src="figures/umap_axt_Sox9.png?v=4" width="33%" /><img src="figures/umap_axt_Acan.png?v=4" width="33%" /><img src="figures/umap_axt_Col9a1.png?v=4" width="33%" />
+<img src="figures/umap_axt_Scnn1g.png?v=4" width="33%" /><img src="figures/umap_axt_Pmp22.png?v=4" width="33%" /><img src="figures/umap_axt_Cdh5.png?v=4" width="33%" />
+<img src="figures/umap_axt_Scnn1a.png?v=4" width="33%" /><img src="figures/umap_axt_Ly6g.png?v=4" width="33%" /><img src="figures/umap_axt_S100a9.png?v=4" width="33%" />
+<img src="figures/umap_axt_Flt4.png?v=4" width="33%" /><img src="figures/umap_axt_Foxa1.png?v=4" width="33%" /><img src="figures/umap_axt_Pdpn.png?v=4" width="33%" />
+<img src="figures/umap_axt_Adgre1.png?v=4" width="33%" /><img src="figures/umap_axt_Des.png?v=4" width="33%" /><img src="figures/umap_axt_Calcr.png?v=4" width="33%" />
+<img src="figures/umap_axt_Cxcl12.png?v=4" width="33%" /><img src="figures/umap_axt_Abcc9.png?v=4" width="33%" /><img src="figures/umap_axt_Cd3d.png?v=4" width="33%" />
+<img src="figures/umap_axt_Matn1.png?v=4" width="33%" /><img src="figures/umap_axt_Col23a1.png?v=4" width="33%" /><img src="figures/umap_axt_Ighm.png?v=4" width="33%" />
+<img src="figures/umap_axt_Dsg3.png?v=4" width="33%" /><img src="figures/umap_axt_Alpl.png?v=4" width="33%" /><img src="figures/umap_axt_Bglap.png?v=4" width="33%" />
+<img src="figures/umap_axt_Cd3e.png?v=4" width="33%" /><img src="figures/umap_axt_Reg.png?v=4" width="33%" /><img src="figures/umap_axt_Erg.png?v=4" width="33%" />
+<img src="figures/umap_axt_Csf3r.png?v=4" width="33%" /><img src="figures/umap_axt_Aqp5.png?v=4" width="33%" />
+<img src="figures/umap_axt_Tagln.png?v=4" width="33%" /><img src="figures/umap_axt_Emcn.png?v=4" width="33%" /><img src="figures/umap_axt_Krt18.png?v=4" width="33%" />
+<img src="figures/umap_axt_Sp7.png?v=4" width="33%" /><img src="figures/umap_axt_Kdr.png?v=4" width="33%" /><img src="figures/umap_axt_Krt8.png?v=4" width="33%" />
+<img src="figures/umap_axt_Csf1r.png?v=4" width="33%" /><img src="figures/umap_axt_S100b.png?v=4" width="33%" /><img src="figures/umap_axt_Plp1.png?v=4" width="33%" />
 
 
 ## Annotations 
 
 We used the above marker genes to annotate our celltypes as follows:
 
-![](figures/umap_axt_celltype.png?v=2)
+![](figures/umap_axt_celltype.png?v=4)
 
+![](figures/umap_axt_celltypeON.png?v=4) 
 
-![](figures/umap_axt_celltypeON.png?v=2) 
-
-🚨🚨⚠️ WARNING: Cluster 23 removed due to low-quality cells (133 cells were removed) ⚠️ 🚨🚨
+🚨🚨⚠️ WARNING: Cluster 43 removed due to low-quality cells (133 cells were removed) ⚠️ 🚨🚨
 
 
 ## Some stats for samples and cells 
 
-| Cell Type                  | Reg  | nonReg | Total |
-|---------------------------|------|--------|-------|
-| B-Cells                   | 260  | 295    | 555   |
-| Endothelial               | 1541 | 1065   | 2606  |
-| Fibroblast                | 5360 | 11936  | 17296 |
-| Keratinocyte              | 679  | 498    | 1177  |
-| Lymphatic_Endothelial     | 147  | 208    | 355   |
-| Macrophage                | 1915 | 3690   | 5605  |
-| Neutrophil                | 225  | 428    | 653   |
-| Pericyte_SMC              | 569  | 580    | 1149  |
-| Schwann                   | 391  | 56     | 447   |
-| Synoviocyte_Chondrocyte   | 185  | 3      | 188   |
-| T-Cells                   | 523  | 1019   | 1542  |
-| **Total**                 | 11795| 19778  | 31573 |
+| Celltype                         | Reg   | nonReg | Total |
+|----------------------------------|------:|-------:|------:|
+| B-Cells                          |   259 |    291 |   550 |
+| Chondrocyte                      |   185 |      3 |   188 |
+| Fibroblast                       |  3903 |   2104 |  6007 |
+| Lymphatic_Endothelial            |   147 |    203 |   350 |
+| MSC                              |  1513 |   1076 |  2589 |
+| Macrophage                       |  1774 |   3221 |  4995 |
+| NailEpithelium_Keratinocyte      |   663 |    491 |  1154 |
+| Neutrophil                       |   221 |    424 |   645 |
+| Osteoblast                       |   250 |   1513 |  1763 |
+| Osteoclast                       |   136 |    561 |   697 |
+| Osteosarcoma                     |   889 |   7521 |  8410 |
+| SMC_Pericyte                     |   553 |    540 |  1093 |
+| Schwann                          |   176 |     54 |   230 |
+| SweatGland                       |   215 |      2 |   217 |
+| Synoviocyte                      |   277 |    559 |   836 |
+| T-Cells                          |   523 |   1014 |  1537 |
+| **Total**                        | 11684 |  19577 | 31261 |
 
 
-![](figures/axt_cell_ratios.png?v=2)
+![](figures/axt_cell_ratios.png?v=4)
 
 
+###
 ## Differential gene expression 
 
 ### Global Regenerative vs non Regenerative 
@@ -275,12 +262,11 @@ We performed global differential gene expression analysis between Reg and non-Re
 
 ### N=20
 
-![](figures/axt_heatmap.png?v=4)
+![](figures/axt_heatmap.png?v=5)
 
-#### List of DGE with adj-pvalue \< 0.05 is in the link below
+#### List of DGE per sample with adj-pvalue \< 0.05 is in the link below
 
-[Download here Global DGE `<0.05`](https://docs.google.com/spreadsheets/d/1mC9Rs9Ny3Ow8B8jCypt01D4kYfwcTChExBcoxymkcUo/edit?usp=sharing)
-
+[Download here DGE per sample `<0.05`](https://docs.google.com/spreadsheets/d/1hDyW7gU68zLsds5Pb64CONviXox_iGGnQTMFCjDpznE/edit?usp=sharing)
 
 ### Now deeper look into celltypes
 
@@ -288,12 +274,11 @@ We performed differential gene expression analysis stratified by cell type to co
 
 ### N=5 per celltype 
 
-![](figures/axt_celltype_heatmap.png?v=5)
+![](figures/axt_celltype_heatmap.png?v=6)
 
 #### List of DGE with adj-pvalue \< 0.05 is in the link below
 
-[Download here DGE per celltype `<0.05`](https://docs.google.com/spreadsheets/d/1vQ1NTK9NPs96PkLrH0t7gtZ_ebCgXK9MNRALG19bNdw/edit?usp=sharing)
-
+[Download here DGE per celltype `<0.05`](https://docs.google.com/spreadsheets/d/1cb3aBfwGRP9NWf71YrZzLOhstrRxBVJ3vmAqKtGivU4/edit?usp=sharing)
 
 ###### ⚠️ ⚠️ I have the full list of DGE, but the file is too large to upload here
 
@@ -304,12 +289,12 @@ This pipeline identifies potential **ligand–receptor interactions** from singl
 
 #### Top lrScores interactions with minimum |logFC| 0.5
 
-![](figures/axt_liana_dotplot.png?=2)
+![](figures/axt_liana_dotplot.png?=3)
 
 
 #### Click the link below for full list of cell-cell interactions
 
-[Download here cell to cell interactions](https://docs.google.com/spreadsheets/d/1VtInno4Q76C13Vv6o5JfKcFpQNqcrKQCM6R3tSVKv_Y/edit?usp=sharing)
+[Download here cell to cell interactions](https://docs.google.com/spreadsheets/d/1CnfeNbDfsNKgrBq6TPma7-F5rTUY8mQ2vthxwdHB3ng/edit?usp=sharing)
 
 ### Ligand–receptor inference (LIANA)
 The script runs `liana.mt.rank_aggregate`, which integrates multiple tools:
@@ -384,7 +369,7 @@ This analysis reveals:
 
 Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about the 10x change. Use log fold change instead.
 
-![](figures/axt_cosine_similarity.png?v=2) 
+![](figures/axt_cosine_similarity.png?v=3) 
 
 
 ## Pathways and GO analysis 
@@ -412,34 +397,28 @@ Dot **colour** indicates the significance level (–log₁₀ adjusted p‑value
 
 
 #### KEGG
-![](figures/axt_enrichment_KEGG_dotplot.png?v=1)
+![](figures/axt_enrichment_KEGG_dotplot.png?v=2)
 
-[Click here](https://docs.google.com/spreadsheets/d/1aPHBYPZgu0UrYN3vxSQ4aznlg7JYsmEj64UZU95mnAs/edit?usp=sharing) 
 
 #### REAC
-![](figures/axt_enrichment_REAC_dotplot.png?v=1)
+![](figures/axt_enrichment_REAC_dotplot.png?v=2)
 
-[Click here](https://docs.google.com/spreadsheets/d/1Jtrr5kQqPj5mLwXSiUC0bIfRfXcaTE72-cgtWV_rXlM/edit?usp=sharing)
 
 #### WP
-![](figures/axt_enrichment_WP_dotplot.png?v=1)
+![](figures/axt_enrichment_WP_dotplot.png?v=2)
 
-[click here](https://docs.google.com/spreadsheets/d/1bd6C4MEUVXnEXukALap1OjQ6XQQ7ssBCM18lWKuqgPo/edit?usp=sharing) 
 
 ##### GO
-![](figures/axt_enrichment_GO_dotplot.png?v=1)
+![](figures/axt_enrichment_GO_dotplot.png?v=2)
 
-[CLick here](https://docs.google.com/spreadsheets/d/1XtTb_wy-RI39QH3Bgswt6y4xLKMzcQbrgocSknZFr-8/edit?usp=sharing) 
 
 ##### TFs 
-![](figures/axt_enrichment_TF_dotplot.png?v=1)
+![](figures/axt_enrichment_TF_dotplot.png?v=2)
 
-[CLick here](https://docs.google.com/spreadsheets/d/1oXDxXh2DT1_jSj2CjsAD87WvNOoUDnryOa1kJ2oZXYU/edit?usp=sharing) 
 
 #### CORUM
-![](figures/axt_enrichment_CORUM_dotplot.png?v=1)
+![](figures/axt_enrichment_CORUM_dotplot.png?v=2)
 
-[Click here](https://docs.google.com/spreadsheets/d/1j9lkvs2aFoPzk9JZ-OMlJGmOcot8XBgSq3k9PZChKQg/edit?usp=sharing)
 
 ## MORE ANALYSIS ON THE WAY 
 

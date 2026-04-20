@@ -10,7 +10,7 @@ args = parser.parse_args()
 adata = sc.read(args.input)
 
 # Leiden clustering
-sc.tl.leiden(adata, resolution=1.0)
+sc.tl.leiden(adata, resolution=2.5)
 
 # UMAP (Leiden only)
 sc.pl.umap(
