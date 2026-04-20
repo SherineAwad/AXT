@@ -89,7 +89,7 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 - Similar cells cluster together visually
 
 #### UMAP
-![](figures/umap_axt.png?v=4) 
+![](figures/umap_axt_umap.png?v=5) 
 
 #### Per sample UMAP 
 
