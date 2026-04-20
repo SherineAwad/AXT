@@ -414,21 +414,32 @@ Dot **colour** indicates the significance level (–log₁₀ adjusted p‑value
 #### KEGG
 ![](figures/axt_enrichment_KEGG_dotplot.png?v=1)
 
+[Click here](https://docs.google.com/spreadsheets/d/1aPHBYPZgu0UrYN3vxSQ4aznlg7JYsmEj64UZU95mnAs/edit?usp=sharing) 
+
 #### REAC
 ![](figures/axt_enrichment_REAC_dotplot.png?v=1)
+
+[Click here](https://docs.google.com/spreadsheets/d/1Jtrr5kQqPj5mLwXSiUC0bIfRfXcaTE72-cgtWV_rXlM/edit?usp=sharing)
 
 #### WP
 ![](figures/axt_enrichment_WP_dotplot.png?v=1)
 
+[click here](https://docs.google.com/spreadsheets/d/1bd6C4MEUVXnEXukALap1OjQ6XQQ7ssBCM18lWKuqgPo/edit?usp=sharing) 
+
 ##### GO
 ![](figures/axt_enrichment_GO_dotplot.png?v=1)
+
+[CLick here](https://docs.google.com/spreadsheets/d/1XtTb_wy-RI39QH3Bgswt6y4xLKMzcQbrgocSknZFr-8/edit?usp=sharing) 
 
 ##### TFs 
 ![](figures/axt_enrichment_TF_dotplot.png?v=1)
 
+[CLick here](https://docs.google.com/spreadsheets/d/1oXDxXh2DT1_jSj2CjsAD87WvNOoUDnryOa1kJ2oZXYU/edit?usp=sharing) 
+
 #### CORUM
 ![](figures/axt_enrichment_CORUM_dotplot.png?v=1)
 
+[Click here](https://docs.google.com/spreadsheets/d/1j9lkvs2aFoPzk9JZ-OMlJGmOcot8XBgSq3k9PZChKQg/edit?usp=sharing)
 
 ## MORE ANALYSIS ON THE WAY 
 
@@ -471,5 +482,6 @@ This analysis pipeline is built using the following tools and methods:
   https://scanpy.readthedocs.io/
 
 
-
+- **gProfiler**- 
+  Kolberg, L., Raudvere, U., Kuzmin, I., Adler, P., Vilo, J., & Peterson, H. (2023). g:Profiler—interoperable web service for functional enrichment analysis and gene identifier mapping (2023 update). *Nucleic Acids Research*, 51(W1), W207–W212. https://doi.org/10.1093/nar/gkad347
 
