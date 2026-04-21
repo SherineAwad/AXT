@@ -40,7 +40,8 @@ df_sig.to_csv(f"{args.prefix}_DGEperCelltype_{args.pvalue}.csv", index=False)
 if df_sig.empty:
     raise ValueError("No significant genes found")
 
-top_list = []
+# Get top N up and down genes per celltype
+top_genes = []
 for ct in df_sig["celltype"].unique():
     ct_df = df_sig[df_sig["celltype"] == ct]
     
@@ -52,35 +53,51 @@ for ct in df_sig["celltype"].unique():
         "logfoldchanges", ascending=True
     ).head(args.N)
     
-    top_list.append(up)
-    top_list.append(down)
+    top_genes.extend(up["gene"].tolist())
+    top_genes.extend(down["gene"].tolist())
 
-plot_df = pd.concat(top_list).drop_duplicates(["celltype", "gene"])
+top_genes = list(set(top_genes))
 
-heatmap_df = plot_df.pivot(
+# Create matrix with ALL logFC values for these genes across ALL celltypes
+heatmap_data = []
+for gene in top_genes:
+    for ct in df_sig["celltype"].unique():
+        val = df_sig[(df_sig["gene"] == gene) & (df_sig["celltype"] == ct)]
+        if not val.empty:
+            heatmap_data.append({
+                "gene": gene,
+                "celltype": ct,
+                "logfoldchanges": val["logfoldchanges"].values[0]
+            })
+
+heatmap_df = pd.DataFrame(heatmap_data).pivot(
     index="gene",
     columns="celltype",
     values="logfoldchanges"
-).fillna(0)
+)
 
+# Sort genes by which celltype they have strongest effect
 celltype_order = heatmap_df.columns.tolist()
-diag_sort = []
+gene_order = []
 for gene in heatmap_df.index:
+    # Find which celltype has highest absolute logFC for this gene
     max_ct = heatmap_df.loc[gene].abs().idxmax()
-    diag_sort.append((gene, max_ct))
+    gene_order.append((gene, max_ct))
 
-heatmap_df = heatmap_df.loc[[g for g, _ in sorted(diag_sort, key=lambda x: celltype_order.index(x[1]))]]
+heatmap_df = heatmap_df.loc[[g for g, _ in sorted(gene_order, key=lambda x: celltype_order.index(x[1]))]]
 
-plt.figure(figsize=(max(8, len(heatmap_df.columns) * 0.5), max(6, len(heatmap_df) * 0.3)))
+# Plot
+plt.figure(figsize=(max(10, len(heatmap_df.columns) * 0.8), max(8, len(heatmap_df) * 0.3)))
 
 sns.heatmap(
     heatmap_df,
     cmap="coolwarm",
     center=0,
-    cbar_kws={"label": "logFC"}
+    cbar_kws={"label": "logFC"},
+    square=False
 )
 
-plt.title(f"Top {args.N} up and down genes per cell type")
+plt.title(f"Top {args.N} up/down genes per cell type\n(logFC values from DGE comparing each celltype vs all others)")
 plt.ylabel("Genes")
 plt.xlabel("Cell Type")
 plt.xticks(rotation=45, ha='right')

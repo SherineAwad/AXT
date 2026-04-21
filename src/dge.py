@@ -90,7 +90,7 @@ plt.figure(figsize=(6, max(6, len(heatmap_df) * 0.3)))
 
 sns.heatmap(
     heatmap_df,
-    cmap="RdBu_r",
+    cmap="coolwarm",
     center=0,
     annot=False,
     cbar_kws={"label": "logFC"}

@@ -278,7 +278,7 @@ We performed differential gene expression analysis to identify genes that are di
 
 ### N=5 per celltype 
 
-![](figures/axt_celltype_heatmap.png?v=7)
+![](figures/axt_celltype_heatmap.png?v=8)
 
 #### List of DGE with adj-pvalue \< 0.05 is in the link below
 
