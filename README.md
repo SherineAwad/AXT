@@ -239,24 +239,23 @@ We used the above marker genes to annotate our celltypes as follows:
 | B-Cells                      |   259 |    291 |   550 |
 | Chondrocyte                  |   185 |      3 |   188 |
 | Endothelial                  |  1513 |   1076 |  2589 |
-| Fibroblast                   |  1919 |    190 |  2109 |
+| Fibroblast                   |  2759 |    827 |  3586 |
 | Lymphatic_Endothelial        |   147 |    203 |   350 |
 | MAST                         |    30 |    109 |   139 |
 | Macrophage                   |  1774 |   3221 |  4995 |
 | NailEpithelium_Keratinocyte  |   663 |    491 |  1154 |
 | Neutrophil                   |   221 |    424 |   645 |
-| Osteoblast                   |  1984 |   1914 |  3898 |
+| OsteoProgenitor              |  1341 |   1797 |  3138 |
+| Osteoblast                   |    80 |     39 |   119 |
 | Osteoclast                   |   136 |    561 |   697 |
 | Osteosarcoma                 |  1139 |   9034 | 10173 |
 | SMC_Pericyte                 |   553 |    540 |  1093 |
 | Schwann                      |   176 |     54 |   230 |
 | SweatGland                   |   215 |      2 |   217 |
-| Synoviocyte                  |   277 |    559 |   836 |
 | T-Cells                      |   523 |   1014 |  1537 |
 | **Total**                    | 11714 |  19686 | 31400 |
 
-![](figures/axt_cell_ratios.png?v=6)
-
+![](figures/axt_cell_ratios.png?v=8)
 
 ###
 ## Differential gene expression 
