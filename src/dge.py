@@ -43,6 +43,13 @@ df = df[["names", "logfoldchanges", "pvals_adj"]].rename(
 
 df[df["pvals_adj"] < args.pvalue].to_csv(
     f"{args.prefix}_global_dge.csv", index=False)
+
+# Full DGE results (no filtering)
+df.to_csv(f"{args.prefix}_DGEperSampleAll.csv", index=False)
+
+# Filtered DGE results (only significant genes)
+df[df["pvals_adj"] < args.pvalue].to_csv(
+    f"{args.prefix}_DGEperSample_{args.pvalue}.csv", index=False)
 # ----------------------------
 # FILTER
 # ----------------------------
@@ -50,7 +57,6 @@ sig = df[df["pvals_adj"] < args.pvalue].copy()
 
 # remove duplicates (keep strongest signal)
 sig = sig.sort_values("logfoldchanges", key=lambda x: x.abs(), ascending=False)
-sig = sig.drop_duplicates("gene")
 
 # ----------------------------
 # TOP N UP / DOWN

@@ -266,11 +266,11 @@ We performed global differential gene expression analysis between Reg and non-Re
 
 ### N=20
 
-![](figures/axt_heatmap.png?v=5)
+![](figures/axt_heatmap.png?v=6)
 
 #### List of DGE per sample with adj-pvalue \< 0.05 is in the link below
 
-[Download here DGE per sample `<0.05`](https://docs.google.com/spreadsheets/d/1hDyW7gU68zLsds5Pb64CONviXox_iGGnQTMFCjDpznE/edit?usp=sharing)
+[Download here DGE per sample `<0.05`](https://docs.google.com/spreadsheets/d/14B0ghwjytWZ3zx0c5dCn-ZIfg3il6mHMqxud9F7esII/edit?usp=sharing)
 
 ### Now deeper look into celltypes
 
