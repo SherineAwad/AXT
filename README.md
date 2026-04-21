@@ -170,15 +170,15 @@ marker_genes = {
     "MSC": ["Lepr", "Cxcl12", "Ngfr", "Nes", "Cd44", "Scf"],
     "Osteosarcoma": ["EGFP"],
     "Nail_Epithelium": ["Lgr6", "Sp6", "Sp8"],
-    "Sweat_glands": ["Aqp5","Scnn1a","Scnn1b","Scnn1g","Krt19","Krt7","Krt8","Krt18","Krt5","Krt14","Foxa1"]
-
+    "Sweat_glands": ["Aqp5","Scnn1a","Scnn1b","Scnn1g","Krt19","Krt7","Krt8","Krt18","Krt5","Krt14","Foxa1"],
+    "Mast cell": ["Kit", "Cpa3", "Tpsab1", "Tpsb2", "Ms4a2", "Hdc", "Hpgds", "Mcpt8", "Cd200r3", "Ccr3"]
 }
 
 ```
 
 ### Dotplot for marker genes 
 
-![](figures/dotplot__axt_dotplot.png?v=6) 
+![](figures/dotplot__axt_dotplot.png?v=7) 
 
 
 ### Feature plots for marker genes 
@@ -217,6 +217,10 @@ marker_genes = {
 <img src="figures/umap_axt_Sp7.png?v=4" width="33%" /><img src="figures/umap_axt_Kdr.png?v=4" width="33%" /><img src="figures/umap_axt_Krt8.png?v=4" width="33%" />
 <img src="figures/umap_axt_Rgs5.png?v=4" width="33%" /><img src="figures/umap_axt_Krt5.png?v=4" width="33%" /><img src="figures/umap_axt_Ms4a1.png?v=4" width="33%" />
 <img src="figures/umap_axt_Prrx1.png?v=4" width="33%" /><img src="figures/umap_axt_Krt14.png?v=4" width="33%" /><img src="figures/umap_axt_Krt17.png?v=4" width="33%" />
+<img src="figures/umap_axt_Kit.png?v=4" width="33%" /><img src="figures/umap_axt_Cpa3.png?v=4" width="33%" /><img src="figures/umap_axt_Tpsab1.png?v=4" width="33%" />
+<img src="figures/umap_axt_Tpsb2.png?v=4" width="33%" /><img src="figures/umap_axt_Ms4a2.png?v=4" width="33%" /><img src="figures/umap_axt_Hdc.png?v=4" width="33%" />
+<img src="figures/umap_axt_Hpgds.png?v=4" width="33%" /><img src="figures/umap_axt_Mcpt8.png?v=4" width="33%" /><img src="figures/umap_axt_Cd200r3.png?v=4" width="33%" />
+<img src="figures/umap_axt_Ccr3.png?v=4" width="33%" />
 
 `
 ## Annotations 
