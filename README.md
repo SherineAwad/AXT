@@ -236,11 +236,11 @@ We used the above marker genes to annotate our celltypes as follows:
 | Celltype                     | Reg   | nonReg | Total |
 |------------------------------|------:|-------:|------:|
 | B-Cells                      |   259 |    291 |   550 |
+| Basophil                     |    30 |    109 |   139 |
 | Chondrocyte                  |   185 |      3 |   188 |
 | Endothelial                  |  1513 |   1076 |  2589 |
 | Fibroblast                   |  2759 |    827 |  3586 |
 | Lymphatic_Endothelial        |   147 |    203 |   350 |
-| MAST                         |    30 |    109 |   139 |
 | Macrophage                   |  1774 |   3221 |  4995 |
 | NailEpithelium_Keratinocyte  |   663 |    491 |  1154 |
 | Neutrophil                   |   221 |    424 |   645 |
@@ -254,7 +254,8 @@ We used the above marker genes to annotate our celltypes as follows:
 | T-Cells                      |   523 |   1014 |  1537 |
 | **Total**                    | 11714 |  19686 | 31400 |
 
-![](figures/axt_cell_ratios.png?v=8)
+
+![](figures/axt_cell_ratios.png?v=9) 
 
 ###
 ## Differential gene expression 
@@ -292,7 +293,7 @@ This pipeline identifies potential **ligand–receptor interactions** from singl
 
 #### Top lrScores interactions with minimum |logFC| 0.5
 
-![](figures/axt_liana_dotplot.png?=3)
+![](figures/axt_liana_dotplot.png?=4)
 
 
 #### Click the link below for full list of cell-cell interactions
@@ -372,7 +373,7 @@ This analysis reveals:
 
 Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about the 10x change. Use log fold change instead.
 
-![](figures/axt_cosine_similarity.png?v=3) 
+![](figures/axt_cosine_similarity.png?v=5) 
 
 
 ## Pathways and GO analysis 
