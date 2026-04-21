@@ -227,10 +227,9 @@ marker_genes = {
 
 We used the above marker genes to annotate our celltypes as follows:
 
-![](figures/umap_axt_celltype.png?v=7)
+![](figures/umap_axt_celltype.png?v=8)
 
-![](figures/umap_axt_celltypeON.png?v=7)
-
+![](figures/umap_axt_celltypeON.png?v=8)
 
 ## Some stats for samples and cells 
 
