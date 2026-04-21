@@ -227,11 +227,10 @@ marker_genes = {
 
 We used the above marker genes to annotate our celltypes as follows:
 
-![](figures/umap_axt_celltype.png?v=5)
+![](figures/umap_axt_celltype.png?v=6)
 
-![](figures/umap_axt_celltypeON.png?v=5) 
+![](figures/umap_axt_celltypeON.png?v=6) 
 
-🚨🚨⚠️ WARNING: Cluster 43 removed due to low-quality cells (133 cells were removed) ⚠️ 🚨🚨
 
 
 ## Some stats for samples and cells 
