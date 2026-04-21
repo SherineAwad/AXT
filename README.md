@@ -257,8 +257,37 @@ We used the above marker genes to annotate our celltypes as follows:
 
 ![](figures/axt_cell_ratios.png?v=9) 
 
-###
+## Zooming on Osteosarcoma 
+
+- We subset Osteosarcoma, below is a summary: 
+
+| Metric   | Value  |
+|----------|--------|
+| Cells    | 10,173 |
+| Genes    | 27,808 |
+
+**Samples**
+
+| Type   | Count |
+|--------|------:|
+| nonReg | 9,034 |
+| Reg    | 1,139 |
+
+![](figures/Osteosarcoma_umap.png?v=1)
+
+![](figures/Osteosarcoma_perSample_umap.png?v=1)
+
+
+### Differential gene expression in Osteosarcoma 
+
+
 ## Differential gene expression 
+
+#### Top 10 genes only are labeled 
+![](figures/Osteosarcoma_volcano.png?v=1)
+
+#### Top 100 genes 
+![](figures/Osteosarcoma_heatmap.png?v=1)
 
 ### Global Regenerative vs non Regenerative 
 
