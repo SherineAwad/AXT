@@ -235,28 +235,28 @@ We used the above marker genes to annotate our celltypes as follows:
 
 ## Some stats for samples and cells 
 
-| Celltype                         | Reg   | nonReg | Total |
-|----------------------------------|------:|-------:|------:|
-| B-Cells                          |   259 |    291 |   550 |
-| Chondrocyte                      |   185 |      3 |   188 |
-| Fibroblast                       |  3903 |   2104 |  6007 |
-| Lymphatic_Endothelial            |   147 |    203 |   350 |
-| MSC                              |  1513 |   1076 |  2589 |
-| Macrophage                       |  1774 |   3221 |  4995 |
-| NailEpithelium_Keratinocyte      |   663 |    491 |  1154 |
-| Neutrophil                       |   221 |    424 |   645 |
-| Osteoblast                       |   250 |   1513 |  1763 |
-| Osteoclast                       |   136 |    561 |   697 |
-| Osteosarcoma                     |   889 |   7521 |  8410 |
-| SMC_Pericyte                     |   553 |    540 |  1093 |
-| Schwann                          |   176 |     54 |   230 |
-| SweatGland                       |   215 |      2 |   217 |
-| Synoviocyte                      |   277 |    559 |   836 |
-| T-Cells                          |   523 |   1014 |  1537 |
-| **Total**                        | 11684 |  19577 | 31261 |
+| Celltype                     | Reg   | nonReg | Total |
+|------------------------------|------:|-------:|------:|
+| B-Cells                      |   259 |    291 |   550 |
+| Chondrocyte                  |   185 |      3 |   188 |
+| Endothelial                  |  1513 |   1076 |  2589 |
+| Fibroblast                   |  1919 |    190 |  2109 |
+| Lymphatic_Endothelial        |   147 |    203 |   350 |
+| MAST                         |    30 |    109 |   139 |
+| Macrophage                   |  1774 |   3221 |  4995 |
+| NailEpithelium_Keratinocyte  |   663 |    491 |  1154 |
+| Neutrophil                   |   221 |    424 |   645 |
+| Osteoblast                   |  1984 |   1914 |  3898 |
+| Osteoclast                   |   136 |    561 |   697 |
+| Osteosarcoma                 |  1139 |   9034 | 10173 |
+| SMC_Pericyte                 |   553 |    540 |  1093 |
+| Schwann                      |   176 |     54 |   230 |
+| SweatGland                   |   215 |      2 |   217 |
+| Synoviocyte                  |   277 |    559 |   836 |
+| T-Cells                      |   523 |   1014 |  1537 |
+| **Total**                    | 11714 |  19686 | 31400 |
 
-
-![](figures/axt_cell_ratios.png?v=5)
+![](figures/axt_cell_ratios.png?v=6)
 
 
 ###
