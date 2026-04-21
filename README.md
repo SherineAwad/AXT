@@ -213,7 +213,10 @@ marker_genes = {
 <img src="figures/umap_axt_Csf3r.png?v=4" width="33%" /><img src="figures/umap_axt_Aqp5.png?v=4" width="33%" /><img src="figures/umap_axt_Csf1r.png?v=4" width="33%" />
 <img src="figures/umap_axt_Tagln.png?v=4" width="33%" /><img src="figures/umap_axt_Emcn.png?v=4" width="33%" /><img src="figures/umap_axt_Krt18.png?v=4" width="33%" />
 <img src="figures/umap_axt_Sp7.png?v=4" width="33%" /><img src="figures/umap_axt_Kdr.png?v=4" width="33%" /><img src="figures/umap_axt_Krt8.png?v=4" width="33%" />
+<img src="figures/umap_axt_Rgs5.png?v=4" width="33%" /><img src="figures/umap_axt_Krt5.png?v=4" width="33%" /><img src="figures/umap_axt_Ms4a1.png?v=4" width="33%" />
+<img src="figures/umap_axt_Prrx1.png?v=4" width="33%" /><img src="figures/umap_axt_Krt14.png?v=4" width="33%" /><img src="figures/umap_axt_Krt17.png?v=4" width="33%" />
 
+`
 ## Annotations 
 
 We used the above marker genes to annotate our celltypes as follows:
