@@ -266,25 +266,25 @@ We performed global differential gene expression analysis between Reg and non-Re
 
 ### N=20
 
-![](figures/axt_heatmap.png?v=6)
+![](figures/axt_heatmap.png?v=7)
 
 #### List of DGE per sample with adj-pvalue \< 0.05 is in the link below
 
 [Download here DGE per sample `<0.05`](https://docs.google.com/spreadsheets/d/14B0ghwjytWZ3zx0c5dCn-ZIfg3il6mHMqxud9F7esII/edit?usp=sharing)
 
-### Now deeper look into celltypes
+### Now look into celltypes
 
-We performed differential gene expression analysis stratified by cell type to compare Reg and nonReg conditions. For each cell type, cells were subsetted and a Wilcoxon rank-sum test was applied using Scanpy’s `rank_genes_groups` function with `sample` as the grouping variable and nonReg set as the reference. This approach identifies genes that are differentially expressed in Reg relative to nonReg within each individual cell type, rather than across the full dataset. For each cell type, we extracted log fold-changes and adjusted p-values, filtered for statistically significant genes (adjusted p-value < threshold), and removed duplicate gene entries by retaining the strongest signal. The top N upregulated and downregulated genes per cell type were selected based on log fold-change and visualised in a heatmap summarising Reg versus nonReg effects across all cell types.
+We performed differential gene expression analysis to identify genes that are differentially expressed between cell types. For each cell type, we applied a Wilcoxon rank-sum test using Scanpy's rank_genes_groups function with celltype as the grouping variable, comparing each cell type against all other cells. We extracted log fold-changes and adjusted p-values for each comparison, filtered for statistically significant genes (adjusted p-value < threshold), and selected the top N upregulated and downregulated genes per cell type based on log fold-change. The results were visualized in a heatmap showing the log fold-changes of these genes across cell types.
 
 ### N=5 per celltype 
 
-![](figures/axt_celltype_heatmap.png?v=6)
+![](figures/axt_celltype_heatmap.png?v=7)
 
 #### List of DGE with adj-pvalue \< 0.05 is in the link below
 
-[Download here DGE per celltype `<0.05`](https://docs.google.com/spreadsheets/d/1cb3aBfwGRP9NWf71YrZzLOhstrRxBVJ3vmAqKtGivU4/edit?usp=sharing)
+[Download here DGE per celltype `<0.05`](https://docs.google.com/spreadsheets/d/1KcMoV7-OufgxKu8er_ilttfQ4WR-NCztDVyUNVeXrf4/edit?usp=sharing)
 
-###### ⚠️ ⚠️ I have the full list of DGE, but the file is too large to upload here
+###### ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ I have the full list of DGE, but the file is too large to upload here
 
 
 ## 🧬 Cell–Cell Interaction Analysis (LIANA)

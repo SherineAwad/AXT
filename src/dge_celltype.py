@@ -33,9 +33,9 @@ df = df[["names", "logfoldchanges", "pvals_adj", "group"]].rename(
     columns={"names": "gene", "group": "celltype"}
 )
 
-df.to_csv(f"{args.prefix}_perCelltypeAll.csv", index=False)
+df.to_csv(f"{args.prefix}_DGEperCelltypeAll.csv", index=False)
 df_sig = df[df["pvals_adj"] < args.pvalue].copy()
-df_sig.to_csv(f"{args.prefix}_perCelltype_{args.pvalue}.csv", index=False)
+df_sig.to_csv(f"{args.prefix}_DGEperCelltype_{args.pvalue}.csv", index=False)
 
 if df_sig.empty:
     raise ValueError("No significant genes found")
