@@ -280,13 +280,14 @@ We used the above marker genes to annotate our celltypes as follows:
 
 ### Differential gene expression in Osteosarcoma 
 
+[Click here to for Osteosarcoma DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/11h8bLaShQaQk6QesqC-EzG9Jta7SnvIlJaTmGQvF8HU/edit?usp=sharing)
 
 ## Differential gene expression 
 
 #### Top 10 genes only are labeled 
 ![](figures/Osteosarcoma_volcano.png?v=1)
 
-#### Top 100 genes 
+#### Top 50 genes 
 ![](figures/Osteosarcoma_heatmap.png?v=1)
 
 ### Global Regenerative vs non Regenerative 
