@@ -286,7 +286,17 @@ We used the above marker genes to annotate our celltypes as follows:
 #### Top 50 genes 
 ![](figures/Osteosarcoma_heatmap.png?v=1)
 
-[Click here to for Osteosarcoma DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/11h8bLaShQaQk6QesqC-EzG9Jta7SnvIlJaTmGQvF8HU/edit?usp=sharing)
+[Click here to download Osteosarcoma DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/11h8bLaShQaQk6QesqC-EzG9Jta7SnvIlJaTmGQvF8HU/edit?usp=sharing)
+
+
+#### Violin plots for genes of interest in Osteosarcoma 
+
+<img src="figures/Osteosarcoma_violin_Wif1.png" width="33%" /><img src="figures/Osteosarcoma_violin_Omd.png" width="33%" /><img src="figures/Osteosarcoma_violin_Klf4.png" width="33%" />
+<img src="figures/Osteosarcoma_violin_Kazald1.png" width="33%" /><img src="figures/Osteosarcoma_violin_Dcn.png" width="33%" /><img src="figures/Osteosarcoma_violin_Bglap.png" width="33%" />
+<img src="figures/Osteosarcoma_violin_Alpl.png" width="33%" />
+
+
+
 
 ## Focusing on all celltypes: Differential gene expression
 
