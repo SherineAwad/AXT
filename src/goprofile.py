@@ -25,7 +25,6 @@ source_map = {
     "REAC": ["REAC"]
 }
 
-# Parse source
 source_list = []
 for s in args.source.split(","):
     s = s.strip()
@@ -34,23 +33,27 @@ for s in args.source.split(","):
     else:
         source_list.append(s)
 
-# Read CSV
 df = pd.read_csv(args.csv)
 
-# Initialize g:Profiler
+if "celltype" not in df.columns:
+    df["celltype"] = "all"
+
+if "gene" not in df.columns:
+    raise ValueError("CSV must contain a 'gene' column")
+
 gp = GProfiler(return_dataframe=True)
 
-# Get unique cell types
-celltypes = df["celltype"].unique()
+celltypes = df["celltype"].dropna().unique().tolist()
 
-# Run enrichment
 all_results = []
 
 for ct in celltypes:
     print(f"Processing {ct}...")
-    
-    up_genes = df[(df["celltype"] == ct) & (df["logfoldchanges"] > 0)]["gene"].tolist()
-    
+
+    ct_df = df[df["celltype"] == ct]
+
+    up_genes = ct_df[ct_df["logfoldchanges"] > 0]["gene"].dropna().tolist()
+
     if len(up_genes) >= 3:
         try:
             enr_up = gp.profile(
@@ -59,18 +62,19 @@ for ct in celltypes:
                 sources=source_list,
                 user_threshold=args.pvalue
             )
-            
+
             if not enr_up.empty:
                 enr_up["celltype"] = ct
                 enr_up["direction"] = "UP"
                 enr_up["gene_count"] = enr_up["intersection_size"]
                 enr_up["neg_log10_pval"] = -np.log10(enr_up["p_value"])
                 all_results.append(enr_up)
+
         except Exception as e:
-            print(f"  Error: {e}")
-    
-    down_genes = df[(df["celltype"] == ct) & (df["logfoldchanges"] < 0)]["gene"].tolist()
-    
+            print(f"UP error: {e}")
+
+    down_genes = ct_df[ct_df["logfoldchanges"] < 0]["gene"].dropna().tolist()
+
     if len(down_genes) >= 3:
         try:
             enr_down = gp.profile(
@@ -79,132 +83,84 @@ for ct in celltypes:
                 sources=source_list,
                 user_threshold=args.pvalue
             )
-            
+
             if not enr_down.empty:
                 enr_down["celltype"] = ct
                 enr_down["direction"] = "DOWN"
                 enr_down["gene_count"] = enr_down["intersection_size"]
                 enr_down["neg_log10_pval"] = -np.log10(enr_down["p_value"])
                 all_results.append(enr_down)
-        except Exception as e:
-            print(f"  Error: {e}")
 
-if not all_results:
+        except Exception as e:
+            print(f"DOWN error: {e}")
+
+if len(all_results) == 0:
     raise ValueError("No enrichment results found")
 
-# Save CSV
 combined = pd.concat(all_results, ignore_index=True)
 combined.to_csv(f"{args.prefix}_enrichment_{args.source}.csv", index=False)
 
-# Create figure with 3 columns: UP | DOWN | LEGEND
-fig = plt.figure(figsize=(42, 16))
-gs = fig.add_gridspec(1, 3, width_ratios=[1, 1, 0.3])
+# =========================================================
+# ONLY CHANGE: GSEA BARPLOT WITH SOURCE LABEL
+# =========================================================
 
-ax_up = fig.add_subplot(gs[0])
-ax_down = fig.add_subplot(gs[1])
-ax_legend = fig.add_subplot(gs[2])
+fig, (ax_up, ax_down) = plt.subplots(1, 2, figsize=(28, 10))
 
-def get_marker(gene_count):
-    if gene_count <= 5:
-        return 'o'      # circle
-    elif gene_count <= 10:
-        return 's'      # square
-    elif gene_count <= 15:
-        return '^'      # triangle
-    else:
-        return 'D'      # diamond
+def prepare(direction):
+    df_dir = combined[combined["direction"] == direction].copy()
 
-# UP panel - UNCHANGED
-dir_df = combined[combined["direction"] == "UP"]
-if not dir_df.empty:
-    top_terms = []
-    for ct in celltypes:
-        ct_df = dir_df[dir_df["celltype"] == ct]
-        if not ct_df.empty:
-            top = ct_df.sort_values("p_value").head(args.top_n)
-            top_terms.append(top)
-    top_terms_df = pd.concat(top_terms)
-    
-    for ct in top_terms_df["celltype"].unique():
-        ct_data = top_terms_df[top_terms_df["celltype"] == ct]
-        for _, row in ct_data.iterrows():
-            marker = get_marker(row["gene_count"])
-            ax_up.scatter(ct, row["name"], 
-                         s=25, marker=marker, c=[row["neg_log10_pval"]], 
-                         cmap="Reds", vmin=0, vmax=5, alpha=0.8,
-                         edgecolors='black', linewidth=0.5)
-    
-    ax_up.set_title("UP regulated", fontsize=18)
-    ax_up.set_xlabel("Cell Type", fontsize=16)
-    ax_up.set_ylabel("Pathway", fontsize=16)
-    ax_up.tick_params(axis='x', rotation=45, labelsize=14)
-    ax_up.tick_params(axis='y', labelsize=12)
+    if df_dir.empty:
+        return pd.DataFrame()
 
-# DOWN panel - UNCHANGED
-dir_df = combined[combined["direction"] == "DOWN"]
-if not dir_df.empty:
-    top_terms = []
-    for ct in celltypes:
-        ct_df = dir_df[dir_df["celltype"] == ct]
-        if not ct_df.empty:
-            top = ct_df.sort_values("p_value").head(args.top_n)
-            top_terms.append(top)
-    top_terms_df = pd.concat(top_terms)
-    
-    for ct in top_terms_df["celltype"].unique():
-        ct_data = top_terms_df[top_terms_df["celltype"] == ct]
-        for _, row in ct_data.iterrows():
-            marker = get_marker(row["gene_count"])
-            ax_down.scatter(ct, row["name"], 
-                           s=25, marker=marker, c=[row["neg_log10_pval"]], 
-                           cmap="Reds", vmin=0, vmax=5, alpha=0.8,
-                           edgecolors='black', linewidth=0.5)
-    
-    ax_down.set_title("DOWN regulated", fontsize=18)
-    ax_down.set_xlabel("Cell Type", fontsize=16)
-    ax_down.set_ylabel("Pathway", fontsize=16)
-    ax_down.tick_params(axis='x', rotation=45, labelsize=14)
-    ax_down.tick_params(axis='y', labelsize=12)
+    if "source" not in df_dir.columns:
+        df_dir["source"] = "UNKNOWN"
 
-# ========================
-# LEGEND PANEL - FIXED
-# ========================
-ax_legend.axis('off')
+    df_grouped = df_dir.groupby(["name", "source"]).agg(
+        p_value=("p_value", "min"),
+        gene_count=("gene_count", "max")
+    ).reset_index()
 
-# 1. Colorbar at top (taller)
-cax = ax_legend.inset_axes([0.2, 0.55, 0.6, 0.4])  # x, y, width, height (taller)
-sm = plt.cm.ScalarMappable(cmap="Reds", norm=plt.Normalize(0, 5))
-sm.set_array([])
-cbar = plt.colorbar(sm, cax=cax, orientation='vertical')
-cbar.set_label('-log10(p-value)', fontsize=12)
+    df_grouped["score"] = -np.log10(df_grouped["p_value"])
+    df_grouped["label"] = df_grouped["name"] + " (" + df_grouped["source"] + ")"
 
-# 2. Tight box for gene counts at bottom
-box_x, box_y, box_width, box_height = 0.15, 0.05, 0.7, 0.4
-rect = plt.Rectangle((box_x, box_y), box_width, box_height, 
-                     fill=True, facecolor='white', edgecolor='black', linewidth=1.5)
-ax_legend.add_patch(rect)
+    df_grouped = df_grouped.sort_values("score", ascending=True)
 
-# Title inside box
-ax_legend.text(box_x + box_width/2, box_y + box_height - 0.05, 'Gene count', 
-               fontsize=11, ha='center', fontweight='bold')
+    return df_grouped
 
-# Markers and labels (tight vertical stack inside box)
-marker_info = [
-    ('o', '1-5 genes'),
-    ('s', '6-10 genes'),
-    ('^', '11-15 genes'),
-    ('D', '16+ genes')
-]
+def plot(ax, df_plot, title, color):
+    if df_plot.empty:
+        ax.set_title(f"{title} (no results)")
+        return
 
-y_start = box_y + box_height - 0.12
-for i, (marker, label) in enumerate(marker_info):
-    ax_legend.scatter(box_x + 0.15, y_start - i*0.07, s=50, marker=marker, 
-                      c='gray', edgecolors='black')
-    ax_legend.text(box_x + 0.35, y_start - i*0.07, label, fontsize=10, va='center')
+    top_df = df_plot.tail(args.top_n)
+
+    ax.barh(
+        top_df["label"],
+        top_df["score"],
+        color=color,
+        edgecolor="black",
+        alpha=0.85
+    )
+
+    ax.set_title(title, fontsize=18)
+    ax.set_xlabel("-log10(p-value)", fontsize=14)
+    ax.tick_params(axis='y', labelsize=10)
+    ax.tick_params(axis='x', labelsize=12)
+
+up_df = prepare("UP")
+down_df = prepare("DOWN")
+
+plot(ax_up, up_df, "UP regulated", "firebrick")
+plot(ax_down, down_df, "DOWN regulated", "royalblue")
 
 plt.tight_layout()
+
 os.makedirs("figures", exist_ok=True)
-plt.savefig(f"figures/{args.prefix}_enrichment_{args.source}_dotplot.png", dpi=300, bbox_inches="tight")
+plt.savefig(
+    f"figures/{args.prefix}_enrichment.png",
+    dpi=300,
+    bbox_inches="tight"
+)
 plt.close()
 
 print("Done.")

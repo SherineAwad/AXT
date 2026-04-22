@@ -305,20 +305,24 @@ We used the above marker genes to annotate our celltypes as follows:
 <img src="figures/Osteosarcoma_feature_umap_Alpl.png?v=1" width="33%" /><img src="figures/Osteosarcoma_feature_umap_Klf4.png?v=1" width="33%" /><img src="figures/Osteosarcoma_feature_umap_Bglap.png?v=1" width="33%" />
 
 
-## GSEA for Osteosarcoma 
+## Pathways and GO Enrichment for  Osteosarcoma 
 
-We performed Gene Set Enrichment Analysis (GSEA) using a ranked gene list derived from differential expression results. Genes were ranked using a combined score based on log fold-change weighted by statistical significance (adjusted p-value). This ranking prioritised genes with both strong expression changes and high confidence. We then applied a preranked GSEA approach across multiple pathway databases, including KEGG, Reactome, GO Biological Process, WikiPathways, and CORUM. Enriched pathways were identified based on false discovery rate (FDR) significance, and classified as up- or down-regulated according to their normalised enrichment score (NES). Finally, significant pathways were exported and visualised as a bar plot showing the most strongly enriched biological processes in each direction
+### g:Profiler enrichment analysis (conceptual summary)
 
-We used the source below, can add more if needed. 
-Source | Description |
-|--------|-------------|
-| **MSigDB_Hallmark_2020** | 50 well-defined gene sets representing specific biological states and processes |
-| **GO_Biological_Process_2021** | Gene Ontology terms for biological processes (cell cycle, differentiation, migration, immune response) |
-| **KEGG_2019_Mouse** | Kyoto Encyclopedia of Genes and Genomes pathways |
-| **Reactome_Pathways_2024** | Curated pathway database with detailed reaction steps |
-| **WikiPathways_2019_Mouse** | Community-curated, open-source pathway collection |
-| **CORUM** | Comprehensive resource of mammalian protein complexes |
+g:Profiler is a tool for interpreting gene lists by mapping them onto known biological knowledge bases such as KEGG, Reactome, Gene Ontology, CORUM, and WikiPathways.
 
+It answers a simple question:
+
+> Are certain biological pathways or functions over-represented in a given list of genes?
+
+Instead of focusing on individual genes, it summarizes them into higher-level biological processes.
+
+Each pathway is evaluated based on how strongly it overlaps with the input gene list compared to what would be expected by chance. Pathways are then **ranked by enrichment strength**, so the most biologically relevant processes appear at the top.
+
+This is **over-representation analysis (ORA)**:
+it tests whether predefined biological categories are enriched in a selected gene set, providing a compact functional interpretation of differential expression results.
+
+![](figures/Osteosarcoma_enrichment.png?v=1)
 
 ## Zooming on Fibroblast 
 
@@ -369,7 +373,7 @@ We subset Fibroblast cell type, below is a summary:
 
 We followed the same approach as in Osteosarcoma 
 
-
+![](figures/Fibroblast_enrichment.png?v=1)
 
 #### 🚨🚨🚨 From here will update later 
 
