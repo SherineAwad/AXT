@@ -312,6 +312,7 @@ Source | Description |
 | **WikiPathways_2019_Mouse** | Community-curated, open-source pathway collection |
 | **CORUM** | Comprehensive resource of mammalian protein complexes |
 
+![](figures/Osteosarcoma_gsea.png?v=1)
 
 ## Zooming on Fibroblast 
 
@@ -336,19 +337,15 @@ We subset Fibroblast cell type, below is a summary:
 
 ### Differential gene expression in Osteosarcoma 
 
+#### Top 50 
 ![](figures/Fibroblast_heatmap.png?v=1)
   
-![](figures/Fibroblast_volcano.png?v=1)
-
 #### Top 10 genes only are labeled 
 ![](figures/Fibroblast_volcano.png?v=1)
 
-#### Top 50 genes 
-![](figures/Fibroblast_heatmap.png?v=1)
-
 [Click here to download Fibroblast DGE with adj-pvalue \< 0.05 ]()
 
-#### Dotplot for genes of interest in Osteosarcoma 
+#### Dotplot for genes of interest in Fibroblast  
 
 ![](figures/Fibroblast_dotplot.png?v=1)
 
