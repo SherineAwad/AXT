@@ -298,10 +298,74 @@ We used the above marker genes to annotate our celltypes as follows:
 <img src="figures/Osteosarcoma_violin_Kazald1.png?v=1" width="33%" /><img src="figures/Osteosarcoma_violin_Dcn.png?v=1" width="33%" /><img src="figures/Osteosarcoma_violin_Bglap.png?v=1" width="33%" />
 <img src="figures/Osteosarcoma_violin_Alpl.png?v=1" width="33%" />
 
+## GSEA for Osteosarcoma 
+
+We performed Gene Set Enrichment Analysis (GSEA) using a ranked gene list derived from differential expression results. Genes were ranked using a combined score based on log fold-change weighted by statistical significance (adjusted p-value). This ranking prioritised genes with both strong expression changes and high confidence. We then applied a preranked GSEA approach across multiple pathway databases, including KEGG, Reactome, GO Biological Process, WikiPathways, and CORUM. Enriched pathways were identified based on false discovery rate (FDR) significance, and classified as up- or down-regulated according to their normalised enrichment score (NES). Finally, significant pathways were exported and visualised as a bar plot showing the most strongly enriched biological processes in each direction
+
+We used the source below, can add more if needed. 
+Source | Description |
+|--------|-------------|
+| **MSigDB_Hallmark_2020** | 50 well-defined gene sets representing specific biological states and processes |
+| **GO_Biological_Process_2021** | Gene Ontology terms for biological processes (cell cycle, differentiation, migration, immune response) |
+| **KEGG_2019_Mouse** | Kyoto Encyclopedia of Genes and Genomes pathways |
+| **Reactome_Pathways_2024** | Curated pathway database with detailed reaction steps |
+| **WikiPathways_2019_Mouse** | Community-curated, open-source pathway collection |
+| **CORUM** | Comprehensive resource of mammalian protein complexes |
 
 
+## Zooming on Fibroblast 
 
-## Focusing on all celltypes: Differential gene expression
+We subset Fibroblast cell type, below is a summary:
+
+| Metric   | Value |
+|----------|------:|
+| Cells    | 3,586 |
+| Genes    | 27,808 |
+
+| Sample  | Count |
+|---------|------:|
+| Reg     | 2,759 |
+| nonReg  |   827 |
+
+![](figures/Fibroblast_umap.png?v=1)
+
+![](figures/Fibroblast_perSample_umap.png?v=1)
+
+ figures/Fibroblast_heatmap.png
+  figures/Fibroblast_volcano.png
+
+### Differential gene expression in Osteosarcoma 
+
+![](figures/Fibroblast_heatmap.png?v=1)
+  
+![](figures/Fibroblast_volcano.png?v=1)
+
+#### Top 10 genes only are labeled 
+![](figures/Fibroblast_volcano.png?v=1)
+
+#### Top 50 genes 
+![](figures/Fibroblast_heatmap.png?v=1)
+
+[Click here to download Fibroblast DGE with adj-pvalue \< 0.05 ]()
+
+#### Dotplot for genes of interest in Osteosarcoma 
+
+![](figures/Fibroblast_dotplot.png?v=1)
+
+#### Violin plots for genes of interest in Fibroblast 
+
+![](figures/Fibroblast_violin_Bmp2.png?v=1) 
+
+![](figures/Fibroblast_violin_Bmp4.png?v=1)
+
+#### Feature plots for genes of interest in Fibroblast 
+
+![](figures/Fibroblast_feature_umap_Bmp4.png?v=1)
+
+![](figures/Fibroblast_feature_umap_Bmp2.png?v=1)
+
+
+#### 🚨🚨🚨 From here will update later 
 
 ### Global Regenerative vs non Regenerative 
 

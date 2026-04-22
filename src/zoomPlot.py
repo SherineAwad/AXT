@@ -52,6 +52,24 @@ if not genes:
 
 print(f"Plotting {len(genes)} genes")
 
+# ============================================================
+# ADDED FEATURE: UMAP FEATURE PLOTS (ONE PER GENE)
+# ============================================================
+print("Creating feature (UMAP) plots...")
+
+if "X_umap" in adata.obsm:
+    for gene in genes:
+        sc.pl.umap(
+            adata,
+            color=gene,
+            layer="log1p",
+            show=False
+        )
+        plt.savefig(f"figures/{args.prefix}_feature_umap_{gene}.png", dpi=300, bbox_inches="tight")
+        plt.close()
+else:
+    print("Warning: No UMAP found in adata.obsm['X_umap'], skipping feature plots.")
+
 # ----------------------------
 # 1. DOTPLOT
 # ----------------------------
@@ -83,7 +101,6 @@ print("Creating violin plots...")
 for gene in genes:
     fig, ax = plt.subplots(figsize=(8, 6))
     
-    # Extract data for this gene
     gene_data = []
     for sample in adata.obs["sample"].unique():
         sample_mask = adata.obs["sample"] == sample
@@ -98,7 +115,6 @@ for gene in genes:
     
     df_gene = pd.DataFrame(gene_data)
     
-    # Custom colors
     samples = df_gene["sample"].unique()
     colors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7", "#DDA0DD", "#98D8C8", "#F7B05E"]
     palette = {sample: colors[i % len(colors)] for i, sample in enumerate(samples)}
@@ -123,7 +139,6 @@ print("Creating boxplot with jitter...")
 for gene in genes:
     fig, ax = plt.subplots(figsize=(8, 6))
     
-    # Extract data for this gene
     gene_data = []
     for sample in adata.obs["sample"].unique():
         sample_mask = adata.obs["sample"] == sample
@@ -138,16 +153,13 @@ for gene in genes:
     
     df_gene = pd.DataFrame(gene_data)
     
-    # Custom colors
     samples = df_gene["sample"].unique()
     colors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7", "#DDA0DD", "#98D8C8", "#F7B05E"]
     palette = {sample: colors[i % len(colors)] for i, sample in enumerate(samples)}
     
-    # Boxplot with light grey
     sns.boxplot(data=df_gene, x="sample", y="expression", ax=ax, 
                color="#E8E8E8", width=0.6, linewidth=1.5, boxprops=dict(edgecolor="#555555"))
     
-    # Stripplot with sample colors
     for sample in samples:
         sample_data = df_gene[df_gene["sample"] == sample]
         ax.scatter(sample_data["sample"], sample_data["expression"], 
@@ -175,6 +187,7 @@ print(f"Genes plotted: {len(genes)}")
 print(f"Samples found: {adata.obs['sample'].unique().tolist()}")
 print(f"Figures saved to: figures/")
 print(f"  - {args.prefix}_dotplot.png")
+print(f"  - {args.prefix}_feature_umap_GENE.png ({len(genes)} files)")
 print(f"  - {args.prefix}_violin_GENE.png ({len(genes)} files)")
 print(f"  - {args.prefix}_boxplot_jitter_GENE.png ({len(genes)} files)")
 print("="*50)
