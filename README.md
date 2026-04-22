@@ -288,12 +288,15 @@ We used the above marker genes to annotate our celltypes as follows:
 
 [Click here to download Osteosarcoma DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/11h8bLaShQaQk6QesqC-EzG9Jta7SnvIlJaTmGQvF8HU/edit?usp=sharing)
 
+#### Dotplot for genes of interest in Osteosarcoma 
+
+![](figures/Osteosarcoma_dotplot.png?v=1)
 
 #### Violin plots for genes of interest in Osteosarcoma 
 
-<img src="figures/Osteosarcoma_violin_Wif1.png" width="33%" /><img src="figures/Osteosarcoma_violin_Omd.png" width="33%" /><img src="figures/Osteosarcoma_violin_Klf4.png" width="33%" />
-<img src="figures/Osteosarcoma_violin_Kazald1.png" width="33%" /><img src="figures/Osteosarcoma_violin_Dcn.png" width="33%" /><img src="figures/Osteosarcoma_violin_Bglap.png" width="33%" />
-<img src="figures/Osteosarcoma_violin_Alpl.png" width="33%" />
+<img src="figures/Osteosarcoma_violin_Wif1.png?v=1" width="33%" /><img src="figures/Osteosarcoma_violin_Omd.png?v=1" width="33%" /><img src="figures/Osteosarcoma_violin_Klf4.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_violin_Kazald1.png?v=1" width="33%" /><img src="figures/Osteosarcoma_violin_Dcn.png?v=1" width="33%" /><img src="figures/Osteosarcoma_violin_Bglap.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_violin_Alpl.png?v=1" width="33%" />
 
 
 

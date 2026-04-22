@@ -56,7 +56,7 @@ print(f"Plotting {len(genes)} genes")
 # 1. DOTPLOT
 # ----------------------------
 print("Creating dotplot...")
-fig, ax = plt.subplots(figsize=(12, max(6, len(genes) * 0.4)))
+fig, ax = plt.subplots(figsize=(12, max(3, len(genes) * 0.4)))
 
 sc.pl.dotplot(
     adata,
