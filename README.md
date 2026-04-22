@@ -298,6 +298,13 @@ We used the above marker genes to annotate our celltypes as follows:
 <img src="figures/Osteosarcoma_violin_Kazald1.png?v=1" width="33%" /><img src="figures/Osteosarcoma_violin_Dcn.png?v=1" width="33%" /><img src="figures/Osteosarcoma_violin_Bglap.png?v=1" width="33%" />
 <img src="figures/Osteosarcoma_violin_Alpl.png?v=1" width="33%" />
 
+
+#### Feature plots for genes of interest in Osteosarcoma
+
+<img src="figures/Osteosarcoma_feature_umap_Wif1.png?v=1" width="33%" /><img src="figures/Osteosarcoma_feature_umap_Kazald1.png?v=1" width="33%" /><img src="figures/Osteosarcoma_feature_umap_Dcn.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_feature_umap_Alpl.png?v=1" width="33%" /><img src="figures/Osteosarcoma_feature_umap_Klf4.png?v=1" width="33%" /><img src="figures/Osteosarcoma_feature_umap_Bglap.png?v=1" width="33%" />
+
+
 ## GSEA for Osteosarcoma 
 
 We performed Gene Set Enrichment Analysis (GSEA) using a ranked gene list derived from differential expression results. Genes were ranked using a combined score based on log fold-change weighted by statistical significance (adjusted p-value). This ranking prioritised genes with both strong expression changes and high confidence. We then applied a preranked GSEA approach across multiple pathway databases, including KEGG, Reactome, GO Biological Process, WikiPathways, and CORUM. Enriched pathways were identified based on false discovery rate (FDR) significance, and classified as up- or down-regulated according to their normalised enrichment score (NES). Finally, significant pathways were exported and visualised as a bar plot showing the most strongly enriched biological processes in each direction
@@ -312,7 +319,6 @@ Source | Description |
 | **WikiPathways_2019_Mouse** | Community-curated, open-source pathway collection |
 | **CORUM** | Comprehensive resource of mammalian protein complexes |
 
-![](figures/Osteosarcoma_gsea.png?v=1)
 
 ## Zooming on Fibroblast 
 
@@ -332,9 +338,6 @@ We subset Fibroblast cell type, below is a summary:
 
 ![](figures/Fibroblast_perSample_umap.png?v=1)
 
- figures/Fibroblast_heatmap.png
-  figures/Fibroblast_volcano.png
-
 ### Differential gene expression in Osteosarcoma 
 
 #### Top 50 
@@ -343,7 +346,7 @@ We subset Fibroblast cell type, below is a summary:
 #### Top 10 genes only are labeled 
 ![](figures/Fibroblast_volcano.png?v=1)
 
-[Click here to download Fibroblast DGE with adj-pvalue \< 0.05 ]()
+[Click here to download Fibroblast DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/1XOuQEVxYdfmaLDPaavQAKLeq8XDhvZKHhxEY9Mfkrjk/edit?usp=sharing)
 
 #### Dotplot for genes of interest in Fibroblast  
 
@@ -360,6 +363,12 @@ We subset Fibroblast cell type, below is a summary:
 ![](figures/Fibroblast_feature_umap_Bmp4.png?v=1)
 
 ![](figures/Fibroblast_feature_umap_Bmp2.png?v=1)
+
+
+## GSEA for Fibroblast  
+
+We followed the same approach as in Osteosarcoma 
+
 
 
 #### 🚨🚨🚨 From here will update later 
