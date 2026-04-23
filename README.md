@@ -330,7 +330,13 @@ Each pathway is evaluated based on how strongly it overlaps with the input gene 
 This is **over-representation analysis (ORA)**:
 it tests whether predefined biological categories are enriched in a selected gene set, providing a compact functional interpretation of differential expression results.
 
-![](figures/Osteosarcoma_enrichment.png?v=1)
+
+![](figures/Osteosarcoma_KEGG,REAC,WP_enrichment.png?v=1)
+
+![](figures/Osteosarcoma_GO_enrichment.png?v-1) 
+
+![](figures/Osteosarcoma_CORUM_enrichment.png?v=1)  
+
 
 ## Zooming on Fibroblast 
 
@@ -386,8 +392,11 @@ Now overlapping with Secreted genes
 
 We followed the same approach as in Osteosarcoma 
 
-![](figures/Fibroblast_enrichment.png?v=1)
+![](figures/Fibroblast_KEGG,REAC,WP_enrichment.png?v=1)
 
+![](figures/Fibroblast_GO_enrichment.png?v-1) 
+
+![](figures/Fibroblast_CORUM_enrichment.png?v=1)   
 
 
 ## Now zooming on OsteoProgenitor 
