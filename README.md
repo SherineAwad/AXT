@@ -348,8 +348,7 @@ We subset Fibroblast cell type, below is a summary:
 
 ![](figures/Fibroblast_perSample_umap.png?v=1)
 
-### Differential gene expression in Osteosarcoma 
-
+### Differential gene expression in Fibroblast
 #### Top 50 
 ![](figures/Fibroblast_heatmap.png?v=1)
 
