@@ -281,10 +281,10 @@ We used the above marker genes to annotate our celltypes as follows:
 ### Differential gene expression in Osteosarcoma 
 
 #### Top 10 genes only are labeled 
-![](figures/Osteosarcoma_volcano.png?v=1)
+![](figures/Osteosarcoma_volcano.png?v=2)
 
-#### Top 50 genes 
-![](figures/Osteosarcoma_heatmap.png?v=1)
+#### Top 100 genes 
+![](figures/Osteosarcoma_heatmap.png?v=2)
 
 [Click here to download Osteosarcoma DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/11h8bLaShQaQk6QesqC-EzG9Jta7SnvIlJaTmGQvF8HU/edit?usp=sharing)
 
