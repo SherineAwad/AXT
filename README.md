@@ -330,11 +330,13 @@ Each pathway is evaluated based on how strongly it overlaps with the input gene 
 This is **over-representation analysis (ORA)**:
 it tests whether predefined biological categories are enriched in a selected gene set, providing a compact functional interpretation of differential expression results.
 
-
+#### Using KEGG, REACTOME, and WP
 ![](figures/Osteosarcoma_KEGG,REAC,WP_enrichment.png?v=1)
 
+#### Using GO
 ![](figures/Osteosarcoma_GO_enrichment.png?v-1) 
 
+#### Using CORUM 
 ![](figures/Osteosarcoma_CORUM_enrichment.png?v=1)  
 
 
@@ -388,14 +390,17 @@ Now overlapping with Secreted genes
 <img src="figures/Fibroblast_feature_Bmp4_Reg.png?v=1" width="45%" /> <img src="figures/Fibroblast_feature_Bmp4_nonReg.png?v=1" width="45%" />
 
 
-## GSEA for Fibroblast  
+## Patways and GO enrichments for Fibroblast  
 
 We followed the same approach as in Osteosarcoma 
 
+#### Using KEGG, REACTOME, and WP
 ![](figures/Fibroblast_KEGG,REAC,WP_enrichment.png?v=1)
 
+#### Using GO
 ![](figures/Fibroblast_GO_enrichment.png?v-1) 
 
+#### Using CORUM
 ![](figures/Fibroblast_CORUM_enrichment.png?v=1)   
 
 
@@ -430,7 +435,7 @@ We followed the same approach we did with Osteosarcoma (same script)
 
 
 
-## 🚨🚨🚨 From here will update later 
+## 🚨🚨🚨 Please hold on from here,  will update later to reflect changes above  
 
 ### Global Regenerative vs non Regenerative 
 
