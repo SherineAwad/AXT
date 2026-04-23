@@ -280,11 +280,13 @@ We used the above marker genes to annotate our celltypes as follows:
 
 ### Differential gene expression in Osteosarcoma 
 
+Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test on log-normalised expression data to compare sample groups against a defined reference condition (nonReg). Genes were filtered based on an adjusted p-value threshold of 0.05 to retain only statistically significant changes. For downstream analysis, the top 100 genes per direction were selected for heatmap visualisation, while the volcano plot highlights and labels the top 10 most statistically significant up- and downregulated genes per direction. Gene ranking for both visualisations was driven primarily by adjusted p-value, with log fold-change used only to preserve directionality within up- and downregulated groups.
+
 #### Top 10 genes only are labeled 
-![](figures/Osteosarcoma_volcano.png?v=2)
+![](figures/Osteosarcoma_volcano.png?v=3)
 
 #### Top 100 genes 
-![](figures/Osteosarcoma_heatmap.png?v=2)
+![](figures/Osteosarcoma_heatmap.png?v=3)
 
 [Click here to download Osteosarcoma DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/11h8bLaShQaQk6QesqC-EzG9Jta7SnvIlJaTmGQvF8HU/edit?usp=sharing)
 
@@ -349,8 +351,11 @@ We subset Fibroblast cell type, below is a summary:
 ![](figures/Fibroblast_perSample_umap.png?v=1)
 
 ### Differential gene expression in Fibroblast
+
+Top N genes are selected by first sorting all genes by adjusted p-value in ascending order (most statistically significant first), with log fold-change used only as a secondary criterion to break ties while preserving directionality. The top-ranked genes are then taken globally from this ordered list.
+
 #### Top 50 
-![](figures/Fibroblast_heatmap.png?v=1)
+![](figures/Fibroblast_heatmap.png?v=2)
 
 
 Now overlapping with Secreted genes 
