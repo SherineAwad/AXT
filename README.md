@@ -315,7 +315,7 @@ Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test 
 
 ## Pathways and GO Enrichment for  Osteosarcoma 
 
-### g:Profiler enrichment analysis (conceptual summary)
+### g:Profiler enrichment analysis 
 
 g:Profiler is a tool for interpreting gene lists by mapping them onto known biological knowledge bases such as KEGG, Reactome, Gene Ontology, CORUM, and WikiPathways.
 
@@ -388,7 +388,7 @@ We followed the same approach as in Osteosarcoma
 
 ![](figures/Fibroblast_enrichment.png?v=1)
 
-#### 🚨🚨🚨 From here will update later 
+## 🚨🚨🚨 From here will update later 
 
 ### Global Regenerative vs non Regenerative 
 
