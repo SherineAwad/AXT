@@ -13,8 +13,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--input", required=True)
 parser.add_argument("--output", required=True)
 parser.add_argument("--prefix", required=True)
-parser.add_argument("--N", type=int, required=True)
-parser.add_argument("--K", type=int, required=True)
+parser.add_argument("--N", type=int, required=True)  # heatmap size
+parser.add_argument("--K", type=int, required=True)  # volcano labels
 parser.add_argument("--pvalue", type=float, default=0.05)
 parser.add_argument("--reference", required=True)
 args = parser.parse_args()
@@ -27,7 +27,7 @@ os.makedirs("figures", exist_ok=True)
 adata = sc.read_h5ad(args.input)
 
 # ----------------------------
-# GLOBAL DE
+# GLOBAL DGE (UNCHANGED)
 # ----------------------------
 sc.tl.rank_genes_groups(
     adata,
@@ -45,21 +45,6 @@ df = df[["names", "logfoldchanges", "pvals_adj"]].rename(
 )
 
 # ----------------------------
-# SAVE CSVs
-# ----------------------------
-df[df["pvals_adj"] < args.pvalue].to_csv(
-    f"{args.prefix}_global_dge.csv", index=False
-)
-
-df.to_csv(
-    f"{args.prefix}_DGEperSampleAll.csv", index=False
-)
-
-df[df["pvals_adj"] < args.pvalue].to_csv(
-    f"{args.prefix}_DGEperSample_{args.pvalue}.csv", index=False
-)
-
-# ----------------------------
 # FILTER SIGNIFICANT
 # ----------------------------
 sig = df[df["pvals_adj"] < args.pvalue].copy()
@@ -67,18 +52,21 @@ sig = df[df["pvals_adj"] < args.pvalue].copy()
 if sig.empty:
     raise ValueError("No significant genes found")
 
-# ----------------------------
-# HEATMAP (TOP N)
-# ----------------------------
-top_heat = sig.loc[
-    sig["logfoldchanges"].abs().sort_values(ascending=False).index
-].head(args.N)
+# ============================================================
+# 🔥 HEATMAP (TOP N BY P-VALUE + DIRECTION)
+# ============================================================
+
+top_up_hm = sig[sig["logfoldchanges"] > 0].sort_values(
+    ["pvals_adj", "logfoldchanges"], ascending=[True, False]
+).head(args.N)
+
+top_down_hm = sig[sig["logfoldchanges"] < 0].sort_values(
+    ["pvals_adj", "logfoldchanges"], ascending=[True, True]
+).head(args.N)
+
+top_heat = pd.concat([top_up_hm, top_down_hm])
 
 heatmap_df = top_heat.set_index("gene")[["logfoldchanges"]]
-
-heatmap_df = heatmap_df.reindex(
-    heatmap_df["logfoldchanges"].abs().sort_values(ascending=False).index
-)
 
 plt.figure(figsize=(6, max(6, len(heatmap_df) * 0.3)))
 
@@ -98,17 +86,23 @@ plt.tight_layout()
 plt.savefig(f"figures/{args.prefix}_heatmap.png", dpi=300, bbox_inches="tight")
 plt.close()
 
-# ----------------------------
-# VOLCANO PLOT (TOP K UP/DOWN)
-# ----------------------------
+# ============================================================
+# 🔥 VOLCANO (LABEL ONLY TOP K)
+# ============================================================
 
 df["neg_log10_pval"] = -np.log10(df["pvals_adj"] + 1e-300)
 df["significant"] = df["pvals_adj"] < args.pvalue
 
-top_up = sig[sig["logfoldchanges"] > 0].nlargest(args.K, "logfoldchanges")
-top_down = sig[sig["logfoldchanges"] < 0].nsmallest(args.K, "logfoldchanges")
+# top K for labeling ONLY
+top_up_lab = sig[sig["logfoldchanges"] > 0].sort_values(
+    ["pvals_adj", "logfoldchanges"], ascending=[True, False]
+).head(args.K)
 
-plot_df = pd.concat([top_up, top_down])
+top_down_lab = sig[sig["logfoldchanges"] < 0].sort_values(
+    ["pvals_adj", "logfoldchanges"], ascending=[True, True]
+).head(args.K)
+
+label_df = pd.concat([top_up_lab, top_down_lab])
 
 plt.figure(figsize=(8, 6))
 
@@ -130,30 +124,21 @@ plt.scatter(
     color="lightgrey"
 )
 
-# top UP
+# highlight top K labeled genes
 plt.scatter(
-    top_up["logfoldchanges"],
-    -np.log10(top_up["pvals_adj"] + 1e-300),
+    label_df["logfoldchanges"],
+    -np.log10(label_df["pvals_adj"] + 1e-300),
     s=40,
     color="red"
 )
 
-# top DOWN
-plt.scatter(
-    top_down["logfoldchanges"],
-    -np.log10(top_down["pvals_adj"] + 1e-300),
-    s=40,
-    color="blue"
-)
-
 # ----------------------------
-# LABELS (ONLY CHANGE: LONGER POINTER OFFSET)
+# LABELS (ONLY TOP K NOW)
 # ----------------------------
-for _, row in plot_df.iterrows():
+for _, row in label_df.iterrows():
     x = row["logfoldchanges"]
     y = -np.log10(row["pvals_adj"] + 1e-300)
 
-    # LONGER OFFSETS (this is the ONLY change)
     x_offset = 2.5 if x > 0 else -2.5
     y_offset = 3.0
 
@@ -161,7 +146,7 @@ for _, row in plot_df.iterrows():
         row["gene"],
         xy=(x, y),
         xytext=(x + x_offset, y + y_offset),
-        fontsize=4,
+        fontsize=5,
         ha="left" if x > 0 else "right",
         arrowprops=dict(arrowstyle="-", lw=0.5, color="black")
     )
@@ -178,6 +163,6 @@ plt.savefig(f"figures/{args.prefix}_volcano.png", dpi=300, bbox_inches="tight")
 plt.close()
 
 # ----------------------------
-# SAVE H5AD
+# SAVE H5AD (UNCHANGED)
 # ----------------------------
 adata.write_h5ad(args.output)
