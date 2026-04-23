@@ -409,7 +409,7 @@ We subset the OsteoProgenitor and a summary is below:
 ![](figures/OsteoProgenitor_perSample_umap.png?v=1)
 
 
-### Differential gene expression in Osteosarcoma
+### Differential gene expression in OsteoProgenitor 
 
 We followed the same approach we did with Osteosarcoma (same script)
 
