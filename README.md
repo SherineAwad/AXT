@@ -301,8 +301,14 @@ We used the above marker genes to annotate our celltypes as follows:
 
 #### Feature plots for genes of interest in Osteosarcoma
 
-<img src="figures/Osteosarcoma_feature_umap_Wif1.png?v=1" width="33%" /><img src="figures/Osteosarcoma_feature_umap_Kazald1.png?v=1" width="33%" /><img src="figures/Osteosarcoma_feature_umap_Dcn.png?v=1" width="33%" />
-<img src="figures/Osteosarcoma_feature_umap_Alpl.png?v=1" width="33%" /><img src="figures/Osteosarcoma_feature_umap_Klf4.png?v=1" width="33%" /><img src="figures/Osteosarcoma_feature_umap_Bglap.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_feature_umap_Klf4_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Klf4_nonReg.png?v=1" width="45%" />
+<img src="figures/Osteosarcoma_feature_umap_Alpl_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Alpl_nonReg.png?v=1" width="45%" />
+<img src="figures/Osteosarcoma_feature_umap_Wif1_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Wif1_nonReg.png?v=1" width="45%" />
+<img src="figures/Osteosarcoma_feature_umap_Dcn_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Dcn_nonReg.png?v=1" width="45%" />
+<img src="figures/Osteosarcoma_feature_umap_Kazald1_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Kazald1_nonReg.png?v=1" width="45%" />
+<img src="figures/Osteosarcoma_feature_umap_Omd_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Omd_nonReg.png?v=1" width="45%" />
+<img src="figures/Osteosarcoma_feature_umap_Bglap_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Bglap_nonReg.png?v=1" width="45%" />
+
 
 
 ## Pathways and GO Enrichment for  Osteosarcoma 

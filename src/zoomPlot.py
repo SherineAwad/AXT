@@ -53,20 +53,31 @@ if not genes:
 print(f"Plotting {len(genes)} genes")
 
 # ============================================================
-# ADDED FEATURE: UMAP FEATURE PLOTS (ONE PER GENE)
+# FIXED FEATURE: UMAP PER SAMPLE (PROPER IMPLEMENTATION)
 # ============================================================
 print("Creating feature (UMAP) plots...")
 
 if "X_umap" in adata.obsm:
+    samples = adata.obs["sample"].unique()
+
     for gene in genes:
-        sc.pl.umap(
-            adata,
-            color=gene,
-            layer="log1p",
-            show=False
-        )
-        plt.savefig(f"figures/{args.prefix}_feature_umap_{gene}.png", dpi=300, bbox_inches="tight")
-        plt.close()
+        for sample in samples:
+            adata_sub = adata[adata.obs["sample"] == sample]
+
+            sc.pl.umap(
+                adata_sub,
+                color=gene,
+                layer="log1p",
+                show=False,
+                title=f"{gene} ({sample})"
+            )
+
+            plt.savefig(
+                f"figures/{args.prefix}_feature_umap_{gene}_{sample}.png",
+                dpi=300,
+                bbox_inches="tight"
+            )
+            plt.close()
 else:
     print("Warning: No UMAP found in adata.obsm['X_umap'], skipping feature plots.")
 
@@ -187,7 +198,7 @@ print(f"Genes plotted: {len(genes)}")
 print(f"Samples found: {adata.obs['sample'].unique().tolist()}")
 print(f"Figures saved to: figures/")
 print(f"  - {args.prefix}_dotplot.png")
-print(f"  - {args.prefix}_feature_umap_GENE.png ({len(genes)} files)")
+print(f"  - {args.prefix}_feature_umap_GENE_SAMPLE.png ({len(genes)*len(samples)} files)")
 print(f"  - {args.prefix}_violin_GENE.png ({len(genes)} files)")
 print(f"  - {args.prefix}_boxplot_jitter_GENE.png ({len(genes)} files)")
 print("="*50)
