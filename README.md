@@ -352,27 +352,30 @@ We subset Fibroblast cell type, below is a summary:
 
 #### Top 50 
 ![](figures/Fibroblast_heatmap.png?v=1)
+
+
+Now overlapping with Secreted genes 
   
-#### Top 10 genes only are labeled 
-![](figures/Fibroblast_volcano.png?v=1)
+#### Top 20 genes only are labeled 
+![](figures/Fibroblast_volcano.png?v=2)
 
 [Click here to download Fibroblast DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/1XOuQEVxYdfmaLDPaavQAKLeq8XDhvZKHhxEY9Mfkrjk/edit?usp=sharing)
 
 #### Dotplot for genes of interest in Fibroblast  
 
-![](figures/Fibroblast_dotplot.png?v=1)
+![](figures/Fibroblast_dotplot.png?v=2)
 
 #### Violin plots for genes of interest in Fibroblast 
 
-![](figures/Fibroblast_violin_Bmp2.png?v=1) 
+![](figures/Fibroblast_violin_Bmp2.png?v=2) 
 
-![](figures/Fibroblast_violin_Bmp4.png?v=1)
+![](figures/Fibroblast_violin_Bmp4.png?v=2)
 
 #### Feature plots for genes of interest in Fibroblast 
 
-![](figures/Fibroblast_feature_umap_Bmp4.png?v=1)
+![](figures/Fibroblast_umap_Bmp2.png?v=1)
 
-![](figures/Fibroblast_feature_umap_Bmp2.png?v=1)
+![](figures/Fibroblast_umap_Bmp4.png?v=1)
 
 
 ## GSEA for Fibroblast  
