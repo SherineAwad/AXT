@@ -373,11 +373,9 @@ Now overlapping with Secreted genes
 
 #### Feature plots for genes of interest in Fibroblast 
 
-figures/Fibroblast_feature_Bmp2_nonReg.png  figures/Fibroblast_feature_Bmp4_nonReg.png
-figures/Fibroblast_feature_Bmp2_Reg.png     figures/Fibroblast_feature_Bmp4_Reg.png
 
-<img src="figures/Fibroblast_feature_umap_Bmp2_Reg.png?v=1" width="45%" /> <img src="figures/Fibroblast_feature_umap_Bmp2_nonReg.png?v=1" width="45%" />
-<img src="figures/Fibroblast_feature_umap_Bmp4_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Bmp4_nonReg.png?v=1" width="45%" />
+<img src="figures/Fibroblast_feature_Bmp2_Reg.png?v=1" width="45%" /> <img src="figures/Fibroblast_feature_Bmp2_nonReg.png?v=1" width="45%" />
+<img src="figures/Fibroblast_feature_Bmp4_Reg.png?v=1" width="45%" /> <img src="figures/Fibroblast_feature_Bmp4_nonReg.png?v=1" width="45%" />
 
 
 ## GSEA for Fibroblast  
