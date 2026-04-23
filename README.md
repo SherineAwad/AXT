@@ -367,9 +367,9 @@ Now overlapping with Secreted genes
 
 #### Violin plots for genes of interest in Fibroblast 
 
-![](figures/Fibroblast_violin_Bmp2.png?v=2) 
+![](figures/Fibroblast_violin_Bmp2.png?v=3) 
 
-![](figures/Fibroblast_violin_Bmp4.png?v=2)
+![](figures/Fibroblast_violin_Bmp4.png?v=3)
 
 #### Feature plots for genes of interest in Fibroblast 
 

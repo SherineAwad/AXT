@@ -46,12 +46,9 @@ for g in adata.uns["rank_genes_groups"]["names"].dtype.names:
 df = pd.concat(dfs, ignore_index=True)
 df["neglog10_padj"] = -np.log10(df["pvals_adj"] + 1e-300)
 
-# ============================================================
-# FIXED TOP N SELECTION (IMPORTANT)
-# rank by:
-# 1. adj p-value (ascending = most significant first)
-# 2. abs logFC (descending = strongest effect)
-# ============================================================
+# ----------------------------
+# TOP N SELECTION
+# ----------------------------
 df_unique = df.drop_duplicates("names")
 
 df_top = (
@@ -70,7 +67,7 @@ top_genes = set(df_top["names"])
 secreted_in_dge = set(df[df["names"].isin(secreted)]["names"])
 
 # ----------------------------
-# FINAL SET
+# FINAL GENES
 # ----------------------------
 genes_plot = sorted(top_genes.union(secreted_in_dge))
 
@@ -101,14 +98,11 @@ plt.scatter(
     edgecolors="black"
 )
 
-# ============================================================
-# FIXED LABELS (NO BOX, WITH POINTER ARROWS)
-# ============================================================
 for _, r in df_plot.iterrows():
     plt.annotate(
         r["names"],
         xy=(r["logfoldchanges"], r["neglog10_padj"]),
-        xytext=(8, 8),  # offset label position
+        xytext=(8, 8),
         textcoords="offset points",
         fontsize=8,
         arrowprops=dict(
@@ -130,8 +124,9 @@ plt.title(f"Volcano: Top {args.topn} + Secreted Genes")
 plt.tight_layout()
 plt.savefig(f"figures/{args.prefix}_volcano.png", dpi=300)
 plt.close()
+
 # ============================================================
-# FEATURE PLOTS PER SAMPLE (ONE PER SAMPLE PER GENE)
+# FEATURE PLOTS PER SAMPLE
 # ============================================================
 if "X_umap" in adata.obsm:
     for gene in genes_plot:
@@ -160,6 +155,7 @@ if "X_umap" in adata.obsm:
 
             except:
                 pass
+
 # ============================================================
 # DOTPLOT
 # ============================================================
@@ -171,13 +167,13 @@ if len(genes_plot) > 0:
             groupby="sample",
             layer="log1p",
             show=False,
-            dendrogram=False,          # removes extra clutter
-            swap_axes=True,            # makes gene names readable
-            standard_scale="var",      # improves contrast across genes
-            figsize=(max(8, len(genes_plot) * 0.4), 6)  # auto widen for genes
+            dendrogram=False,
+            swap_axes=True,
+            standard_scale="var",
+            figsize=(max(8, len(genes_plot) * 0.4), 6)
         )
 
-        plt.xticks(rotation=90, fontsize=9)   # gene names readable
+        plt.xticks(rotation=90, fontsize=9)
         plt.yticks(fontsize=10)
 
         plt.tight_layout()
@@ -191,8 +187,9 @@ if len(genes_plot) > 0:
 
     except:
         pass
+
 # ============================================================
-# VIOLIN + BOX
+# VIOLIN (ONLY FIXED PART)
 # ============================================================
 for gene in genes_plot:
     if gene not in adata.var_names:
@@ -209,19 +206,30 @@ for gene in genes_plot:
 
         df_expr = pd.DataFrame(df_expr)
 
-        plt.figure()
-        sns.violinplot(data=df_expr, x="sample", y="expr")
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        plt.savefig(f"figures/{args.prefix}_violin_{gene}.png", dpi=300)
-        plt.close()
+        samples = df_expr["sample"].unique()
+        colors = [
+            "#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4",
+            "#FFEAA7", "#DDA0DD", "#98D8C8", "#F7B05E"
+        ]
+
+        palette = {s: colors[i % len(colors)] for i, s in enumerate(samples)}
 
         plt.figure()
-        sns.boxplot(data=df_expr, x="sample", y="expr")
-        sns.stripplot(data=df_expr, x="sample", y="expr", size=2, alpha=0.4)
+
+        sns.violinplot(
+            data=df_expr,
+            x="sample",
+            y="expr",
+            palette=palette
+        )
+
         plt.xticks(rotation=45)
         plt.tight_layout()
-        plt.savefig(f"figures/{args.prefix}_box_{gene}.png", dpi=300)
+
+        plt.savefig(
+            f"figures/{args.prefix}_violin_{gene}.png",
+            dpi=300
+        )
         plt.close()
 
     except:
