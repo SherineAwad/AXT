@@ -352,7 +352,7 @@ We subset Fibroblast cell type, below is a summary:
 
 ### Differential gene expression in Fibroblast
 
-Top N genes are selected by first sorting all genes by adjusted p-value in ascending order (most statistically significant first), with log fold-change used only as a secondary criterion to break ties while preserving directionality. The top-ranked genes are then taken globally from this ordered list.
+Similar to what we did with Osteosarcoma, Top N genes are selected by first sorting all genes by adjusted p-value in ascending order (most statistically significant first), with log fold-change used only as a secondary criterion to break ties while preserving directionality. The top-ranked genes are then taken globally from this ordered list.
 
 #### Top 50 
 ![](figures/Fibroblast_heatmap.png?v=2)
@@ -387,6 +387,39 @@ Now overlapping with Secreted genes
 We followed the same approach as in Osteosarcoma 
 
 ![](figures/Fibroblast_enrichment.png?v=1)
+
+
+
+## Now zooming on OsteoProgenitor 
+
+We subset the OsteoProgenitor and a summary is below: 
+
+| Metric   | Value |
+|----------|------:|
+| Cells    | 3,138 |
+| Genes    | 27,808 |
+
+| Sample  | Count |
+|---------|------:|
+| nonReg  | 1,797 |
+| Reg     | 1,341 |
+
+![](figures/OsteoProgenitor_umap.png?v=1)
+
+![](figures/OsteoProgenitor_perSample_umap.png?v=1)
+
+
+### Differential gene expression in Osteosarcoma
+
+We followed the same approach we did with Osteosarcoma (same script)
+
+#### Top 10 genes only are labeled
+![](figures/OsteoProgenitor_volcano.png?v=3)
+
+#### Top 100 genes
+![](figures/OsteoProgenitor_heatmap.png?v=3)
+
+
 
 ## 🚨🚨🚨 From here will update later 
 
