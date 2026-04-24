@@ -471,9 +471,9 @@ We performed differential gene expression (DGE) analysis to identify genes diffe
 
 This pipeline identifies potential **ligand–receptor interactions** from single-cell RNA-seq data using the LIANA framework. LIANA integrates multiple established methods into a single consensus scoring system.
 
-#### Top lrScores interactions with minimum |logFC| 0.5
+#### Top lrScores interactions with minimum |logFC| 0.0 (Mostly rank by lrScore)
 
-![](figures/axt_liana_dotplot.png?=5)
+![](figures/axt_liana_dotplot.png?=6)
 
 
 #### Click the link below for full list of cell-cell interactions

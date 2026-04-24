@@ -14,7 +14,7 @@ parser.add_argument("--celltype", required=True)
 parser.add_argument("--prefix", required=True)
 
 parser.add_argument("--N", type=int, default=10)
-parser.add_argument("--logFC", type=float, default=0.5)
+parser.add_argument("--logFC", type=float, default=0.0)
 
 args = parser.parse_args()
 
@@ -37,19 +37,15 @@ adata = sc.read_h5ad(args.input)
 
 res = run_liana(adata, args.database, args.celltype)
 
-# SAVE RAW OUTPUT (UNCHANGED)
 res.to_csv(f"{args.prefix}_liana.csv", index=False)
 
-# FILTER (UNCHANGED)
 filtered = res[res["lr_logfc"].abs() >= args.logFC].copy()
 
 if filtered.empty:
     raise ValueError("❌ No interactions after filtering")
 
-# TOP N (UNCHANGED)
 top_lr = filtered.sort_values("lrscore", ascending=False).head(args.N)
 
-# LABELS (UNCHANGED)
 top_lr["ligand_gene"] = top_lr["source"] + "." + top_lr["ligand_complex"]
 top_lr["receptor_gene"] = top_lr["target"] + "." + top_lr["receptor_complex"]
 
@@ -63,26 +59,20 @@ rec_map = {r: i for i, r in enumerate(receptors)}
 plot_df["x"] = plot_df["ligand_gene"].map(lig_map)
 plot_df["y"] = plot_df["receptor_gene"].map(rec_map)
 
-# ----------------------------
-# PLOT (DENSE DOTPLOT)
-# ----------------------------
 os.makedirs("figures", exist_ok=True)
 
 plt.rcParams.update({"font.size": 12})
 
-
-plt.figure(figsize=(len(ligands) * 0.6, len(receptors) * 0.5))
-
+plt.figure(figsize=(len(ligands) * 0.6, len(receptors) * 1.2)) 
 plt.scatter(
     plot_df["x"],
     plot_df["y"],
-    s=plot_df["lrscore"] * 500,   # scale dots properly
-    c=plot_df["lr_logfc"],
-    cmap="coolwarm",
+    s=plot_df["lrscore"] * 500,
+    c=plot_df["lrscore"],
+    cmap="viridis",
     edgecolors="black"
 )
 
-# ticks mapped back to labels
 plt.xticks(range(len(ligands)), ligands, rotation=45, ha="right")
 plt.yticks(range(len(receptors)), receptors)
 
@@ -90,7 +80,7 @@ plt.xlabel("Ligand")
 plt.ylabel("Receptor")
 plt.title(f"Top ligand–receptor interactions ({args.prefix})")
 
-plt.colorbar(label="lr_logfc")
+plt.colorbar(label="lrscore")
 
 plt.tight_layout()
 
@@ -102,7 +92,4 @@ plt.savefig(
 
 plt.close()
 
-##-------
-Do this to save if needed or ignore for space limits 
-##-------
 #adata.write_h5ad(args.output)
