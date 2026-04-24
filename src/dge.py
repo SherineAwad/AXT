@@ -44,16 +44,22 @@ df = df[["names", "logfoldchanges", "pvals_adj"]].rename(
     columns={"names": "gene"}
 )
 
+# Save full DGE (all genes)
+full_out = f"{args.prefix}_dgeAll.csv"
+df.to_csv(full_out, index=False)
+
 # ----------------------------
 # FILTER SIGNIFICANT
 # ----------------------------
 sig = df[df["pvals_adj"] < args.pvalue].copy()
+sig_out = f"{args.prefix}_dge_{args.pvalue}.csv"
+sig.to_csv(sig_out, index=False)
 
 if sig.empty:
     raise ValueError("No significant genes found")
 
 # ============================================================
-# 🔥 HEATMAP (TOP N BY P-VALUE + DIRECTION)
+#  HEATMAP (TOP N BY P-VALUE + DIRECTION)
 # ============================================================
 
 top_up_hm = sig[sig["logfoldchanges"] > 0].sort_values(
@@ -87,7 +93,7 @@ plt.savefig(f"figures/{args.prefix}_heatmap.png", dpi=300, bbox_inches="tight")
 plt.close()
 
 # ============================================================
-# 🔥 VOLCANO (LABEL ONLY TOP K)
+#  VOLCANO (LABEL ONLY TOP K)
 # ============================================================
 
 df["neg_log10_pval"] = -np.log10(df["pvals_adj"] + 1e-300)

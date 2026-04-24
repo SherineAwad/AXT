@@ -280,7 +280,7 @@ We used the above marker genes to annotate our celltypes as follows:
 
 ### Differential gene expression in Osteosarcoma 
 
-Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test on log-normalised expression data to compare sample groups against a defined reference condition (nonReg). Genes were filtered based on an adjusted p-value threshold of 0.05 to retain only statistically significant changes. For downstream analysis, the top 100 genes per direction were selected for heatmap visualisation, while the volcano plot highlights and labels the top 10 most statistically significant up- and downregulated genes per direction. Gene ranking for both visualisations was driven primarily by adjusted p-value, with log fold-change used only to preserve directionality within up- and downregulated groups.
+Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test on log-normalised expression data to compare sample groups against a defined reference condition (nonReg). Genes were filtered based on an adjusted p-value threshold of 0.05 to retain statistically significant changes. For heatmap visualisation, the top 100 genes per direction (up- and downregulated) were selected based on adjusted p-value ranking with log fold-change used as a secondary criterion. For the volcano plot, all genes were displayed, while the top 10 most statistically significant genes per direction were highlighted and labelled. Gene ranking for selection in both visualisations was primarily driven by adjusted p-value, with log fold-change used to refine ordering within directionally separated groups.
 
 #### Top 10 genes only are labeled 
 ![](figures/Osteosarcoma_volcano.png?v=3)
@@ -435,19 +435,21 @@ We followed the same approach we did with Osteosarcoma (same script)
 
 
 
-## 🚨🚨🚨 Please hold on from here,  will update later to reflect changes above  
 
 ### Global Regenerative vs non Regenerative 
+Here, we followed the same approach we did in Osteosarcoma for dge, but we compare Reg vs non Reg. 
 
-We performed global differential gene expression analysis between Reg and non-Reg samples using the Wilcoxon rank-sum test. Genes were filtered using an adjusted p-value threshold of < 0.05. The top N genes with the highest positive and lowest negative log fold change values were selected as upregulated and downregulated genes, respectively. These genes were visualized in a heatmap displaying their global log fold change values (Reg vs non-Reg). The heatmap represents differential expression effect sizes and is used for visualization only, not for statistical testing.
+####Top 100 
+![](figures/axt_heatmap.png?v=2)
 
-### N=20
+#### Top 10
+![](figurs/axt_volcano.png?v=2)
 
-![](figures/axt_heatmap.png?v=7)
+#### List of DGE with adj-pvalue \< 0.05 is in the link below
+[](https://docs.google.com/spreadsheets/d/16wIoiAhR0IzaHF47odNBZvvNrYW2A_517pXosfPgD70/edit?usp=sharing)
 
-#### List of DGE per sample with adj-pvalue \< 0.05 is in the link below
-
-[Download here DGE per sample `<0.05`](https://docs.google.com/spreadsheets/d/14B0ghwjytWZ3zx0c5dCn-ZIfg3il6mHMqxud9F7esII/edit?usp=sharing)
+ 
+## 🚨🚨🚨 Please hold on from here,  will update later to reflect changes above
 
 ### Now look into celltypes
 
