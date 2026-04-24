@@ -286,9 +286,9 @@ Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test 
 ![](figures/Osteosarcoma_volcano.png?v=3)
 
 #### Top 100 genes 
-![](figures/Osteosarcoma_heatmap.png?v=3)
+![](figures/Osteosarcoma_heatmap.png?v=4)
 
-[Click here to download Osteosarcoma DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/11h8bLaShQaQk6QesqC-EzG9Jta7SnvIlJaTmGQvF8HU/edit?usp=sharing)
+[Click here to download Osteosarcoma DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/1HGnJ8WA2m7cuEr1hcbxslGu5AhWnnG3nxe7JzK9c9wc/edit?usp=sharing) 
 
 #### Dotplot for genes of interest in Osteosarcoma 
 
@@ -441,7 +441,7 @@ We followed the same approach we did with Osteosarcoma (same script)
 Here, we followed the same approach we did in Osteosarcoma for dge, but we compare Reg vs non Reg. 
 
 #### Top 100 
-![](figures/axt_heatmap.png?v=2)
+![](figures/axt_heatmap.png?v=3)
 
 #### Top 10
 ![](figures/axt_volcano.png?v=2)
