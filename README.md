@@ -464,10 +464,7 @@ We performed differential gene expression (DGE) analysis to identify genes diffe
 
 [Download here DGE per celltype `<0.05`](https://docs.google.com/spreadsheets/d/1dD6gh6XWCSjBGMEb5zPAmC-FElPK37NdPfCnGyj8vqE/edit?usp=sharing)
 
-###### ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ I have the full list of DGE, but the file is too large to upload here
-
-
-## 🚨🚨🚨 Please hold on from here,  will update later to reflect changes above
+### 🚨🚨🚨 I have the full list of DGE, but the file is too large to upload here
 
 
 ## 🧬 Cell–Cell Interaction Analysis (LIANA)
@@ -476,12 +473,12 @@ This pipeline identifies potential **ligand–receptor interactions** from singl
 
 #### Top lrScores interactions with minimum |logFC| 0.5
 
-![](figures/axt_liana_dotplot.png?=4)
+![](figures/axt_liana_dotplot.png?=5)
 
 
 #### Click the link below for full list of cell-cell interactions
 
-[Download here cell to cell interactions](https://docs.google.com/spreadsheets/d/1CnfeNbDfsNKgrBq6TPma7-F5rTUY8mQ2vthxwdHB3ng/edit?usp=sharing)
+[Download here cell to cell interactions](https://drive.google.com/file/d/16D9fNklX820b8p9aXMq-Yr8vVWbLPOqV/view?usp=sharing) 
 
 ### Ligand–receptor inference (LIANA)
 The script runs `liana.mt.rank_aggregate`, which integrates multiple tools:
@@ -540,6 +537,10 @@ This analysis reveals:
 | **lrscore** | LIANA consensus score (0–1) | Overall confidence of interaction across methods |
 | **specificity_rank** | Rank of specificity | Lower rank = more cell-type-specific interaction |
 | **magnitude_rank** | Rank of interaction strength | Lower rank = stronger interaction compared to others |
+
+
+## 🚨🚨🚨 Please hold on from here,  will update later to reflect changes above
+
  
 ## Celltypes similarities between samples
 

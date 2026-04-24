@@ -32,7 +32,7 @@ def run_liana(adata, database, celltype_key):
     return adata.uns["liana_res"]
 
 
-print("📥 Loading data...")
+print(" Loading data...")
 adata = sc.read_h5ad(args.input)
 
 res = run_liana(adata, args.database, args.celltype)
@@ -54,10 +54,6 @@ top_lr["ligand_gene"] = top_lr["source"] + "." + top_lr["ligand_complex"]
 top_lr["receptor_gene"] = top_lr["target"] + "." + top_lr["receptor_complex"]
 
 plot_df = top_lr.copy()
-
-# ----------------------------
-# 🔥 FIX: NUMERIC AXES (NO EMPTY SPACE)
-# ----------------------------
 ligands = plot_df["ligand_gene"].unique()
 receptors = plot_df["receptor_gene"].unique()
 
@@ -106,4 +102,7 @@ plt.savefig(
 
 plt.close()
 
-adata.write_h5ad(args.output)
+##-------
+Do this to save if needed or ignore for space limits 
+##-------
+#adata.write_h5ad(args.output)
