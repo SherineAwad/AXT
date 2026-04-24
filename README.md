@@ -282,11 +282,13 @@ We used the above marker genes to annotate our celltypes as follows:
 
 Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test on log-normalised expression data to compare sample groups against a defined reference condition (nonReg). Genes were filtered based on an adjusted p-value threshold of 0.05 to retain statistically significant changes. For heatmap visualisation, the top 100 genes per direction (up- and downregulated) were selected based on adjusted p-value ranking with log fold-change used as a secondary criterion. For the volcano plot, all genes were displayed, while the top 10 most statistically significant genes per direction were highlighted and labelled. Gene ranking for selection in both visualisations was primarily driven by adjusted p-value, with log fold-change used to refine ordering within directionally separated groups.
 
-#### Top 10 genes only are labeled 
-![](figures/Osteosarcoma_volcano.png?v=3)
-
 #### Top 100 genes 
-![](figures/Osteosarcoma_heatmap.png?v=4)
+![](figures/Osteosarcoma_heatmap.png?v=5) 
+
+#### Top 10 genes only are labeled
+![](figures/Osteosarcoma_volcano.png?v=4)
+
+
 
 [Click here to download Osteosarcoma DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/1HGnJ8WA2m7cuEr1hcbxslGu5AhWnnG3nxe7JzK9c9wc/edit?usp=sharing) 
 
@@ -362,16 +364,15 @@ We subset Fibroblast cell type, below is a summary:
 
 Similar to what we did with Osteosarcoma, Top N genes are selected by first sorting all genes by adjusted p-value in ascending order (most statistically significant first), with log fold-change used only as a secondary criterion to break ties while preserving directionality. The top-ranked genes are then taken globally from this ordered list.
 
-#### Top 50 
-![](figures/Fibroblast_heatmap.png?v=2)
-
+#### Top 100 
+![](figures/Fibroblast_heatmap.png?v=3)
 
 Now overlapping with Secreted genes 
   
-#### Top 20 genes only are labeled 
-![](figures/Fibroblast_volcano.png?v=2)
+#### Top 10 genes only are labeled 
+![](figures/Fibroblast_volcano.png?v=4)
 
-[Click here to download Fibroblast DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/1XOuQEVxYdfmaLDPaavQAKLeq8XDhvZKHhxEY9Mfkrjk/edit?usp=sharing)
+[Click here to download Fibroblast DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/1h8QIfU7iIcgeYpKBaU6IiNVt5lNo3TAMVOqjLGB6V2k/edit?usp=sharing)
 
 #### Dotplot for genes of interest in Fibroblast  
 
@@ -427,24 +428,24 @@ We subset the OsteoProgenitor and a summary is below:
 
 We followed the same approach we did with Osteosarcoma (same script)
 
-#### Top 10 genes only are labeled
-![](figures/OsteoProgenitor_volcano.png?v=3)
-
 #### Top 100 genes
-![](figures/OsteoProgenitor_heatmap.png?v=3)
+![](figures/OsteoProgenitor_heatmap.png?v=4)
 
+#### Top 10 genes only are labeled
+![](figures/OsteoProgenitor_volcano.png?v=4)
 
-
+#### List of DGE with adj-pvalue \< 0.05 is in the link below
+[Click here to download DGE with adj-pvalue \< 0.05 in OsteoProgenitor](https://docs.google.com/spreadsheets/d/1VDBnjvt99mxZ49HypUTrHbFizVHImcwiMTfwJaJ4dUg/edit?usp=sharing)
 
 ### Global Regenerative vs non Regenerative
  
 Here, we followed the same approach we did in Osteosarcoma for dge, but we compare Reg vs non Reg. 
 
 #### Top 100 
-![](figures/axt_heatmap.png?v=3)
+![](figures/axt_heatmap.png?v=4)
 
 #### Top 10
-![](figures/axt_volcano.png?v=2)
+![](figures/axt_volcano.png?v=3)
 
 #### List of DGE with adj-pvalue \< 0.05 is in the link below
 [Click here to download DGE with adj-pvalue \< 0.05 in Reg vs non Reg](https://docs.google.com/spreadsheets/d/16wIoiAhR0IzaHF47odNBZvvNrYW2A_517pXosfPgD70/edit?usp=sharing)

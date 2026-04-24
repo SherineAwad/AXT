@@ -74,7 +74,8 @@ top_heat = pd.concat([top_up_hm, top_down_hm])
 
 heatmap_df = top_heat.set_index("gene")[["logfoldchanges"]]
 
-plt.figure(figsize=(6, max(4, len(heatmap_df) * 0.15)))
+plt.figure(figsize=(4, max(3, len(heatmap_df) * 0.12)))
+
 
 sns.heatmap(
     heatmap_df,
