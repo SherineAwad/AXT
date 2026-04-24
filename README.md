@@ -557,7 +557,7 @@ This analysis reveals:
 
 Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about the 10x change. Use log fold change instead.
 
-![](figures/axt_cosine_similarity.png?v=5) 
+![](figures/axt_cosine_similarity.png?v=6) 
 
 
 ## Pathways and GO analysis 

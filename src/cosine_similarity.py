@@ -36,21 +36,15 @@ def calculate_cosine_similarity_sparse(X_ref, X_query, ref_labels, query_labels)
             else:
                 query_profiles[ct] = X_query[query_mask].mean(axis=0)
 
-    for i, ref_ct in enumerate(ref_celltypes):
-        if ref_ct not in ref_profiles:
-            continue
+    # ===== ONLY CHANGE: remove redundant pairwise cosine calls =====
+    ref_mat = np.vstack([ref_profiles[ct] for ct in ref_celltypes])
+    query_mat = np.vstack([query_profiles[ct] for ct in query_celltypes])
 
-        for j, query_ct in enumerate(query_celltypes):
-            if query_ct not in query_profiles:
-                continue
-
-            ref_vec = ref_profiles[ref_ct].reshape(1, -1)
-            query_vec = query_profiles[query_ct].reshape(1, -1)
-
-            similarity = cosine_similarity(ref_vec, query_vec)[0, 0]
-            similarity_matrix[i, j] = similarity
+    similarity_matrix = cosine_similarity(ref_mat, query_mat)
+    # ===============================================================
 
     return ref_celltypes, query_celltypes, similarity_matrix
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -77,19 +71,19 @@ def main():
     print(f"Query ({args.sample2}): {adata_query.shape}")
 
     print("Identifying highly variable genes...")
-    
+
     adata_combined = sc.concat([adata_ref, adata_query], join='inner', label='sample_origin')
-    
+
     sc.pp.highly_variable_genes(adata_combined, n_top_genes=2000, flavor='seurat')
-    
+
     hvg_mask = adata_combined.var['highly_variable']
     hvg_names = adata_combined.var_names[hvg_mask].tolist()
-    
+
     print(f"Number of highly variable genes: {len(hvg_names)}")
-    
+
     adata_ref = adata_ref[:, hvg_names].copy()
     adata_query = adata_query[:, hvg_names].copy()
-    
+
     print(f"After HVG selection - Ref: {adata_ref.shape}, Query: {adata_query.shape}")
 
     X_ref = adata_ref.X
@@ -99,12 +93,15 @@ def main():
     query_labels = adata_query.obs[celltype_col].values
 
     print("Calculating cosine similarity matrix...")
-    ref_cts, query_cts, sim_matrix = calculate_cosine_similarity_sparse(X_ref, X_query, ref_labels, query_labels)
+    ref_cts, query_cts, sim_matrix = calculate_cosine_similarity_sparse(
+        X_ref, X_query, ref_labels, query_labels
+    )
 
     sim_df = pd.DataFrame(sim_matrix, index=ref_cts, columns=query_cts)
 
     print("Plotting similarity matrix...")
-    plt.figure(figsize=(max(12, len(sim_df.columns) * 0.8), max(10, len(sim_df.index) * 0.7)))
+    plt.figure(figsize=(max(12, len(sim_df.columns) * 0.8),
+                        max(10, len(sim_df.index) * 0.7)))
 
     plot_data = sim_df.fillna(0).values
 
@@ -128,7 +125,7 @@ def main():
                      fontweight='bold' if val > 0.7 else 'normal')
 
     plt.tight_layout()
-    
+
     os.makedirs("figures", exist_ok=True)
     plt.savefig(f"figures/{args.prefix}_cosine_similarity.png", dpi=300, bbox_inches='tight')
     plt.close()
@@ -137,6 +134,7 @@ def main():
     sim_df.to_csv(csv_path)
     print(f"Saved similarity matrix to: {csv_path}")
     print(f"Saved heatmap to: figures/{args.prefix}_cosine_similarity.png")
+
 
 if __name__ == "__main__":
     main()
