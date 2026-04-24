@@ -569,10 +569,14 @@ Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about 
 
 We performed over‑representation enrichment analysis using g:Profiler similar to what we did in Osteosarcoma 
 
+#### GO
 ![](figures/axt_GO_enrichment.png?v=1)
+
+#### KEGG, REAC, WP
 
 ![](figures/axt_KEGG,REAC,WP_enrichment.png?v=1)
 
+#### CORUM
 ![](figures/axt_CORUM_enrichment.png?v=1)
 
 
