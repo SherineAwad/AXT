@@ -332,6 +332,14 @@ Each pathway is evaluated based on how strongly it overlaps with the input gene 
 This is **over-representation analysis (ORA)**:
 it tests whether predefined biological categories are enriched in a selected gene set, providing a compact functional interpretation of differential expression results.
 
+We performed over‑representation enrichment analysis using g:Profiler against the following functional annotation databases:
+
+- **KEGG**: Manually curated pathway maps for metabolism, signaling, and diseases.
+- **REAC (Reactome)**: Peer‑reviewed, hierarchical pathway database covering molecular processes.
+- **GO (Gene Ontology)**: Three structured ontologies (BP, CC, MF) describing gene function.
+- **WP (WikiPathways)**: Community‑curated, open platform for biological pathways.
+- **CORUM**: Experimentally validated mammalian protein complexes
+
 #### Using KEGG, REACTOME, and WP
 ![](figures/Osteosarcoma_KEGG,REAC,WP_enrichment.png?v=1)
 
@@ -539,9 +547,6 @@ This analysis reveals:
 | **magnitude_rank** | Rank of interaction strength | Lower rank = stronger interaction compared to others |
 
 
-## 🚨🚨🚨 Please hold on from here,  will update later to reflect changes above
-
- 
 ## Celltypes similarities between samples
 
 ### Method 1: Cosine similarity 
@@ -562,50 +567,13 @@ Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about 
 
 ## Pathways and GO analysis 
 
-We performed over‑representation enrichment analysis using g:Profiler against the following functional annotation databases:
+We performed over‑representation enrichment analysis using g:Profiler similar to what we did in Osteosarcoma 
 
-- **KEGG**: Manually curated pathway maps for metabolism, signaling, and diseases.
-- **REAC (Reactome)**: Peer‑reviewed, hierarchical pathway database covering molecular processes.
-- **GO (Gene Ontology)**: Three structured ontologies (BP, CC, MF) describing gene function.
-- **WP (WikiPathways)**: Community‑curated, open platform for biological pathways.
-- **TFs (TRANSFAC)**: Transcription factor binding sites and regulated targets.
-- **CORUM**: Experimentally validated mammalian protein complexes.
+![](figures/axt_GO_enrichment.png?v=1)
 
-For each cell type, we split differentially expressed genes into UP‑regulated (logFC > 0) and DOWN‑regulated (logFC < 0) lists and tested each against the above databases.  
-Significance was assessed with a one‑sided Fisher’s exact test, and p‑values were corrected for multiple testing using the g:SCS method with an adjusted cutoff of **0.01**.  
-Within each cell type and direction, we retained the top **10** most significant terms (lowest raw p‑value).  
+![](figures/axt_KEGG,REAC,WP_enrichment.png?v=1)
 
-In the dotplot, the **number of overlapping genes** between the query list and a term is represented by the **dot shape**:  
-- Circle → 1–5 genes  
-- Square → 6–10 genes  
-- Triangle → 11–15 genes  
-- Diamond → ≥16 genes  
-
-Dot **colour** indicates the significance level (–log₁₀ adjusted p‑value). The plot is split into two panels: UP‑regulated (left) and DOWN‑regulated (right).
-
-
-#### KEGG
-![](figures/axt_enrichment_KEGG_dotplot.png?v=2)
-
-
-#### REAC
-![](figures/axt_enrichment_REAC_dotplot.png?v=2)
-
-
-#### WP
-![](figures/axt_enrichment_WP_dotplot.png?v=2)
-
-
-##### GO
-![](figures/axt_enrichment_GO_dotplot.png?v=2)
-
-
-##### TFs 
-![](figures/axt_enrichment_TF_dotplot.png?v=2)
-
-
-#### CORUM
-![](figures/axt_enrichment_CORUM_dotplot.png?v=2)
+![](figures/axt_CORUM_enrichment.png?v=1)
 
 
 ## MORE ANALYSIS ON THE WAY 
