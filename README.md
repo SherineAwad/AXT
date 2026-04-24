@@ -436,14 +436,15 @@ We followed the same approach we did with Osteosarcoma (same script)
 
 
 
-### Global Regenerative vs non Regenerative 
+### Global Regenerative vs non Regenerative
+ 
 Here, we followed the same approach we did in Osteosarcoma for dge, but we compare Reg vs non Reg. 
 
-####Top 100 
+#### Top 100 
 ![](figures/axt_heatmap.png?v=2)
 
 #### Top 10
-![](figurs/axt_volcano.png?v=2)
+![](figures/axt_volcano.png?v=2)
 
 #### List of DGE with adj-pvalue \< 0.05 is in the link below
 [](https://docs.google.com/spreadsheets/d/16wIoiAhR0IzaHF47odNBZvvNrYW2A_517pXosfPgD70/edit?usp=sharing)
