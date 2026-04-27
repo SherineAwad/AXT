@@ -426,13 +426,13 @@ We performed over‑representation enrichment analysis using g:Profiler against 
 - **CORUM**: Experimentally validated mammalian protein complexes
 
 #### Using KEGG, REACTOME, and WP
-![](figures/Osteosarcoma_KEGG,REAC,WP_enrichment.png?v=1)
+![](figures/Osteosarcoma_KEGG,REAC,WP_enrichment.png?v=2)
 
 #### Using GO
-![](figures/Osteosarcoma_GO_enrichment.png?v-1) 
+![](figures/Osteosarcoma_GO_enrichment.png?v=2) 
 
 #### Using CORUM 
-![](figures/Osteosarcoma_CORUM_enrichment.png?v=1)  
+![](figures/Osteosarcoma_CORUM_enrichment.png?v=2)  
 
 
 ## Zooming on Fibroblast 
