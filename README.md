@@ -353,21 +353,19 @@ We decontaminate the Osteosarcoma population by removing cells that express Cdkn
 
 - We subset Osteosarcoma, below is a summary: 
 
-| Metric   | Value  |
-|----------|--------|
-| Cells    | 10,173 |
-| Genes    | 27,808 |
+| Metric  | Value |
+|---------|------:|
+| Cells   | 9,259 |
+| Genes   | 27,808 |
 
-**Samples**
+| Sample  | Count |
+|---------|------:|
+| nonReg  | 8,226 |
+| Reg     | 1,033 |
 
-| Type   | Count |
-|--------|------:|
-| nonReg | 9,034 |
-| Reg    | 1,139 |
+![](figures/Osteosarcoma_umap.png?v=2)
 
-![](figures/Osteosarcoma_umap.png?v=1)
-
-![](figures/Osteosarcoma_perSample_umap.png?v=1)
+![](figures/Osteosarcoma_perSample_umap.png?v=2)
 
 
 ### Differential gene expression in Osteosarcoma 
