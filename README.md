@@ -376,11 +376,11 @@ Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test 
 
 #### Volcano plot higlighting genes of interest 
 
-![](figures/ Osteosarcoma_volcano.png?v=3) 
+![](figures/ Osteosarcoma_volcano.png?v=6) 
 
 #### Dotplot for genes of interest in Osteosarcoma 
 
-![](figures/Osteosarcoma_dotplot.png?v=3)
+![](figures/dotplot__Osteosarcoma_dotplot.png?v=1)
 
 #### Violin plots for genes of interest in Osteosarcoma 
 

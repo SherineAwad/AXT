@@ -115,4 +115,4 @@ print("Creating dotplot...")
 sc.pl.dotplot(adata, highlight_genes, groupby='sample', 
               show=False, save=f"_{args.prefix}_dotplot.png")
 
-print(f"Saved dotplot to figures/dotplot_{args.prefix}_dotplot.png")
+print(f"Saved dotplot to figures/{args.prefix}_dotplot.png")
