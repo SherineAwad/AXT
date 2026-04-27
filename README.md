@@ -222,26 +222,6 @@ marker_genes = {
 <img src="figures/umap_axt_Hpgds.png?v=4" width="33%" /><img src="figures/umap_axt_Mcpt8.png?v=4" width="33%" /><img src="figures/umap_axt_Cd200r3.png?v=4" width="33%" />
 <img src="figures/umap_axt_Ccr3.png?v=4" width="33%" />
 
-
-
-## Decontaminate Osteosarcoma 
-
-We decontaminate the Osteosarcoma population by removing cells that express Cdkn2a at levels > 2.0, provided that their EGFP expression is < 1.0.
-
-![](figures/umap_axt_before.png?v=1)
-
-![](figures/umap_axt_after.png?v=1)
-
-#### Summary of Decontamination 
- 
-| Stage   | Cells  |
-|---------|-------:|
-| Before  | 10,173 |
-| After   | 9,158  |
-| Removed | 1,015  |
-
-
-## 🚨⚠️ **The deconatimantion step will affect some of the downstream analysis, so please hold on till I update to reflect the above and remove this sign** ⚠️  🚨
 `
 ## Annotations 
 
@@ -276,6 +256,26 @@ We used the above marker genes to annotate our celltypes as follows:
 
 
 ![](figures/axt_cell_ratios.png?v=9) 
+
+## Decontaminate Osteosarcoma 
+
+We decontaminate the Osteosarcoma population by removing cells that express Cdkn2a at levels > 2.0, provided that their EGFP expression is < 1.0.
+
+![](figures/umap_axt_before.png?v=1)
+
+![](figures/umap_axt_after.png?v=1)
+
+#### Summary of Decontamination 
+
+| Stage   | Cells  |
+|---------|-------:|
+| Before  | 10,173 |
+| After   | 9,158  |
+| Removed | 1,015  |
+
+
+## 🚨⚠️ **The deconatimantion step will affect some of the downstream analysis, so please hold on till I update to reflect the above and remove this sign** ⚠️  🚨
+`
 
 ## Zooming on Osteosarcoma 
 
