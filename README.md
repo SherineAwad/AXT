@@ -552,7 +552,7 @@ This pipeline identifies potential **ligand–receptor interactions** from singl
 
 #### Top lrScores interactions with minimum |logFC| 0.0 (Mostly rank by lrScore)
 
-![](figures/axt_liana_dotplot.png?=6)
+![](figures/axt_liana_dotplot.png?=7)
 
 ### Ligand–receptor inference (LIANA)
 The script runs `liana.mt.rank_aggregate`, which integrates multiple tools:
