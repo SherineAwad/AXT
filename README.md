@@ -318,6 +318,34 @@ We decontaminate the Osteosarcoma population by removing cells that express Cdkn
 | Removed  | 914    |
 
 
+## Proceeding decontamination with CDkn2a > 1.0 and EGFP < 0.5 
+
+
+### Cellration update after cells removal
+
+| Celltype                 | Reg   | nonReg | Total |
+|--------------------------|------:|------:|------:|
+| B-Cells                  | 259   | 291   | 550   |
+| Basophil                 | 30    | 109   | 139   |
+| Chondrocyte              | 185   | 3     | 188   |
+| Endothelial              | 1513  | 1076  | 2589  |
+| Fibroblast               | 2759  | 827   | 3586  |
+| Lymphatic_Endothelial    | 147   | 203   | 350   |
+| Macrophage               | 1774  | 3221  | 4995  |
+| NailEpithelium_Keratinocyte | 663 | 491   | 1154  |
+| Neutrophil               | 221   | 424   | 645   |
+| OsteoProgenitor          | 1341  | 1797  | 3138  |
+| Osteoblast               | 80    | 39    | 119   |
+| Osteoclast               | 136   | 561   | 697   |
+| Osteosarcoma             | 1033  | 8226  | 9259  |
+| SMC_Pericyte             | 553   | 540   | 1093  |
+| Schwann                  | 176   | 54    | 230   |
+| SweatGland               | 215   | 2     | 217   |
+| T-Cells                  | 523   | 1014  | 1537  |
+| **Total**                | 11608 | 18878 | 30486 |
+
+![](figures/axt_decontaminated_cell_ratios.png?v=1)
+
 ## 🚨⚠️ **The deconatimantion step will affect some of the downstream analysis, so please hold on till I update to reflect the above and remove this sign** ⚠️  🚨
 `
 
