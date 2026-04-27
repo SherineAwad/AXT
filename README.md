@@ -541,7 +541,7 @@ Here, we followed the same approach we did in Osteosarcoma for dge, but we compa
 
 We performed differential gene expression (DGE) analysis to identify genes differentially expressed across cell types. For each cell type, we applied a Wilcoxon rank-sum test using Scanpy’s rank_genes_groups function with celltype as the grouping variable, comparing each cell type against all remaining cells (one-vs-rest approach). We extracted log fold-changes and adjusted p-values for each comparison, and filtered results using an adjusted p-value threshold of 0.05 to retain statistically significant genes. For downstream visualisation, we selected the top 10 upregulated and top 10 downregulated genes per cell type (--N 10), ranking genes primarily by adjusted p-value with log fold-change used as a secondary criterion within each direction. The final results were visualised in a heatmap displaying log fold-changes of the selected genes across all cell types.
 
-### N=5 per celltype 
+### Here, we used N=5 per celltype 
 
 ![](figures/axt_celltype_heatmap.png?v=11)
 
@@ -553,11 +553,6 @@ This pipeline identifies potential **ligand–receptor interactions** from singl
 #### Top lrScores interactions with minimum |logFC| 0.0 (Mostly rank by lrScore)
 
 ![](figures/axt_liana_dotplot.png?=6)
-
-
-#### Click the link below for full list of cell-cell interactions
-
-[Download here cell to cell interactions](https://drive.google.com/file/d/16D9fNklX820b8p9aXMq-Yr8vVWbLPOqV/view?usp=sharing) 
 
 ### Ligand–receptor inference (LIANA)
 The script runs `liana.mt.rank_aggregate`, which integrates multiple tools:
@@ -641,14 +636,14 @@ Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about 
 We performed over‑representation enrichment analysis using g:Profiler similar to what we did in Osteosarcoma 
 
 #### GO
-![](figures/axt_GO_enrichment.png?v=1)
+![](figures/axt_GO_enrichment.png?v=2)
 
 #### KEGG, REAC, WP
 
-![](figures/axt_KEGG,REAC,WP_enrichment.png?v=1)
+![](figures/axt_KEGG,REAC,WP_enrichment.png?v=2)
 
 #### CORUM
-![](figures/axt_CORUM_enrichment.png?v=1)
+![](figures/axt_CORUM_enrichment.png?v=2)
 
 
 ## MORE ANALYSIS ON THE WAY 
