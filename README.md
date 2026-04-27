@@ -145,7 +145,6 @@ To annotate cell types, I **manually selected (guessed) canonical marker genes**
 
 These markers were then used to validate and assign identities to clusters.
 
----
 
 ## Marker Gene Sets
 
@@ -372,37 +371,33 @@ We decontaminate the Osteosarcoma population by removing cells that express Cdkn
 
 Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test on log-normalised expression data to compare sample groups against a defined reference condition (nonReg). Genes were filtered based on an adjusted p-value threshold of 0.05 to retain statistically significant changes. For heatmap visualisation, the top 100 genes per direction (up- and downregulated) were selected based on adjusted p-value ranking with log fold-change used as a secondary criterion. For the volcano plot, all genes were displayed, while the top 10 most statistically significant genes per direction were highlighted and labelled. Gene ranking for selection in both visualisations was primarily driven by adjusted p-value, with log fold-change used to refine ordering within directionally separated groups.
 
-#### Top 100 genes 
-![](figures/Osteosarcoma_heatmap.png?v=5) 
+#### Top 50 genes 
+![](figures/Osteosarcoma_heatmap.png?v=6) 
 
-#### Top 10 genes only are labeled
-![](figures/Osteosarcoma_volcano.png?v=4)
+#### Volcano plot higlighting genes of interest 
 
-
-
-[Click here to download Osteosarcoma DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/1HGnJ8WA2m7cuEr1hcbxslGu5AhWnnG3nxe7JzK9c9wc/edit?usp=sharing) 
+![](figures/ Osteosarcoma_volcano.png?v=3) 
 
 #### Dotplot for genes of interest in Osteosarcoma 
 
-![](figures/Osteosarcoma_dotplot.png?v=1)
+![](figures/Osteosarcoma_dotplot.png?v=3)
 
 #### Violin plots for genes of interest in Osteosarcoma 
 
-<img src="figures/Osteosarcoma_violin_Wif1.png?v=1" width="33%" /><img src="figures/Osteosarcoma_violin_Omd.png?v=1" width="33%" /><img src="figures/Osteosarcoma_violin_Klf4.png?v=1" width="33%" />
-<img src="figures/Osteosarcoma_violin_Kazald1.png?v=1" width="33%" /><img src="figures/Osteosarcoma_violin_Dcn.png?v=1" width="33%" /><img src="figures/Osteosarcoma_violin_Bglap.png?v=1" width="33%" />
-<img src="figures/Osteosarcoma_violin_Alpl.png?v=1" width="33%" />
+<img src="figures/violin_Osteosarcoma_Aspn_violin.png?v=1" width="33%" /><img src="figures/violin_Osteosarcoma_Bglap2_violin.png?v=1" width="33%" /><img src="figures/violin_Osteosarcoma_Bglap_violin.png?v=1" width="33%" />
+<img src="figures/violin_Osteosarcoma_Kazald1_violin.png?v=1" width="33%" /><img src="figures/violin_Osteosarcoma_Nbl1_violin.png?v=1" width="33%" /><img src="figures/violin_Osteosarcoma_Notum_violin.png?v=1" width="33%" />
+<img src="figures/violin_Osteosarcoma_Panx3_violin.png?v=1" width="33%" /><img src="figures/violin_Osteosarcoma_Alpl_violin.png?v=1" width="33%" /><img src="figures/violin_Osteosarcoma_Cdkn1a_violin.png?v=1" width="33%" />
+<img src="figures/violin_Osteosarcoma_Dcn_violin.png?v=1" width="33%" /><img src="figures/violin_Osteosarcoma_Omd_violin.png?v=1" width="33%" /><img src="figures/violin_Osteosarcoma_Sparc_violin.png?v=1" width="33%" />
+<img src="figures/violin_Osteosarcoma_Wif1_violin.png?v=1" width="33%" />
 
 
 #### Feature plots for genes of interest in Osteosarcoma
 
-<img src="figures/Osteosarcoma_feature_umap_Klf4_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Klf4_nonReg.png?v=1" width="45%" />
-<img src="figures/Osteosarcoma_feature_umap_Alpl_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Alpl_nonReg.png?v=1" width="45%" />
-<img src="figures/Osteosarcoma_feature_umap_Wif1_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Wif1_nonReg.png?v=1" width="45%" />
-<img src="figures/Osteosarcoma_feature_umap_Dcn_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Dcn_nonReg.png?v=1" width="45%" />
-<img src="figures/Osteosarcoma_feature_umap_Kazald1_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Kazald1_nonReg.png?v=1" width="45%" />
-<img src="figures/Osteosarcoma_feature_umap_Omd_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Omd_nonReg.png?v=1" width="45%" />
-<img src="figures/Osteosarcoma_feature_umap_Bglap_Reg.png?v=1" width="45%" /> <img src="figures/Osteosarcoma_feature_umap_Bglap_nonReg.png?v=1" width="45%" />
-
+<img src="figures/Osteosarcoma_Notum_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Bglap2_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Aspn_featureplot.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Bglap_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Nbl1_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Panx3_featureplot.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Kazald1_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Dcn_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Wif1_featureplot.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Cdkn1a_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Alpl_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Omd_featureplot.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Sparc_featureplot.png?v=1" width="33%" />
 
 
 ## Pathways and GO Enrichment for  Osteosarcoma 
