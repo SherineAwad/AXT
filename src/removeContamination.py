@@ -58,11 +58,14 @@ original_celltype_count = (adata.obs["celltype"] == args.celltype).sum()
 adata.obs["temp_remove"] = "keep"
 adata.obs.loc[remove_mask, "temp_remove"] = "will remove"
 
+# Create filename with parameters
+fig_before = f"_{args.prefix}_before_minExp{args.min_exp}_maxEGFP{args.max_egfp}.png"
+
 sc.pl.umap(
     adata,
     color="temp_remove",
     show=False,
-    save=f"_{args.prefix}_before.png"
+    save=fig_before
 )
 
 # -------------------------
@@ -88,14 +91,17 @@ print(f"{args.celltype} cells removed: {original_celltype_count - after_celltype
 # -------------------------
 # AFTER UMAP
 # -------------------------
+fig_after = f"_{args.prefix}_after_minExp{args.min_exp}_maxEGFP{args.max_egfp}.png"
+
 sc.pl.umap(
     adata,
     color="celltype",
     show=False,
-    save=f"_{args.prefix}_after.png"
+    save=fig_after
 )
 
 # -------------------------
 # SAVE OBJECT (ALWAYS LAST)
 # -------------------------
 adata.write(args.output)
+
