@@ -521,10 +521,9 @@ We subset the OsteoProgenitor and a summary is below:
 
 We followed the same approach we did with Osteosarcoma (same script)
 
-#### Top 100 genes
+#### Top 50 genes
 ![](figures/OsteoProgenitor_heatmap.png?v=4)
 
-#### Top 10 genes only are labeled
 ![](figures/OsteoProgenitor_volcano.png?v=4)
 
 #### List of DGE with adj-pvalue \< 0.05 is in the link below
@@ -534,16 +533,9 @@ We followed the same approach we did with Osteosarcoma (same script)
  
 Here, we followed the same approach we did in Osteosarcoma for dge, but we compare Reg vs non Reg. 
 
-#### Top 100 
-![](figures/axt_heatmap.png?v=4)
+#### Top 50 
+![](figures/axt_heatmap.png?v=5)
 
-#### Top 10
-![](figures/axt_volcano.png?v=3)
-
-#### List of DGE with adj-pvalue \< 0.05 is in the link below
-[Click here to download DGE with adj-pvalue \< 0.05 in Reg vs non Reg](https://docs.google.com/spreadsheets/d/16wIoiAhR0IzaHF47odNBZvvNrYW2A_517pXosfPgD70/edit?usp=sharing)
-
- 
 
 ### Now look into celltypes
 
@@ -551,13 +543,7 @@ We performed differential gene expression (DGE) analysis to identify genes diffe
 
 ### N=10 per celltype 
 
-![](figures/axt_celltype_heatmap.png?v=9)
-
-#### List of DGE with adj-pvalue \< 0.05 is in the link below
-
-[Download here DGE per celltype `<0.05`](https://docs.google.com/spreadsheets/d/1dD6gh6XWCSjBGMEb5zPAmC-FElPK37NdPfCnGyj8vqE/edit?usp=sharing)
-
-### 🚨🚨🚨 I have the full list of DGE, but the file is too large to upload here
+![](figures/axt_celltype_heatmap.png?v=10)
 
 
 ## 🧬 Cell–Cell Interaction Analysis (LIANA)
