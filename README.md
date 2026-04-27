@@ -529,7 +529,7 @@ We followed the same approach we did with Osteosarcoma (same script)
 #### List of DGE with adj-pvalue \< 0.05 is in the link below
 [Click here to download DGE with adj-pvalue \< 0.05 in OsteoProgenitor](https://docs.google.com/spreadsheets/d/1VDBnjvt99mxZ49HypUTrHbFizVHImcwiMTfwJaJ4dUg/edit?usp=sharing)
 
-### Global Regenerative vs non Regenerative
+## Global Regenerative vs non Regenerative
  
 Here, we followed the same approach we did in Osteosarcoma for dge, but we compare Reg vs non Reg. 
 
@@ -541,9 +541,9 @@ Here, we followed the same approach we did in Osteosarcoma for dge, but we compa
 
 We performed differential gene expression (DGE) analysis to identify genes differentially expressed across cell types. For each cell type, we applied a Wilcoxon rank-sum test using Scanpy’s rank_genes_groups function with celltype as the grouping variable, comparing each cell type against all remaining cells (one-vs-rest approach). We extracted log fold-changes and adjusted p-values for each comparison, and filtered results using an adjusted p-value threshold of 0.05 to retain statistically significant genes. For downstream visualisation, we selected the top 10 upregulated and top 10 downregulated genes per cell type (--N 10), ranking genes primarily by adjusted p-value with log fold-change used as a secondary criterion within each direction. The final results were visualised in a heatmap displaying log fold-changes of the selected genes across all cell types.
 
-### N=10 per celltype 
+### N=5 per celltype 
 
-![](figures/axt_celltype_heatmap.png?v=10)
+![](figures/axt_celltype_heatmap.png?v=11)
 
 
 ## 🧬 Cell–Cell Interaction Analysis (LIANA)
