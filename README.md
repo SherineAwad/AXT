@@ -444,20 +444,18 @@ This happens when:
 ![](figures/Osteosarcoma_fidelity_violin.png?v=1)  
 
 
+
 ### Proliferation Gene Expression Analysis
 
 To rule out proliferation as a driver of the Reg vs nonReg transcriptional difference in Osteosarcoma, we examined expression of canonical proliferation markers.
 
-**Genes examined:** MKI67, TOP2A, PCNA, CCNB1, CDC20, BUB1B
+![](figures/dotplot__Proliferation_Osteosarcoma_dotplot.png?v=2)
 
-**Results:**
-- Most proliferation genes showed higher expression in nonReg compared to Reg
-- No proliferation gene was consistently higher in Reg
+### A look into Inflammation Genes 
 
-<img src="figures/violin_Proliferation_Osteosarcoma_Top2a_violin.png?v=1" width="33%" /><img src="figures/violin_Proliferation_Osteosarcoma_Pcna_violin.png?v=1" width="33%" /><img src="figures/violin_Proliferation_Osteosarcoma_Ccnb1_violin.png?v=1" width="33%" />
-<img src="figures/violin_Proliferation_Osteosarcoma_Cdc20_violin.png?v=1" width="33%" /><img src="figures/violin_Proliferation_Osteosarcoma_Bub1b_violin.png?v=1" width="33%" />
+To rule out inflammation as a driver of the Reg vs nonReg transcriptional difference in Osteosarcoma, we examined expression of canonical inflammatory markers.
 
-![](figures/dotplot__Proliferation_Osteosarcoma_dotplot.png?v=1)
+![](figures/dotplot__Inflammation_Osteosarcoma_dotplot.png?v=1) 
 
 ## Pathways and GO Enrichment for  Osteosarcoma 
 
@@ -559,7 +557,9 @@ Now overlapping with Secreted genes
 We used the same random forest model used to answer this question in Osteosarcoma. 
 
 ![](figures/Fibroblast_fidelity_violin.png?v=1) 
-## Patways and GO enrichments for Fibroblast  
+
+
+### Pathways and GO enrichments for Fibroblast  
 
 We followed the same approach as in Osteosarcoma 
 
@@ -611,7 +611,7 @@ Here, we followed the same approach we did in Osteosarcoma for dge, but we compa
 [📊📊 Downdload here: Reg vs nonReg DGE with cutoff \<0.05](https://docs.google.com/spreadsheets/d/11-FSqCPBHs091N812u3h6CLEcuL40yKE7gKELVwnX84/edit?usp=sharing)
 
 
-### Now look into celltypes
+## Zooming into celltypes
 
 We performed differential gene expression (DGE) analysis to identify genes differentially expressed across cell types. For each cell type, we applied a Wilcoxon rank-sum test using Scanpy’s rank_genes_groups function with celltype as the grouping variable, comparing each cell type against all remaining cells (one-vs-rest approach). We extracted log fold-changes and adjusted p-values for each comparison, and filtered results using an adjusted p-value threshold of 0.05 to retain statistically significant genes. For downstream visualisation, we selected the top 10 upregulated and top 10 downregulated genes per cell type (--N 10), ranking genes primarily by adjusted p-value with log fold-change used as a secondary criterion within each direction. The final results were visualised in a heatmap displaying log fold-changes of the selected genes across all cell types.
 
@@ -714,6 +714,15 @@ Similar to what we did in Osteosarcoma random forest model.
 
 ![](figures/axt_fidelity_violin.png?v=1) 
 
+### Proliferation Gene Expression Analysis
+
+To rule out proliferation as a driver of the Reg vs nonReg transcriptional difference, we examined expression of canonical proliferation markers.
+
+
+### A look into Inflammation Genes 
+
+To rule out inflammation as a driver of the Reg vs nonReg transcriptional difference, we examined expression of canonical inflammatory markers 
+
 ## Pathways and GO analysis 
 
 We performed over‑representation enrichment analysis using g:Profiler similar to what we did in Osteosarcoma 
@@ -727,24 +736,6 @@ We performed over‑representation enrichment analysis using g:Profiler similar 
 
 #### CORUM
 ![](figures/axt_CORUM_enrichment.png?v=2)
-
-
-
-### Proliferation Gene Expression Analysis
-
-To rule out proliferation as a driver of the Reg vs nonReg transcriptional difference, we examined expression of canonical proliferation markers.
-
-**Genes examined:** MKI67, TOP2A, PCNA, CCNB1, CDC20, BUB1B
-
-**Results:**
-- Most proliferation genes showed higher expression in nonReg compared to Reg
-- PCNA was similarly expressed in both conditions
-- No proliferation gene was consistently higher in Reg
-
-![](figures/dotplot__Proliferation_dotplot.png?v=1)
-
-<img src="figures/violin_Proliferation_Top2a_violin.png?v=1" width="33%" /><img src="figures/violin_Proliferation_Pcna_violin.png?v=1" width="33%" /><img src="figures/violin_Proliferation_Ccnb1_violin.png?v=1" width="33%" />
-<img src="figures/violin_Proliferation_Cdc20_violin.png?v=1" width="33%" /><img src="figures/violin_Proliferation_Bub1b_violin.png?v=1" width="33%" />
 
 
 ## MORE ANALYSIS ON THE WAY 
