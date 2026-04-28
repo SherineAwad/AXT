@@ -401,6 +401,48 @@ Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test 
 [📊📊 Download here DGE for Osteosarcoma Reg vs non Reg with adj-pvalue \<0.05](https://docs.google.com/spreadsheets/d/1NbpSDUpz78nXY_4nH0Ksp0ip3VMUfFLsjfP-Aujh6GA/edit?usp=sharing)
 
 
+### How similar are Osteosarcoma cells in Reg vs non Reg 
+
+#### We used a random forest model, for each cell type, can we tell which sample a cell came from just by looking at its gene expression?
+
+To answer this:
+
+1. Take all cells from one cell type (example: all T cells)
+2. Some came from sample A, some from sample B
+3. Train a classifier to guess: based on gene expression, is this T cell from A or B?
+4. Give each cell a score: probability it belongs to sample A
+   - Score 0.9 = "this cell looks like sample A"
+   - Score 0.2 = "this cell looks like sample B"
+   - Score 0.5 = "I can't tell"
+
+Repeat for every cell type separately.
+
+#### What "Gene Expression Similar" Means
+
+**Gene expression similar = The classifier cannot tell which sample a cell came from.**
+
+This happens when:
+- Gene X is high in both sample A and sample B
+- Gene Y is low in both sample A and sample B
+- Every gene follows the same direction in both samples
+
+**Result:** Any sample that is similar to the reference will score 0.5 or above. The classifier leans toward the reference label because the expression patterns look alike.
+
+#### What "Gene Expression Different" Means
+
+**Gene expression different = The classifier can easily tell which sample a cell came from.**
+
+This happens when:
+- Gene X is high in sample A but low in sample B
+- Gene Y is low in sample A but high in sample B
+- Many genes flip direction between samples
+
+**Result:**
+- Sample A scores near **1** (looks like A)
+- Sample B scores near **0** (does not look like A)
+
+![](figures/axt_Osteosarcoma_fidelity_violin.png?v=1)
+
 ## Pathways and GO Enrichment for  Osteosarcoma 
 
 ### g:Profiler enrichment analysis 
@@ -647,46 +689,9 @@ Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about 
 
 ### Method 2: Random Forests fidelity scores
 
-For each cell type, can we tell which sample a cell came from just by looking at its gene expression?
+Simialar to what we did in Osteosarcoma random forest model. 
 
-To answer this:
-
-1. Take all cells from one cell type (example: all T cells)
-2. Some came from sample A, some from sample B
-3. Train a classifier to guess: based on gene expression, is this T cell from A or B?
-4. Give each cell a score: probability it belongs to sample A
-   - Score 0.9 = "this cell looks like sample A"
-   - Score 0.2 = "this cell looks like sample B"  
-   - Score 0.5 = "I can't tell"
-
-Repeat for every cell type separately.
-
-#### What "Gene Expression Similar" Means
-
-**Gene expression similar = The classifier cannot tell which sample a cell came from.**
-
-This happens when:
-- Gene X is high in both sample A and sample B
-- Gene Y is low in both sample A and sample B
-- Every gene follows the same direction in both samples
-
-**Result:** Any sample that is similar to the reference will score 0.5 or above. The classifier leans toward the reference label because the expression patterns look alike.
-
-#### What "Gene Expression Different" Means
-
-**Gene expression different = The classifier can easily tell which sample a cell came from.**
-
-This happens when:
-- Gene X is high in sample A but low in sample B
-- Gene Y is low in sample A but high in sample B
-- Many genes flip direction between samples
-
-**Result:** 
-- Sample A scores near **1** (looks like A)
-- Sample B scores near **0** (does not look like A)
-
-
-![]( figures/axt_fidelity_violin.png?v=1) 
+![](figures/Osteosarcoma_fidelity_violin.png?v=1) 
 
 ## Pathways and GO analysis 
 
