@@ -514,19 +514,19 @@ We followed the same approach as in Osteosarcoma
 
 We subset the OsteoProgenitor and a summary is below: 
 
-| Metric   | Value |
-|----------|------:|
-| Cells    | 3,138 |
-| Genes    | 27,808 |
+| Metric | Value |
+|--------|------:|
+| Cells  | 3,138 |
+| Genes  | 27,808 |
 
-| Sample  | Count |
-|---------|------:|
-| nonReg  | 1,797 |
-| Reg     | 1,341 |
+| Sample | Count |
+|--------|------:|
+| nonReg | 1,797 |
+| Reg    | 1,341 |
 
-![](figures/OsteoProgenitor_umap.png?v=1)
+![](figures/OsteoProgenitor_umap.png?v=2)
 
-![](figures/OsteoProgenitor_perSample_umap.png?v=1)
+![](figures/OsteoProgenitor_perSample_umap.png?v=2)
 
 
 ### Differential gene expression in OsteoProgenitor 
@@ -534,9 +534,7 @@ We subset the OsteoProgenitor and a summary is below:
 We followed the same approach we did with Osteosarcoma (same script)
 
 #### Top 50 genes
-![](figures/OsteoProgenitor_heatmap.png?v=4)
-
-![](figures/OsteoProgenitor_volcano.png?v=4)
+![](figures/OsteoProgenitor_heatmap.png?v=5)
 
 
 ## Global Regenerative vs non Regenerative
