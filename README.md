@@ -390,7 +390,6 @@ Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test 
 <img src="figures/violin_Osteosarcoma_Dcn_violin.png?v=1" width="33%" /><img src="figures/violin_Osteosarcoma_Omd_violin.png?v=1" width="33%" /><img src="figures/violin_Osteosarcoma_Sparc_violin.png?v=1" width="33%" />
 <img src="figures/violin_Osteosarcoma_Wif1_violin.png?v=1" width="33%" />
 
-
 #### Feature plots for genes of interest in Osteosarcoma
 
 <img src="figures/Osteosarcoma_Notum_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Bglap2_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Aspn_featureplot.png?v=1" width="33%" />
@@ -398,6 +397,8 @@ Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test 
 <img src="figures/Osteosarcoma_Kazald1_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Dcn_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Wif1_featureplot.png?v=1" width="33%" />
 <img src="figures/Osteosarcoma_Cdkn1a_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Alpl_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Omd_featureplot.png?v=1" width="33%" />
 <img src="figures/Osteosarcoma_Sparc_featureplot.png?v=1" width="33%" />
+
+[📊📊 Download here DGE for Osteosarcoma Reg vs non Reg with adj-pvalue \<0.05](https://docs.google.com/spreadsheets/d/1NbpSDUpz78nXY_4nH0Ksp0ip3VMUfFLsjfP-Aujh6GA/edit?usp=sharing)
 
 
 ## Pathways and GO Enrichment for  Osteosarcoma 
@@ -526,8 +527,6 @@ We followed the same approach we did with Osteosarcoma (same script)
 
 ![](figures/OsteoProgenitor_volcano.png?v=4)
 
-#### List of DGE with adj-pvalue \< 0.05 is in the link below
-[Click here to download DGE with adj-pvalue \< 0.05 in OsteoProgenitor](https://docs.google.com/spreadsheets/d/1VDBnjvt99mxZ49HypUTrHbFizVHImcwiMTfwJaJ4dUg/edit?usp=sharing)
 
 ## Global Regenerative vs non Regenerative
  
@@ -535,6 +534,9 @@ Here, we followed the same approach we did in Osteosarcoma for dge, but we compa
 
 #### Top 50 
 ![](figures/axt_heatmap.png?v=5)
+
+
+[📊📊 Downdload here: Reg vs nonReg DGE with cutoff \<0.05](https://docs.google.com/spreadsheets/d/11-FSqCPBHs091N812u3h6CLEcuL40yKE7gKELVwnX84/edit?usp=sharing)
 
 
 ### Now look into celltypes
@@ -545,6 +547,8 @@ We performed differential gene expression (DGE) analysis to identify genes diffe
 
 ![](figures/axt_celltype_heatmap.png?v=11)
 
+[📊📊 Downdload here: per celltype DGE with cutoff \<0.05](https://docs.google.com/spreadsheets/d/1DnR2domO66krErCqKF8BEU3zf5IzG5T6EZ1Ioekt9lE/edit?usp=sharing) 
+
 
 ## 🧬 Cell–Cell Interaction Analysis (LIANA)
 
@@ -553,6 +557,8 @@ This pipeline identifies potential **ligand–receptor interactions** from singl
 #### Top lrScores interactions with minimum |logFC| 0.0 (Mostly rank by lrScore)
 
 ![](figures/axt_liana_dotplot.png?=7)
+
+[📊📊Download full list of liana ligand-receptors interactions](https://docs.google.com/spreadsheets/d/1R2F82YcbmA1HZVSJf199n3f2_aNu_c1T5DaK8LR1iwk/edit?usp=sharing)
 
 ### Ligand–receptor inference (LIANA)
 The script runs `liana.mt.rank_aggregate`, which integrates multiple tools:
