@@ -713,6 +713,24 @@ We performed over‑representation enrichment analysis using g:Profiler similar 
 ![](figures/axt_CORUM_enrichment.png?v=2)
 
 
+
+### Proliferation Gene Expression Analysis
+
+To rule out proliferation as a driver of the Reg vs nonReg transcriptional difference, we examined expression of canonical proliferation markers.
+
+**Genes examined:** MKI67, TOP2A, PCNA, CCNB1, CDC20, BUB1B
+
+**Results:**
+- Most proliferation genes showed higher expression in nonReg compared to Reg
+- PCNA was similarly expressed in both conditions
+- No proliferation gene was consistently higher in Reg
+
+![](figures/dotplot__Proliferation_dotplot.png?v=1)
+
+<img src="figures/violin_Proliferation_Top2a_violin.png?v=1" width="33%" /><img src="figures/violin_Proliferation_Pcna_violin.png?v=1" width="33%" /><img src="figures/violin_Proliferation_Ccnb1_violin.png?v=1" width="33%" />
+<img src="figures/violin_Proliferation_Cdc20_violin.png?v=1" width="33%" /><img src="figures/violin_Proliferation_Bub1b_violin.png?v=1" width="33%" />
+
+
 ## MORE ANALYSIS ON THE WAY 
 
 
