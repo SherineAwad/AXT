@@ -538,6 +538,11 @@ Now overlapping with Secreted genes
 
 [📊📊Download Fibroblast DGE Reg vs non Reg with adj-pvalue \<0.05](https://docs.google.com/spreadsheets/d/11xskz0pwZ4XTII-RSRkLTfdnz2vGlNxauW287BD5dFs/edit?usp=sharing) 
 
+### How similar fibroblasts cells in Reg vs nonReg
+
+We used the same random forest model used to answer this question in Osteosarcoma. 
+
+![](figures/Fibroblast_fidelity_violin.png?v=1) 
 ## Patways and GO enrichments for Fibroblast  
 
 We followed the same approach as in Osteosarcoma 
@@ -689,7 +694,7 @@ Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about 
 
 ### Method 2: Random Forests fidelity scores
 
-Simialar to what we did in Osteosarcoma random forest model. 
+Similar to what we did in Osteosarcoma random forest model. 
 
 ![](figures/axt_fidelity_violin.png?v=1) 
 
