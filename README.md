@@ -440,50 +440,61 @@ We performed over‑representation enrichment analysis using g:Profiler against 
 
 We subset Fibroblast cell type, below is a summary:
 
-| Metric   | Value |
-|----------|------:|
-| Cells    | 3,586 |
-| Genes    | 27,808 |
+| Metric  | Value |
+|---------|------:|
+| Cells   | 3,586 |
+| Genes   | 27,808 |
 
 | Sample  | Count |
 |---------|------:|
 | Reg     | 2,759 |
-| nonReg  |   827 |
+| nonReg  | 827 |
 
-![](figures/Fibroblast_umap.png?v=1)
+![](figures/Fibroblast_umap.png?v=2)
 
-![](figures/Fibroblast_perSample_umap.png?v=1)
+![](figures/Fibroblast_perSample_umap.png?v=2)
 
 ### Differential gene expression in Fibroblast
 
 Similar to what we did with Osteosarcoma, Top N genes are selected by first sorting all genes by adjusted p-value in ascending order (most statistically significant first), with log fold-change used only as a secondary criterion to break ties while preserving directionality. The top-ranked genes are then taken globally from this ordered list.
 
-#### Top 100 
-![](figures/Fibroblast_heatmap.png?v=3)
+#### Top 50 
+![](figures/Fibroblast_heatmap.png?v=5)
 
 Now overlapping with Secreted genes 
   
 #### Top 10 genes only are labeled 
-![](figures/Fibroblast_volcano.png?v=4)
-
-[Click here to download Fibroblast DGE with adj-pvalue \< 0.05 ](https://docs.google.com/spreadsheets/d/1h8QIfU7iIcgeYpKBaU6IiNVt5lNo3TAMVOqjLGB6V2k/edit?usp=sharing)
+![](figures/Fibroblast_volcano.png?v=5)
 
 #### Dotplot for genes of interest in Fibroblast  
 
-![](figures/Fibroblast_dotplot.png?v=2)
+![](figures/Fibroblast_dotplot.png?v=3)
+
+
+#### Feature plots for genes of interest in Fibroblast
+
+<img src="figures/Fibroblast_feature_Foxp1.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Cd81.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Ubb.png?v=1" width="33%" />
+<img src="figures/Fibroblast_feature_Fxyd1.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Eif1.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Dpt.png?v=1" width="33%" />
+<img src="figures/Fibroblast_feature_mt-Nd2.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Il31ra.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Vim.png?v=1" width="33%" />
+<img src="figures/Fibroblast_feature_Ftl1.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Hexb.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Tmem158.png?v=1" width="33%" />
+<img src="figures/Fibroblast_feature_Bmp2.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Gphn.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Cdk8.png?v=1" width="33%" />
+<img src="figures/Fibroblast_feature_Cmss1.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Lars2.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Camk1d.png?v=1" width="33%" />
+<img src="figures/Fibroblast_feature_Mfap4.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Qpct.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Bmp4.png?v=1" width="33%" />
+<img src="figures/Fibroblast_feature_Aldh3a1.png?v=1" width="33%" />
 
 #### Violin plots for genes of interest in Fibroblast 
 
-![](figures/Fibroblast_violin_Bmp2.png?v=3) 
+<img src="figures/Fibroblast_violin_Cd81.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Dpt.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Fxyd1.png?v=1" width="33%" />
+<img src="figures/Fibroblast_violin_Ftl1.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Ubb.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Foxp1.png?v=1" width="33%" />
+<img src="figures/Fibroblast_violin_Hexb.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_mt-Nd2.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Eif1.png?v=1" width="33%" />
+<img src="figures/Fibroblast_violin_Vim.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Gphn.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Cdk8.png?v=1" width="33%" />
+<img src="figures/Fibroblast_violin_Lars2.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Cmss1.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Il31ra.png?v=1" width="33%" />
+<img src="figures/Fibroblast_violin_Camk1d.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Qpct.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Bmp2.png?v=1" width="33%" />
+<img src="figures/Fibroblast_violin_Bmp4.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Aldh3a1.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Mfap4.png?v=1" width="33%" />
+<img src="figures/Fibroblast_violin_Tmem158.png?v=1" width="33%" />
 
-![](figures/Fibroblast_violin_Bmp4.png?v=3)
 
-#### Feature plots for genes of interest in Fibroblast 
-
-
-<img src="figures/Fibroblast_feature_Bmp2_Reg.png?v=1" width="45%" /> <img src="figures/Fibroblast_feature_Bmp2_nonReg.png?v=1" width="45%" />
-<img src="figures/Fibroblast_feature_Bmp4_Reg.png?v=1" width="45%" /> <img src="figures/Fibroblast_feature_Bmp4_nonReg.png?v=1" width="45%" />
-
+[📊📊Download Fibroblast DGE Reg vs non Reg with adj-pvalue \<0.05](https://docs.google.com/spreadsheets/d/11xskz0pwZ4XTII-RSRkLTfdnz2vGlNxauW287BD5dFs/edit?usp=sharing) 
 
 ## Patways and GO enrichments for Fibroblast  
 
