@@ -427,13 +427,13 @@ We performed over‑representation enrichment analysis using g:Profiler against 
 - **CORUM**: Experimentally validated mammalian protein complexes
 
 #### Using KEGG, REACTOME, and WP
-![](figures/Osteosarcoma_KEGG,REAC,WP_enrichment.png?v=2)
+![](figures/Osteosarcoma_KEGG,REAC,WP_enrichment.png?v=3)
 
 #### Using GO
-![](figures/Osteosarcoma_GO_enrichment.png?v=2) 
+![](figures/Osteosarcoma_GO_enrichment.png?v=3) 
 
 #### Using CORUM 
-![](figures/Osteosarcoma_CORUM_enrichment.png?v=2)  
+![](figures/Osteosarcoma_CORUM_enrichment.png?v=3)  
 
 
 ## Zooming on Fibroblast 
@@ -501,13 +501,13 @@ Now overlapping with Secreted genes
 We followed the same approach as in Osteosarcoma 
 
 #### Using KEGG, REACTOME, and WP
-![](figures/Fibroblast_KEGG,REAC,WP_enrichment.png?v=1)
+![](figures/Fibroblast_KEGG,REAC,WP_enrichment.png?v=2)
 
 #### Using GO
-![](figures/Fibroblast_GO_enrichment.png?v-1) 
+![](figures/Fibroblast_GO_enrichment.png?v=2) 
 
 #### Using CORUM
-![](figures/Fibroblast_CORUM_enrichment.png?v=1)   
+![](figures/Fibroblast_CORUM_enrichment.png?v=2)   
 
 
 ## Now zooming on OsteoProgenitor 
@@ -645,8 +645,7 @@ This analysis reveals:
 
 Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about the 10x change. Use log fold change instead.
 
-![](figures/axt_cosine_similarity.png?v=6) 
-
+![](figures/axt_cosine_similarity.png?v=7)
 
 ## Pathways and GO analysis 
 
