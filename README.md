@@ -345,7 +345,7 @@ We decontaminate the Osteosarcoma population by removing cells that express Cdkn
 
 ![](figures/axt_decontaminated_cell_ratios.png?v=1)
 
-## 🚨⚠️ **The deconatimantion step will affect some of the downstream analysis, so please hold on till I update to reflect the above and remove this sign** ⚠️  🚨
+## 🚨⚠️ **We have to repeat the downstream analysis after the deconatimantion step** ⚠️  🚨
 `
 
 ## Zooming on Osteosarcoma 
