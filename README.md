@@ -726,14 +726,17 @@ Similar to what we did in Osteosarcoma random forest model.
 
 ![](figures/axt_fidelity_violin.png?v=1) 
 
-### Proliferation Gene Expression Analysis
+### A look into Proliferation Genes
 
 To rule out proliferation as a driver of the Reg vs nonReg transcriptional difference, we examined expression of canonical proliferation markers.
 
+![](figures/dotplot__AXT_Proliferation_dotplot.png?v=2)
 
 ### A look into Inflammation Genes 
 
 To rule out inflammation as a driver of the Reg vs nonReg transcriptional difference, we examined expression of canonical inflammatory markers 
+
+![](figures/dotplot__AXT_Inflammation_dotplot.png?v=2)
 
 ## Pathways and GO analysis 
 
