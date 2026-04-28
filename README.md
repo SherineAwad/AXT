@@ -441,7 +441,7 @@ This happens when:
 - Sample A scores near **1** (looks like A)
 - Sample B scores near **0** (does not look like A)
 
-![](figures/axt_Osteosarcoma_fidelity_violin.png?v=1)
+![](figures/Osteosarcoma_fidelity_violin.png?v=1)  
 
 ## Pathways and GO Enrichment for  Osteosarcoma 
 
@@ -691,7 +691,7 @@ Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about 
 
 Simialar to what we did in Osteosarcoma random forest model. 
 
-![](figures/Osteosarcoma_fidelity_violin.png?v=1) 
+![](figures/axt_fidelity_violin.png?v=1) 
 
 ## Pathways and GO analysis 
 
