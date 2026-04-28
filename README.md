@@ -459,16 +459,16 @@ We subset Fibroblast cell type, below is a summary:
 Similar to what we did with Osteosarcoma, Top N genes are selected by first sorting all genes by adjusted p-value in ascending order (most statistically significant first), with log fold-change used only as a secondary criterion to break ties while preserving directionality. The top-ranked genes are then taken globally from this ordered list.
 
 #### Top 50 
-![](figures/Fibroblast_heatmap.png?v=5)
+![](figures/Fibroblast_heatmap.png?v=6)
 
 Now overlapping with Secreted genes 
   
 #### Top 10 genes only are labeled 
-![](figures/Fibroblast_volcano.png?v=5)
+![](figures/Fibroblast_volcano.png?v=6)
 
 #### Dotplot for genes of interest in Fibroblast  
 
-![](figures/Fibroblast_dotplot.png?v=3)
+![](figures/Fibroblast_dotplot.png?v=6)
 
 
 #### Feature plots for genes of interest in Fibroblast
