@@ -445,7 +445,7 @@ This happens when:
 
 
 
-### Proliferation Gene Expression Analysis
+### A look into Proliferation Genes
 
 To rule out proliferation as a driver of the Reg vs nonReg transcriptional difference in Osteosarcoma, we examined expression of canonical proliferation markers.
 
@@ -558,6 +558,18 @@ We used the same random forest model used to answer this question in Osteosarcom
 
 ![](figures/Fibroblast_fidelity_violin.png?v=1) 
 
+
+### A look into Proliferation Genes
+
+As we did in Osteosarcoma, to rule out proliferation as a driver of the Reg vs nonReg transcriptional difference in Fibroblast, we examined expression of canonical proliferation markers.
+
+![](figures/dotplot__Proliferation_Fibroblast_dotplot.png?v=2)
+
+### A look into Inflammation Genes 
+
+As we did in Osteosarcoma, to rule out inflammation as a driver of the Reg vs nonReg transcriptional difference in Fibroblast, we examined expression of canonical inflammatory markers.
+
+![](figures/dotplot__Inflammation_Fibroblast_dotplot.png?v=1)
 
 ### Pathways and GO enrichments for Fibroblast  
 
