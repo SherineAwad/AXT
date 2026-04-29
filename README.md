@@ -384,11 +384,11 @@ Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test 
 
 #### Violin plots for genes of interest in Osteosarcoma 
 
-<img src="figures/violin_Osteosarcoma_Aspn_violin.png?v=3" width="33%" /><img src="figures/violin_Osteosarcoma_Bglap2_violin.png?v=3" width="33%" /><img src="figures/violin_Osteosarcoma_Bglap_violin.png?v=3" width="33%" />
-<img src="figures/violin_Osteosarcoma_Kazald1_violin.png?v=3" width="33%" /><img src="figures/violin_Osteosarcoma_Nbl1_violin.png?v=3" width="33%" /><img src="figures/violin_Osteosarcoma_Notum_violin.png?v=3" width="33%" />
-<img src="figures/violin_Osteosarcoma_Panx3_violin.png?v=3" width="33%" /><img src="figures/violin_Osteosarcoma_Alpl_violin.png?v=3" width="33%" /><img src="figures/violin_Osteosarcoma_Cdkn1a_violin.png?v=3" width="33%" />
-<img src="figures/violin_Osteosarcoma_Dcn_violin.png?v=3" width="33%" /><img src="figures/violin_Osteosarcoma_Omd_violin.png?v=3" width="33%" /><img src="figures/violin_Osteosarcoma_Sparc_violin.png?v=3" width="33%" />
-<img src="figures/violin_Osteosarcoma_Wif1_violin.png?v=3" width="33%" />
+<img src="figures/Osteosarcoma_Sparc_violin.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Omd_violin.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Cdkn1a_violin.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Alpl_violin.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Wif1_violin.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Panx3_violin.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Kazald1_violin.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Dcn_violin.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Nbl1_violin.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Bglap_violin.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Bglap2_violin.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Aspn_violin.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Notum_violin.png?v=1" width="33%" />
 
 #### Feature plots for genes of interest in Osteosarcoma
 
