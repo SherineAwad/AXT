@@ -1,85 +1,178 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
 import argparse
-from gseapy import prerank
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import gseapy as gp
 import os
+import warnings
+warnings.filterwarnings('ignore')
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--csv", required=True)
-parser.add_argument("--prefix", required=True)
-parser.add_argument("--organism", default="Mouse")
-parser.add_argument("--top_n", type=int, default=10)
-parser.add_argument("--pvalue", type=float, default=0.05)
-parser.add_argument("--source", default="KEGG_2019_Mouse,Reactome_2022_Mouse")
-args = parser.parse_args()
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--csv', required=True, help='DGE CSV file')
+    parser.add_argument('--organism', default='mouse', help='Organism (default: mouse)')
+    parser.add_argument('--resources', default='go', help='Gene set resource (default: go)')
+    parser.add_argument('--prefix', default='GSEA_results', help='Prefix for output files')
+    return parser.parse_args()
 
-df = pd.read_csv(args.csv)
-df = df.drop_duplicates(subset=['gene'])
+def main():
+    args = parse_arguments()
+    
+    # Create figures directory if it doesn't exist
+    os.makedirs('figures', exist_ok=True)
+    
+    # Load data
+    df = pd.read_csv(args.csv)
+    print(f"Loaded {len(df)} genes")
+    
+    # Create ranking metric
+    if 'pvals_adj' in df.columns:
+        pvals = df['pvals_adj'].copy()
+        min_p = pvals[pvals > 0].min() if any(pvals > 0) else 1e-300
+        pvals = pvals.replace(0, min_p)
+        neg_log_p = -np.log10(pvals)
+        max_neg_log_p = neg_log_p.max()
+        df['ranking'] = np.sign(df['logfoldchanges']) * (abs(df['logfoldchanges']) + neg_log_p / max_neg_log_p)
+    else:
+        df['ranking'] = df['logfoldchanges']
+    
+    # Prepare ranking
+    ranking = df[['gene', 'ranking']].dropna().sort_values('ranking', ascending=False)
+    ranking.columns = ['Gene', 'Score']
+    
+    dup_count = ranking['Score'].duplicated().sum()
+    print(f"Duplicate scores: {dup_count} ({dup_count/len(ranking)*100:.1f}%)")
+    
+    if dup_count > 0:
+        np.random.seed(42)
+        ranking['Score'] = ranking['Score'] + np.random.normal(0, 1e-10, len(ranking))
+    
+    # Get GO gene sets for mouse
+    from gseapy.parser import get_library_name
+    libraries = get_library_name(organism=args.organism.capitalize())
+    go_libs = [lib for lib in libraries if 'GO_Biological_Process' in lib]
+    gene_set = go_libs[0] if go_libs else 'GO_Biological_Process_2023'
+    print(f"Using gene set: {gene_set}")
+    
+    # Run GSEA
+    results = gp.prerank(
+        rnk=ranking,
+        gene_sets=gene_set,
+        permutation_num=1000,
+        outdir=f'{args.prefix}_gsea_output',
+        min_size=15,
+        max_size=500,
+        seed=42
+    )
+    
+    # Convert numeric columns
+    results_df = results.res2d
+    numeric_cols = ['ES', 'NES', 'NOM p-val', 'FDR q-val', 'FWER p-val', 'Tag %', 'Gene %']
+    for col in numeric_cols:
+        if col in results_df.columns:
+            results_df[col] = pd.to_numeric(results_df[col], errors='coerce')
+    
+    results_df.to_csv(f'{args.prefix}_results.csv', index=False)
+    print(f"\nResults saved to {args.prefix}_results.csv")
+    print(f"Found {len(results_df)} pathways")
+    
+    # Clean NES column
+    results_df = results_df.dropna(subset=['NES'])
+    results_df = results_df.sort_values('NES', ascending=False)
+    
+    # Create dotplot
+    print("\nGenerating dotplot...")
+    
+    # Get top 15 enriched and top 15 depleted
+    top_enriched = results_df[results_df['NES'] > 0].head(15)
+    top_depleted = results_df[results_df['NES'] < 0].tail(15)
+    
+    # Combine for plotting
+    plot_df = pd.concat([top_enriched, top_depleted])
+    
+    # Add -log10(FDR) for color
+    if 'FDR q-val' in plot_df.columns:
+        plot_df['-log10(FDR)'] = -np.log10(plot_df['FDR q-val'] + 1e-10)
+    else:
+        plot_df['-log10(FDR)'] = 1
+    
+    # Create the dotplot
+    fig, ax = plt.subplots(figsize=(12, 10))
+    
+    # Normalize NES for dot size (size range 50-500)
+    nes_range = plot_df['NES'].abs().max()
+    sizes = 50 + (plot_df['NES'].abs() / nes_range) * 450
+    
+    # Color by -log10(FDR)
+    scatter = ax.scatter(
+        plot_df['NES'],
+        range(len(plot_df)),
+        s=sizes,
+        c=plot_df['-log10(FDR)'],
+        cmap='RdYlBu_r',
+        alpha=0.7,
+        edgecolors='black',
+        linewidth=0.5
+    )
+    
+    # Add colorbar
+    cbar = plt.colorbar(scatter, ax=ax)
+    cbar.set_label('-log10(FDR)', fontsize=10)
+    
+    # Add horizontal line at 0
+    ax.axvline(x=0, color='black', linestyle='--', linewidth=0.8, alpha=0.5)
+    
+    # Set y-axis labels
+    ax.set_yticks(range(len(plot_df)))
+    ax.set_yticklabels([t[:50] + '...' if len(t) > 50 else t for t in plot_df['Term'].values], fontsize=8)
+    
+    # Labels and title
+    ax.set_xlabel('Normalized Enrichment Score (NES)', fontsize=12)
+    ax.set_ylabel('Pathways', fontsize=12)
+    ax.set_title(f'GSEA Results: Top 30 Pathways\n{args.organism.upper()} {args.resources.upper()}', 
+                 fontsize=14, fontweight='bold')
+    
+    # Add grid
+    ax.grid(True, alpha=0.3, axis='x')
+    
+    # Invert y-axis to show top enriched at top
+    ax.invert_yaxis()
+    
+    # Add legend for dot sizes
+    from matplotlib.lines import Line2D
+    legend_elements = [
+        Line2D([0], [0], marker='o', color='w', label='|NES| = 1',
+               markerfacecolor='gray', markersize=8, markeredgecolor='black'),
+        Line2D([0], [0], marker='o', color='w', label='|NES| = 2',
+               markerfacecolor='gray', markersize=13, markeredgecolor='black'),
+        Line2D([0], [0], marker='o', color='w', label='|NES| = 3',
+               markerfacecolor='gray', markersize=18, markeredgecolor='black'),
+    ]
+    ax.legend(handles=legend_elements, loc='lower right', title='Dot size = |NES|', fontsize=8)
+    
+    plt.tight_layout()
+    
+    # Save figure
+    output_path = 'figures/' + args.prefix + '_dotplot.png'
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    print(f"Figure saved to {output_path}")
+    plt.show()
+    
+    # Print top results to console
+    print("\n" + "="*60)
+    print("TOP 10 ENRICHED PATHWAYS (by NES):")
+    print("="*60)
+    for idx, row in results_df.head(10).iterrows():
+        fdr = row['FDR q-val'] if 'FDR q-val' in results_df.columns else 'N/A'
+        print(f"{row['Term'][:70]}: NES={row['NES']:.3f}, FDR={fdr}")
+    
+    print("\n" + "="*60)
+    print("TOP 10 DEPLETED PATHWAYS (by NES):")
+    print("="*60)
+    for idx, row in results_df.tail(10).iterrows():
+        fdr = row['FDR q-val'] if 'FDR q-val' in results_df.columns else 'N/A'
+        print(f"{row['Term'][:70]}: NES={row['NES']:.3f}, FDR={fdr}")
 
-# Sort by absolute logFC, then by p-value
-df['abs_logfc'] = df['logfoldchanges'].abs()
-df = df.sort_values(['abs_logfc', 'pvals_adj'], ascending=[False, True])
-
-# Create sequential rank
-df['rank'] = range(1, len(df) + 1)
-
-# Multiply rank by sign of logFC
-df['ranking_score'] = df['rank'] * np.sign(df['logfoldchanges'])
-
-ranked_genes = df.set_index('gene')['ranking_score']
-
-print(f"Ranked {len(ranked_genes)} genes")
-
-gsea_results = prerank(
-    rnk=ranked_genes,
-    gene_sets=args.source,
-    organism=args.organism,
-    outdir=None,
-    min_size=5,
-    max_size=500,
-    permutation_num=1000,
-    seed=42
-)
-
-results = []
-for term in gsea_results.results:
-    if gsea_results.results[term]['fdr'] < args.pvalue:
-        hits = gsea_results.results[term]['hits']
-        hits_str = ','.join([str(h) for h in hits[:10]])
-        results.append({
-            'term': term,
-            'nes': gsea_results.results[term]['nes'],
-            'fdr': gsea_results.results[term]['fdr'],
-            'pval': gsea_results.results[term]['pval'],
-            'direction': 'UP' if gsea_results.results[term]['nes'] > 0 else 'DOWN',
-            'genes': hits_str
-        })
-
-df_results = pd.DataFrame(results)
-
-if df_results.empty:
-    raise ValueError(f"No significant results at FDR < {args.pvalue}")
-
-df_results.to_csv(f"{args.prefix}_gsea.csv", index=False)
-
-df_up = df_results[df_results['direction'] == 'UP'].head(args.top_n)
-df_down = df_results[df_results['direction'] == 'DOWN'].head(args.top_n)
-df_plot = pd.concat([df_up, df_down])
-
-fig, ax = plt.subplots(figsize=(10, max(6, len(df_plot) * 0.4)))
-
-colors = ['#D62728'] * len(df_up) + ['#1F77B4'] * len(df_down)
-
-ax.barh(df_plot['term'], df_plot['nes'], color=colors, alpha=0.8)
-ax.axvline(0, color='black', linewidth=0.5)
-ax.set_xlabel('NES')
-ax.set_ylabel('Pathway')
-ax.set_title('GSEA: UP vs DOWN')
-
-plt.tight_layout()
-os.makedirs("figures", exist_ok=True)
-plt.savefig(f"figures/{args.prefix}_gsea.png", dpi=300, bbox_inches="tight")
-plt.close()
-
-print(f"Found {len(df_results)} pathways | UP: {len(df_up)} | DOWN: {len(df_down)}")
+if __name__ == "__main__":
+    main()

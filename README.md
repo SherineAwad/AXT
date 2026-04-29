@@ -459,6 +459,18 @@ To rule out inflammation as a driver of the Reg vs nonReg transcriptional differ
 
 ## Pathways and GO Enrichment for  Osteosarcoma 
 
+
+### GSEA GO Enrichments 
+
+We calculate a ranking score for every gene using: sign(logFC) × (abs(logFC) + normalized p-value). This puts upregulated genes at the top and downregulated at the bottom, with logFC as the primary factor and p-values as tie-breakers. Genes with identical scores get tiny random noise to break ties.
+
+For each GO pathway, we walk through the ranked gene list and asks: are genes from this pathway clustered near the top (upregulated) or bottom (downregulated)? It calculates an Enrichment Score (ES), then normalizes it to account for pathway size, producing the Normalized Enrichment Score (NES). Positive NES = pathway activated. Negative NES = pathway suppressed. The script does 1000 random permutations to calculate FDR q-values.
+
+We plot the top 15 enriched (highest NES) and top 15 depleted (lowest NES) pathways. X-axis = NES (positive right, negative left). Dot size = |NES| (bigger = stronger). Dot color = -log10(FDR) (darker = more significant). The plot saves to figures/ directory.
+
+![](figures/OsteosarcomaGSEA_dotplot.png?v=1)
+
+
 ### g:Profiler enrichment analysis 
 
 g:Profiler is a tool for interpreting gene lists by mapping them onto known biological knowledge bases such as KEGG, Reactome, Gene Ontology, CORUM, and WikiPathways.
@@ -571,7 +583,8 @@ As we did in Osteosarcoma, to rule out inflammation as a driver of the Reg vs no
 
 ![](figures/dotplot__Inflammation_Fibroblast_dotplot.png?v=1)
 
-### Pathways and GO enrichments for Fibroblast  
+
+### GOProfiler: Pathways and GO enrichments for Fibroblast  
 
 We followed the same approach as in Osteosarcoma 
 
