@@ -35,10 +35,12 @@ de_results['neg_log10_pval'] = -np.log10(de_results['pvals_adj'])
 
 # Split genes based on log2FC threshold (|log2FC| < 1 vs >= 1)
 low_fc_genes = de_results[abs(de_results['logfoldchanges']) < 1]
-high_fc_genes = de_results[abs(de_results['logfoldchanges']) >= 1]
+high_fc_genes_up = de_results[(abs(de_results['logfoldchanges']) >= 1) & (de_results['logfoldchanges'] > 0)]
+high_fc_genes_down = de_results[(abs(de_results['logfoldchanges']) >= 1) & (de_results['logfoldchanges'] < 0)]
 
 print(f"Genes with |logFC| < 1: {len(low_fc_genes)}")
-print(f"Genes with |logFC| >= 1: {len(high_fc_genes)}")
+print(f"Genes with |logFC| >= 1 (upregulated): {len(high_fc_genes_up)}")
+print(f"Genes with |logFC| >= 1 (downregulated): {len(high_fc_genes_down)}")
 
 # Create volcano plot
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -48,18 +50,23 @@ ax.scatter(low_fc_genes['logfoldchanges'],
            low_fc_genes['neg_log10_pval'],
            alpha=0.5, s=10, color='lightgrey')
 
-# Plot high FC genes (|log2FC| >= 1) in dodgerblue
-ax.scatter(high_fc_genes['logfoldchanges'],
-           high_fc_genes['neg_log10_pval'],
-           alpha=0.5, s=10, color='dodgerblue')
+# Plot high FC upregulated genes (|log2FC| >= 1, positive) in cornflowerblue
+ax.scatter(high_fc_genes_up['logfoldchanges'],
+           high_fc_genes_up['neg_log10_pval'],
+           alpha=0.5, s=10, color='cornflowerblue')
 
-# Highlight specific genes of interest (from --genes file) in red
+# Plot high FC downregulated genes (|log2FC| >= 1, negative) in lightcoral
+ax.scatter(high_fc_genes_down['logfoldchanges'],
+           high_fc_genes_down['neg_log10_pval'],
+           alpha=0.5, s=10, color='lightcoral')
+
+# Highlight specific genes of interest (from --genes file) in black
 highlight_df = de_results[de_results['names'].isin(highlight_genes)]
 
 for idx, row in highlight_df.iterrows():
     ax.scatter(row['logfoldchanges'],
                row['neg_log10_pval'],
-               color='red', s=50)
+               color='black', s=20)
     ax.annotate(row['names'],
                 (row['logfoldchanges'], row['neg_log10_pval']),
                 xytext=(5, 5),
