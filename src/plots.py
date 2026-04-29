@@ -43,15 +43,15 @@ print(f"Genes with |logFC| >= 1: {len(high_fc_genes)}")
 # Create volcano plot
 fig, ax = plt.subplots(figsize=(10, 8))
 
-# Plot low FC genes (|log2FC| < 1) in grey
+# Plot low FC genes (|log2FC| < 1) in lightgrey
 ax.scatter(low_fc_genes['logfoldchanges'],
            low_fc_genes['neg_log10_pval'],
-           alpha=0.5, s=10, color='grey')
+           alpha=0.5, s=10, color='lightgrey')
 
-# Plot high FC genes (|log2FC| >= 1) in black
+# Plot high FC genes (|log2FC| >= 1) in dodgerblue
 ax.scatter(high_fc_genes['logfoldchanges'],
            high_fc_genes['neg_log10_pval'],
-           alpha=0.5, s=10, color='black')
+           alpha=0.5, s=10, color='dodgerblue')
 
 # Highlight specific genes of interest (from --genes file) in red
 highlight_df = de_results[de_results['names'].isin(highlight_genes)]
@@ -67,8 +67,8 @@ for idx, row in highlight_df.iterrows():
                 fontsize=8)
 
 # Set axis limits
-ax.set_xlim(-3, 3)
-ax.set_ylim(0, 100)
+ax.set_xlim(-5, 5)
+ax.set_ylim(0, 150)
 
 ax.set_xlabel('Log2 Fold Change')
 ax.set_ylabel('-Log10 Adjusted P-value')
@@ -128,11 +128,11 @@ for gene in highlight_genes:
         for i, patch in enumerate(ax.collections):
             if i < 2:  # Only first two collections are the violins
                 if i == 0:
-                    patch.set_facecolor('darkred')
-                    patch.set_edgecolor('darkred')
+                    patch.set_facecolor('lightcoral')
+                    patch.set_edgecolor('black')
                 elif i == 1:
-                    patch.set_facecolor('seagreen')
-                    patch.set_edgecolor('seagreen')
+                    patch.set_facecolor('cornflowerblue')
+                    patch.set_edgecolor('black')
 
         plt.tight_layout()
         plt.savefig(f"figures/{args.prefix}_{gene}_violin.png", dpi=600, bbox_inches="tight")
