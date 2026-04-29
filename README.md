@@ -532,34 +532,34 @@ Similar to what we did with Osteosarcoma, Top N genes are selected by first sort
 Now overlapping with Secreted genes 
   
 #### Top 10 genes only are labeled 
-![](figures/Fibroblast_volcano.png?v=6)
+![](figures/Fibroblast_volcano.png?v=7)
 
 #### Dotplot for genes of interest in Fibroblast  
 
-![](figures/Fibroblast_dotplot.png?v=6)
+![](figures/Fibroblast_dotplot.png?v=7)
 
 
 #### Feature plots for genes of interest in Fibroblast
 
-<img src="figures/Fibroblast_feature_Foxp1.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Cd81.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Ubb.png?v=1" width="33%" />
-<img src="figures/Fibroblast_feature_Fxyd1.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Eif1.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Dpt.png?v=1" width="33%" />
-<img src="figures/Fibroblast_feature_mt-Nd2.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Il31ra.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Vim.png?v=1" width="33%" />
-<img src="figures/Fibroblast_feature_Ftl1.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Hexb.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Tmem158.png?v=1" width="33%" />
-<img src="figures/Fibroblast_feature_Bmp2.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Gphn.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Cdk8.png?v=1" width="33%" />
-<img src="figures/Fibroblast_feature_Cmss1.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Lars2.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Camk1d.png?v=1" width="33%" />
-<img src="figures/Fibroblast_feature_Mfap4.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Qpct.png?v=1" width="33%" /><img src="figures/Fibroblast_feature_Bmp4.png?v=1" width="33%" />
-<img src="figures/Fibroblast_feature_Aldh3a1.png?v=1" width="33%" />
+<img src="figures/Fibroblast_feature_Bmp2.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Aldh3a1.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Bmp5.png?v=4" width="33%" />
+<img src="figures/Fibroblast_feature_Bmp4.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Cdk8.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Cd81.png?v=4" width="33%" />
+<img src="figures/Fibroblast_feature_Camk1d.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Dpt.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Cmss1.png?v=4" width="33%" />
+<img src="figures/Fibroblast_feature_Foxp1.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Eif1.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Fxyd1.png?v=4" width="33%" />
+<img src="figures/Fibroblast_feature_Ftl1.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Il31ra.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Hexb.png?v=4" width="33%" />
+<img src="figures/Fibroblast_feature_Gphn.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Mfap4.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Lars2.png?v=4" width="33%" />
+<img src="figures/Fibroblast_feature_Tmem158.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Qpct.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_Vim.png?v=4" width="33%" />
+<img src="figures/Fibroblast_feature_Ubb.png?v=4" width="33%" /><img src="figures/Fibroblast_feature_mt-Nd2.png?v=4" width="33%" />
 
 #### Violin plots for genes of interest in Fibroblast 
 
-<img src="figures/Fibroblast_violin_Cd81.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Dpt.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Fxyd1.png?v=1" width="33%" />
-<img src="figures/Fibroblast_violin_Ftl1.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Ubb.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Foxp1.png?v=1" width="33%" />
-<img src="figures/Fibroblast_violin_Hexb.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_mt-Nd2.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Eif1.png?v=1" width="33%" />
-<img src="figures/Fibroblast_violin_Vim.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Gphn.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Cdk8.png?v=1" width="33%" />
-<img src="figures/Fibroblast_violin_Lars2.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Cmss1.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Il31ra.png?v=1" width="33%" />
-<img src="figures/Fibroblast_violin_Camk1d.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Qpct.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Bmp2.png?v=1" width="33%" />
-<img src="figures/Fibroblast_violin_Bmp4.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Aldh3a1.png?v=1" width="33%" /><img src="figures/Fibroblast_violin_Mfap4.png?v=1" width="33%" />
-<img src="figures/Fibroblast_violin_Tmem158.png?v=1" width="33%" />
+<img src="figures/Fibroblast_violin_Bmp4.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Bmp2.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Aldh3a1.png?v=4" width="33%" />
+<img src="figures/Fibroblast_violin_Cdk8.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Cd81.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Camk1d.png?v=4" width="33%" />
+<img src="figures/Fibroblast_violin_Bmp5.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Eif1.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Dpt.png?v=4" width="33%" />
+<img src="figures/Fibroblast_violin_Cmss1.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Gphn.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Fxyd1.png?v=4" width="33%" />
+<img src="figures/Fibroblast_violin_Ftl1.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Foxp1.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Lars2.png?v=4" width="33%" />
+<img src="figures/Fibroblast_violin_Il31ra.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Hexb.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Tmem158.png?v=4" width="33%" />
+<img src="figures/Fibroblast_violin_Qpct.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Mfap4.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_Vim.png?v=4" width="33%" />
+<img src="figures/Fibroblast_violin_Ubb.png?v=4" width="33%" /><img src="figures/Fibroblast_violin_mt-Nd2.png?v=4" width="33%" />
 
 
 [📊📊Download Fibroblast DGE Reg vs non Reg with adj-pvalue \<0.05](https://docs.google.com/spreadsheets/d/11xskz0pwZ4XTII-RSRkLTfdnz2vGlNxauW287BD5dFs/edit?usp=sharing) 

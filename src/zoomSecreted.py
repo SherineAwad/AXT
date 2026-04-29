@@ -37,55 +37,32 @@ secreted = secreted.intersection(set(adata.var_names))
 # ----------------------------
 # BUILD DGE TABLE
 # ----------------------------
-dfs = []
-for g in adata.uns["rank_genes_groups"]["names"].dtype.names:
-    df_g = sc.get.rank_genes_groups_df(adata, group=g)
-    df_g["group"] = g
-    dfs.append(df_g)
-
-df = pd.concat(dfs, ignore_index=True)
+df = sc.get.rank_genes_groups_df(adata, group=adata.uns["rank_genes_groups"]["names"].dtype.names[0])
 df["neglog10_padj"] = -np.log10(df["pvals_adj"] + 1e-300)
 
 # ----------------------------
 # TOP N SELECTION
 # ----------------------------
-df_unique = df.drop_duplicates("names")
-
-df_top = (
-    df_unique.sort_values(
-        by=["pvals_adj", "logfoldchanges"],
-        ascending=[True, False]
-    )
-    .head(args.topn)
-)
-
+df_top = df.sort_values(by=["pvals_adj", "logfoldchanges"], ascending=[True, False]).head(args.topn)
 top_genes = set(df_top["names"])
 
 # ----------------------------
-# SECRETED GENES
+# FINAL GENES FOR PLOTS
 # ----------------------------
-secreted_in_dge = set(df[df["names"].isin(secreted)]["names"])
-
-# ----------------------------
-# FINAL GENES
-# ----------------------------
-genes_plot = sorted(top_genes.union(secreted_in_dge))
+genes_plot = sorted(top_genes.union(secreted))
 
 print(f"Top genes: {len(top_genes)}")
-print(f"Secreted genes: {len(secreted_in_dge)}")
+print(f"Secreted genes: {len(secreted)}")
 print(f"Total plotted genes: {len(genes_plot)}")
 
-df_plot = df[df["names"].isin(genes_plot)]
-
 # ============================================================
-# VOLCANO PLOT (FIXED COLOR LOGIC)
+# VOLCANO PLOT
 # ============================================================
 plt.figure(figsize=(14, 10))
 
 colors = []
 for _, r in df.iterrows():
     fc = r["logfoldchanges"]
-
     if fc > 1:
         colors.append("cornflowerblue")
     elif fc < -1:
@@ -101,7 +78,7 @@ plt.scatter(
     c=colors
 )
 
-highlight_genes = set(secreted)
+highlight_genes = top_genes.union(secreted)
 df_highlight = df[df["names"].isin(highlight_genes)]
 
 plt.scatter(
@@ -140,7 +117,10 @@ plt.savefig(f"figures/{args.prefix}_volcano.png", dpi=300)
 plt.close()
 
 # ============================================================
-# FEATURE PLOTS (UNCHANGED)
+# FEATURE PLOTS
+# ============================================================
+# ============================================================
+# FEATURE PLOTS
 # ============================================================
 if "X_umap" in adata.obsm:
     for gene in genes_plot:
@@ -148,28 +128,29 @@ if "X_umap" in adata.obsm:
             continue
 
         try:
-            sc.pl.umap(
-                adata,
-                color=gene,
-                layer="log1p",
-                show=False,
-                title=f"{gene}",
-                color_map="viridis",
-                splitby="sample"
-            )
-
-            plt.savefig(
-                f"figures/{args.prefix}_feature_{gene}.png",
-                dpi=300,
-                bbox_inches="tight"
-            )
+            samples = adata.obs['sample'].unique()
+            fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+            
+            for ax, sample in zip(axes, samples):
+                adata_sub = adata[adata.obs['sample'] == sample]
+                sc.pl.umap(
+                    adata_sub,
+                    color=gene,
+                    layer="log1p",
+                    show=False,
+                    title=f"{sample} - {gene}",
+                    color_map="viridis",
+                    ax=ax
+                )
+            
+            plt.tight_layout()
+            plt.savefig(f"figures/{args.prefix}_feature_{gene}.png", dpi=300, bbox_inches="tight")
             plt.close()
 
-        except:
-            pass
-
+        except Exception as e:
+            print(f"Failed to plot {gene}: {e}")
 # ============================================================
-# DOTPLOT (UNCHANGED)
+# DOTPLOT
 # ============================================================
 if len(genes_plot) > 0:
     try:
@@ -201,56 +182,31 @@ if len(genes_plot) > 0:
         pass
 
 # ============================================================
-# VIOLIN (UNCHANGED)
+# VIOLIN PLOTS
 # ============================================================
+samples_reversed = adata.obs['sample'].unique()[::-1]
+
 for gene in genes_plot:
-    if gene not in adata.var_names:
-        continue
+    if gene in adata.var_names:
+        try:
+            fig, ax = plt.subplots(figsize=(4, 4))
+            sc.pl.violin(adata, gene, groupby='sample', ax=ax, show=False,
+                         order=samples_reversed)
 
-    try:
-        df_expr = []
-        samples = list(adata.obs["sample"].unique())
+            for i, patch in enumerate(ax.collections):
+                if i < 2:
+                    if i == 0:
+                        patch.set_facecolor('lightcoral')
+                        patch.set_edgecolor('black')
+                    elif i == 1:
+                        patch.set_facecolor('cornflowerblue')
+                        patch.set_edgecolor('black')
 
-        for s in samples:
-            vals = adata[adata.obs["sample"] == s, gene].layers["log1p"]
-            vals = vals.toarray().flatten() if hasattr(vals, "toarray") else vals.flatten()
+            plt.tight_layout()
+            plt.savefig(f"figures/{args.prefix}_violin_{gene}.png", dpi=600, bbox_inches="tight")
+            plt.close()
 
-            for v in vals:
-                df_expr.append({"sample": s, "expr": v})
-
-        df_expr = pd.DataFrame(df_expr)
-
-        sample_order = samples[::-1]
-
-        palette = {
-            samples[0]: "lightcoral",
-            samples[1] if len(samples) > 1 else samples[0]: "cornflowerblue"
-        }
-
-        plt.figure()
-
-        ax = sns.violinplot(
-            data=df_expr,
-            x="sample",
-            y="expr",
-            order=sample_order,
-            palette=palette,
-            inner=None
-        )
-
-        for artist in ax.collections:
-            artist.set_edgecolor("black")
-
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-
-        plt.savefig(
-            f"figures/{args.prefix}_violin_{gene}.png",
-            dpi=300
-        )
-        plt.close()
-
-    except:
-        pass
+        except:
+            pass
 
 print("DONE -> figures/")
