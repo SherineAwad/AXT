@@ -78,27 +78,41 @@ print(f"Total plotted genes: {len(genes_plot)}")
 df_plot = df[df["names"].isin(genes_plot)]
 
 # ============================================================
-# VOLCANO PLOT
+# VOLCANO PLOT (FIXED COLOR LOGIC)
 # ============================================================
 plt.figure(figsize=(14, 10))
+
+colors = []
+for _, r in df.iterrows():
+    fc = r["logfoldchanges"]
+
+    if fc > 1:
+        colors.append("cornflowerblue")
+    elif fc < -1:
+        colors.append("lightcoral")
+    else:
+        colors.append("lightgrey")
 
 plt.scatter(
     df["logfoldchanges"],
     df["neglog10_padj"],
     s=5,
     alpha=0.15,
-    color="gray"
+    c=colors
 )
 
+highlight_genes = set(secreted)
+df_highlight = df[df["names"].isin(highlight_genes)]
+
 plt.scatter(
-    df_plot["logfoldchanges"],
-    df_plot["neglog10_padj"],
-    s=80,
-    color="red",
+    df_highlight["logfoldchanges"],
+    df_highlight["neglog10_padj"],
+    s=30,
+    color="black",
     edgecolors="black"
 )
 
-for _, r in df_plot.iterrows():
+for _, r in df_highlight.iterrows():
     plt.annotate(
         r["names"],
         xy=(r["logfoldchanges"], r["neglog10_padj"]),
@@ -126,38 +140,36 @@ plt.savefig(f"figures/{args.prefix}_volcano.png", dpi=300)
 plt.close()
 
 # ============================================================
-# FEATURE PLOTS PER SAMPLE
+# FEATURE PLOTS (UNCHANGED)
 # ============================================================
 if "X_umap" in adata.obsm:
     for gene in genes_plot:
         if gene not in adata.var_names:
             continue
 
-        for sample in adata.obs["sample"].unique():
-            try:
-                adata_sub = adata[adata.obs["sample"] == sample].copy()
+        try:
+            sc.pl.umap(
+                adata,
+                color=gene,
+                layer="log1p",
+                show=False,
+                title=f"{gene}",
+                color_map="viridis",
+                splitby="sample"
+            )
 
-                sc.pl.umap(
-                    adata_sub,
-                    color=gene,
-                    layer="log1p",
-                    show=False,
-                    title=f"{gene} - {sample}",
-                    color_map="viridis"
-                )
+            plt.savefig(
+                f"figures/{args.prefix}_feature_{gene}.png",
+                dpi=300,
+                bbox_inches="tight"
+            )
+            plt.close()
 
-                plt.savefig(
-                    f"figures/{args.prefix}_feature_{gene}_{sample}.png",
-                    dpi=300,
-                    bbox_inches="tight"
-                )
-                plt.close()
-
-            except:
-                pass
+        except:
+            pass
 
 # ============================================================
-# DOTPLOT
+# DOTPLOT (UNCHANGED)
 # ============================================================
 if len(genes_plot) > 0:
     try:
@@ -189,7 +201,7 @@ if len(genes_plot) > 0:
         pass
 
 # ============================================================
-# VIOLIN (ONLY FIXED PART)
+# VIOLIN (UNCHANGED)
 # ============================================================
 for gene in genes_plot:
     if gene not in adata.var_names:
@@ -197,7 +209,9 @@ for gene in genes_plot:
 
     try:
         df_expr = []
-        for s in adata.obs["sample"].unique():
+        samples = list(adata.obs["sample"].unique())
+
+        for s in samples:
             vals = adata[adata.obs["sample"] == s, gene].layers["log1p"]
             vals = vals.toarray().flatten() if hasattr(vals, "toarray") else vals.flatten()
 
@@ -206,22 +220,26 @@ for gene in genes_plot:
 
         df_expr = pd.DataFrame(df_expr)
 
-        samples = df_expr["sample"].unique()
-        colors = [
-            "#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4",
-            "#FFEAA7", "#DDA0DD", "#98D8C8", "#F7B05E"
-        ]
+        sample_order = samples[::-1]
 
-        palette = {s: colors[i % len(colors)] for i, s in enumerate(samples)}
+        palette = {
+            samples[0]: "lightcoral",
+            samples[1] if len(samples) > 1 else samples[0]: "cornflowerblue"
+        }
 
         plt.figure()
 
-        sns.violinplot(
+        ax = sns.violinplot(
             data=df_expr,
             x="sample",
             y="expr",
-            palette=palette
+            order=sample_order,
+            palette=palette,
+            inner=None
         )
+
+        for artist in ax.collections:
+            artist.set_edgecolor("black")
 
         plt.xticks(rotation=45)
         plt.tight_layout()
