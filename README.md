@@ -470,6 +470,7 @@ We plot the top 15 enriched (highest NES) and top 15 depleted (lowest NES) pathw
 
 ![](figures/OsteosarcomaGSEA_dotplot.png?v=1)
 
+[Download here the full list of Osteosarcoma GSEA](https://docs.google.com/spreadsheets/d/1bJ09-pqIcwq0liNOfoOlPIxs1TCgSPrBq1jRFR21isk/edit?usp=sharing)
 
 ### g:Profiler enrichment analysis 
 
