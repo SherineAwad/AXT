@@ -618,12 +618,17 @@ We followed the same approach as in Osteosarcoma
 #### Using KEGG, REACTOME, and WP
 ![](figures/Fibroblast_KEGG,REAC,WP_enrichment.png?v=2)
 
+[Download here the Fibroblast KEGG/REAC/WP enrichments](https://docs.google.com/spreadsheets/d/1kMVLqQM8qotiPLRciVcI_GueAI-u3T8Lw3sUHRsq15g/edit?usp=sharing)
+
 #### Using GO
 ![](figures/Fibroblast_GO_enrichment.png?v=2) 
+
+[Download here the Fibroblast GO enrichments](https://docs.google.com/spreadsheets/d/1Adn8g3giE3Ff7IKW9ME_RGSMpSarFGi7XMSW_ZYTjR4/edit?usp=sharing)
 
 #### Using CORUM
 ![](figures/Fibroblast_CORUM_enrichment.png?v=2)   
 
+[Download here the Fibroblast CORUM Enrichments](https://docs.google.com/spreadsheets/d/1TJwrrmCdz7Pft5gETs2HbkWPw-JPNQXV159pKsq5jcE/edit?usp=sharing)
 
 ## Now zooming on OsteoProgenitor 
 
