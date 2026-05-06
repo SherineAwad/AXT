@@ -144,7 +144,7 @@ combined.to_csv(
 # ----------------------------
 # PLOTTING
 # ----------------------------
-fig, (ax_up, ax_down) = plt.subplots(1, 2, figsize=(20, 10))
+fig, (ax_up, ax_down) = plt.subplots(1, 2, figsize=(24, 10))
 
 def prepare(df, direction):
     df_dir = df[df["direction"] == direction].copy()
@@ -158,28 +158,39 @@ def prepare(df, direction):
 
     return df_dir.tail(args.plot_n)
 
-def plot(ax, df_plot, title, color):
+def plot_dotplot(ax, df_plot, title, color):
     if df_plot.empty:
         ax.set_title(f"{title} (no results)")
         return
 
-    ax.barh(
-        df_plot["label"],
+    # Create dotplot: y-axis = terms, x-axis = -log10(p-value)
+    y_pos = np.arange(len(df_plot))
+    
+    # Plot dots
+    ax.scatter(
         df_plot["neg_log10_pval"],
-        color=color,
-        edgecolor="black",
-        alpha=0.85
+        y_pos,
+        s=df_plot["gene_count"] * 1,  # Size proportional to gene count
+        c=color,
+        alpha=0.7,
+        edgecolors="black",
+        linewidth=0.5
     )
-
+    
+    # Set y-axis labels
+    ax.set_yticks(y_pos)
+    ax.set_yticklabels(df_plot["label"])
+    
     ax.set_title(title, fontsize=16)
     ax.set_xlabel("-log10(p-value)", fontsize=12)
     ax.tick_params(axis='y', labelsize=9)
+    ax.grid(True, axis='x', alpha=0.3, linestyle='--')
 
 up_plot = prepare(combined, "UP")
 down_plot = prepare(combined, "DOWN")
 
-plot(ax_up, up_plot, "UP regulated pathways", "firebrick")
-plot(ax_down, down_plot, "DOWN regulated pathways", "royalblue")
+plot_dotplot(ax_up, up_plot, "UP regulated pathways", "firebrick")
+plot_dotplot(ax_down, down_plot, "DOWN regulated pathways", "royalblue")
 
 plt.tight_layout()
 

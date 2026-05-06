@@ -516,17 +516,17 @@ We performed over‑representation enrichment analysis using g:Profiler against 
 - **CORUM**: Experimentally validated mammalian protein complexes
 
 #### Using KEGG, REACTOME, and WP
-![](figures/Osteosarcoma_KEGG,REAC,WP_enrichment.png?v=3)
+![](figures/Osteosarcoma_KEGG,REAC,WP_enrichment.png?v=4)
 
 [Download here the Osteosarcoma KEGG/REAC/WP enrichments](https://docs.google.com/spreadsheets/d/1Afs9llmco7xB1_ZJHWC2891UMkQCqmIniJyxU13Kp5s/edit?usp=sharing)
 
 #### Using GO
-![](figures/Osteosarcoma_GO_enrichment.png?v=3) 
+![](figures/Osteosarcoma_GO_enrichment.png?v=4) 
 
 [Download here the Osteosarcoma GO enrichments](https://docs.google.com/spreadsheets/d/1WMmBSIl0G6ohwbj5UM__B_VqlxE4wHztsTT1ixJeZrQ/edit?usp=sharing)
 
 #### Using CORUM 
-![](figures/Osteosarcoma_CORUM_enrichment.png?v=3)  
+![](figures/Osteosarcoma_CORUM_enrichment.png?v=4)  
 
 [Download here the Osteosarcoma CORUM enrichments](https://docs.google.com/spreadsheets/d/1rYkPxymde6Q7bsLjTkHMDk3TlbbCveYegTtDbciTq_s/edit?usp=sharing)
 
@@ -616,17 +616,17 @@ As we did in Osteosarcoma, to rule out inflammation as a driver of the Reg vs no
 We followed the same approach as in Osteosarcoma 
 
 #### Using KEGG, REACTOME, and WP
-![](figures/Fibroblast_KEGG,REAC,WP_enrichment.png?v=2)
+![](figures/Fibroblast_KEGG,REAC,WP_enrichment.png?v=3)
 
 [Download here the Fibroblast KEGG/REAC/WP enrichments](https://docs.google.com/spreadsheets/d/1kMVLqQM8qotiPLRciVcI_GueAI-u3T8Lw3sUHRsq15g/edit?usp=sharing)
 
 #### Using GO
-![](figures/Fibroblast_GO_enrichment.png?v=2) 
+![](figures/Fibroblast_GO_enrichment.png?v=3) 
 
 [Download here the Fibroblast GO enrichments](https://docs.google.com/spreadsheets/d/1Adn8g3giE3Ff7IKW9ME_RGSMpSarFGi7XMSW_ZYTjR4/edit?usp=sharing)
 
 #### Using CORUM
-![](figures/Fibroblast_CORUM_enrichment.png?v=2)   
+![](figures/Fibroblast_CORUM_enrichment.png?v=3)   
 
 [Download here the Fibroblast CORUM Enrichments](https://docs.google.com/spreadsheets/d/1TJwrrmCdz7Pft5gETs2HbkWPw-JPNQXV159pKsq5jcE/edit?usp=sharing)
 
@@ -787,18 +787,18 @@ To rule out inflammation as a driver of the Reg vs nonReg transcriptional differ
 
 We performed over‑representation enrichment analysis using g:Profiler similar to what we did in Osteosarcoma 
 
-![](figures/axt_KEGG,REAC,WP_enrichment.png?v=2)
+![](figures/axt_KEGG,REAC,WP_enrichment.png?v=3)
 
 [Download here KEGG/REAC/WP enrichments](https://docs.google.com/spreadsheets/d/1u2G4ApoT3-Ru5HIvg39RoBjF9Pbp09PfZ3VQ359RIXU/edit?usp=sharing)
 
 
 #### GO
-![](figures/axt_GO_enrichment.png?v=2)
+![](figures/axt_GO_enrichment.png?v=3)
 
 [Download here GO enrichments](https://docs.google.com/spreadsheets/d/1dCW49iS77fXt7F8ZQ-Q5_LRU53YpOYl0Yci_5BFxyGY/edit?usp=sharing)
 
 #### CORUM
-![](figures/axt_CORUM_enrichment.png?v=2)
+![](figures/axt_CORUM_enrichment.png?v=3)
 
 [Download CORUM enrichments here](https://docs.google.com/spreadsheets/d/1a_JymRSOHq0ig11d8BZzpX7yBNqgNizO-1dcmran0to/edit?usp=sharing)
 
