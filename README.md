@@ -96,6 +96,26 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 <img src="figures/umap_axt_Reg.png?v=4" width="600" /> <img src="figures/umap_axt_nonReg.png?v=4" width="600" />
 
 
+## Top PC genes 
+
+#### PC1 positive genes
+Tmsb4x, Srgn, Lcp1, Plek, Cd53, Ptprc, Laptm5, Cd52, Tyrobp, Mir142hg
+
+#### PC1 negative genes
+Nedd4, Rpl39l, EGFP, AI506816, Tpm1, Cald1, Serpinh1, Npm1, Cks1b, Col6a3
+
+#### PC2 positive genes
+Igfbp7, Zbtb20, Serping1, Plpp3, Plac9, Ebf1, Dcn, Ccdc80, Fstl1, Lama2
+
+#### PC2 negative genes
+H2az1, Pfn1, Fau, Rpl27, Rpl38, Rpl35a, Fabp5, Actb, Rps29, Rpl34
+
+#### PC3 positive genes
+Tpt1, Itm2b, S100a6, Eif1, Gabarap, Ubb, Gpx1, Myl6, Ppib, Ftl1
+
+#### PC3 negative genes
+Taco1, Cdk8, Kcnq5, Gphn, Cmss1, Snd1, Lars2, Camk1d, Gm12610, Smyd3
+`
 ## Clustering 
 
 `sc.tl.leiden(resolution=1.0)`
@@ -498,11 +518,17 @@ We performed over‑representation enrichment analysis using g:Profiler against 
 #### Using KEGG, REACTOME, and WP
 ![](figures/Osteosarcoma_KEGG,REAC,WP_enrichment.png?v=3)
 
+[Download here the Osteosarcoma KEGG/REAC/WP enrichments](https://docs.google.com/spreadsheets/d/1Afs9llmco7xB1_ZJHWC2891UMkQCqmIniJyxU13Kp5s/edit?usp=sharing)
+
 #### Using GO
 ![](figures/Osteosarcoma_GO_enrichment.png?v=3) 
 
+[Download here the Osteosarcoma GO enrichments](https://docs.google.com/spreadsheets/d/1WMmBSIl0G6ohwbj5UM__B_VqlxE4wHztsTT1ixJeZrQ/edit?usp=sharing)
+
 #### Using CORUM 
 ![](figures/Osteosarcoma_CORUM_enrichment.png?v=3)  
+
+[Download here the Osteosarcoma CORUM enrichments](https://docs.google.com/spreadsheets/d/1rYkPxymde6Q7bsLjTkHMDk3TlbbCveYegTtDbciTq_s/edit?usp=sharing)
 
 
 ## Zooming on Fibroblast 
