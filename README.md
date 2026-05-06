@@ -653,7 +653,7 @@ We followed the same approach as in Osteosarcoma
 
 [Download here the Fibroblast CORUM Enrichments](https://docs.google.com/spreadsheets/d/1TJwrrmCdz7Pft5gETs2HbkWPw-JPNQXV159pKsq5jcE/edit?usp=sharing)
 
-[Go to how to read go profiler results section](#How to read Go profiler results)
+[Go to how to read go profiler results section](#how-to-read-go-profiler-results)
 
 ## Now zooming on OsteoProgenitor 
 
@@ -827,7 +827,7 @@ We performed over‑representation enrichment analysis using g:Profiler similar 
 
 [Download CORUM enrichments here](https://docs.google.com/spreadsheets/d/1a_JymRSOHq0ig11d8BZzpX7yBNqgNizO-1dcmran0to/edit?usp=sharing)
 
-[Go to how to read go profiler results section](#How to read Go profiler results)
+[Go to how to read go profiler results section](#how-to-read-go-profiler-results)
 
 ## MORE ANALYSIS ON THE WAY 
 
