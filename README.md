@@ -515,6 +515,7 @@ We performed over‑representation enrichment analysis using g:Profiler against 
 - **WP (WikiPathways)**: Community‑curated, open platform for biological pathways.
 - **CORUM**: Experimentally validated mammalian protein complexes
 
+
 #### Using KEGG, REACTOME, and WP
 ![](figures/Osteosarcoma_KEGG,REAC,WP_enrichment.png?v=4)
 
@@ -530,6 +531,28 @@ We performed over‑representation enrichment analysis using g:Profiler against 
 
 [Download here the Osteosarcoma CORUM enrichments](https://docs.google.com/spreadsheets/d/1rYkPxymde6Q7bsLjTkHMDk3TlbbCveYegTtDbciTq_s/edit?usp=sharing)
 
+#### How to read Go profiler results 
+
+| Field | Meaning |
+|-------|---------|
+| **source** | The database or ontology source where this term comes from (like GO:BP for Gene Ontology Biological Process, KEGG for Kyoto Encyclopedia of Genes and Genomes, REAC for Reactome pathways) |
+| **native** | The original identifier of the term from its source database (like a GO ID or KEGG pathway ID), which is the internal code used by the source database |
+| **name** | The human-readable description of the term (for example, "apoptotic process" or "cell cycle"), which is the actual biological name you would use when writing about your results |
+| **p_value** | The statistical significance score from the enrichment test, where lower values (closer to zero) mean the enrichment is more unlikely to have occurred by chance |
+| **significant** | A boolean flag (True/False) indicating whether this term passed the significance threshold, based on the g:Profiler's internal multiple testing correction |
+| **description** | A longer text explanation of what the term means biologically, which is similar to the "name" field but may contain additional details |
+| **term_size** | The total number of genes annotated to this term in the entire genome/organism, representing the full size of this gene set in the background |
+| **query_size** | The number of genes you submitted for enrichment analysis (your input gene list), which is the total genes you asked g:Profiler to test |
+| **intersection_size** | The number of genes from your query that overlap with this term, meaning how many of your input genes are annotated to this specific pathway or process |
+| **effective_domain_size** | The total number of genes considered as the statistical background after filtering, typically the number of genes that have at least one annotation in the sources you selected |
+| **precision** | The proportion of your query genes in this term relative to the term size, essentially measuring how specific this term is to your gene set (precision = intersection_size / term_size) |
+| **recall** | The proportion of your query genes in this term relative to your total query size, essentially measuring how well this term covers your input gene list (recall = intersection_size / query_size) |
+| **query** | The specific subset of genes from your input that map to this term, usually shown as a comma-separated list of gene identifiers |
+| **parents** | The parent terms in the ontology hierarchy, showing broader categories that contain this term (for example, a parent might be "biological regulation" for a child term like "cell cycle regulation") |
+| **celltype** | Your custom added field identifying which cell type or experimental condition this enrichment came from, useful when analyzing multiple groups separately |
+| **direction** | Your custom added field indicating whether this enrichment came from up-regulated genes (positive log fold change) or down-regulated genes (negative log fold change) |
+| **gene_count** | Your custom added field that is exactly the same as intersection_size, just renamed for clarity in your plotting code |
+| **neg_log10_pval** | Your custom calculated field which is -log10(p_value), where small p-values become larger positive numbers (p=0.001 becomes 3, p=0.000001 becomes 6), making visualization easier on plots |
 
 ## Zooming on Fibroblast 
 
@@ -629,6 +652,8 @@ We followed the same approach as in Osteosarcoma
 ![](figures/Fibroblast_CORUM_enrichment.png?v=3)   
 
 [Download here the Fibroblast CORUM Enrichments](https://docs.google.com/spreadsheets/d/1TJwrrmCdz7Pft5gETs2HbkWPw-JPNQXV159pKsq5jcE/edit?usp=sharing)
+
+[Go to how to read go profiler results section](#How to read Go profiler results)
 
 ## Now zooming on OsteoProgenitor 
 
@@ -801,6 +826,8 @@ We performed over‑representation enrichment analysis using g:Profiler similar 
 ![](figures/axt_CORUM_enrichment.png?v=3)
 
 [Download CORUM enrichments here](https://docs.google.com/spreadsheets/d/1a_JymRSOHq0ig11d8BZzpX7yBNqgNizO-1dcmran0to/edit?usp=sharing)
+
+[Go to how to read go profiler results section](#How to read Go profiler results)
 
 ## MORE ANALYSIS ON THE WAY 
 
