@@ -787,16 +787,20 @@ To rule out inflammation as a driver of the Reg vs nonReg transcriptional differ
 
 We performed over‑representation enrichment analysis using g:Profiler similar to what we did in Osteosarcoma 
 
+![](figures/axt_KEGG,REAC,WP_enrichment.png?v=2)
+
+[Download here KEGG/REAC/WP enrichments](https://docs.google.com/spreadsheets/d/1u2G4ApoT3-Ru5HIvg39RoBjF9Pbp09PfZ3VQ359RIXU/edit?usp=sharing)
+
+
 #### GO
 ![](figures/axt_GO_enrichment.png?v=2)
 
-#### KEGG, REAC, WP
-
-![](figures/axt_KEGG,REAC,WP_enrichment.png?v=2)
+[Download here GO enrichments](https://docs.google.com/spreadsheets/d/1dCW49iS77fXt7F8ZQ-Q5_LRU53YpOYl0Yci_5BFxyGY/edit?usp=sharing)
 
 #### CORUM
 ![](figures/axt_CORUM_enrichment.png?v=2)
 
+[Download CORUM enrichments here](https://docs.google.com/spreadsheets/d/1a_JymRSOHq0ig11d8BZzpX7yBNqgNizO-1dcmran0to/edit?usp=sharing)
 
 ## MORE ANALYSIS ON THE WAY 
 
