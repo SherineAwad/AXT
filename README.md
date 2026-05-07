@@ -527,7 +527,7 @@ We performed over‑representation enrichment analysis using g:Profiler against 
 
 #### A selective GO plot for interesting enrichments 
 
-![](figures/axt_GO_dotplot.png?v=1) 
+![](figures/axt_GO_enrichment_dotplot.png?v=1)
 
 [Download here the Osteosarcoma GO enrichments](https://docs.google.com/spreadsheets/d/1WMmBSIl0G6ohwbj5UM__B_VqlxE4wHztsTT1ixJeZrQ/edit?usp=sharing)
 
