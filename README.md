@@ -774,13 +774,55 @@ A similarity score between 0 and 1 for any pair of groups, where higher means mo
  
 ![](figures/axt_celltype_similarity_heatmap.png?v=2)
 
-![](figures/axt_pca_all_celltypes.png?v=2)
-
 | Aspect | Cosine Similarity | PCA + Wasserstein |
 |--------|-------------------|-------------------|
 | **What it reflects** | Whether the average expression pattern is the same | Whether the entire population structure is the same |
 | **What it tells you** | If the average expression across all cells is similar between groups | If all cells (rare subpopulations, activated states, full heterogeneity) are similarly distributed |
 
+
+### Celltypes similarities between Reg vs non Reg
+
+#### We use subtype distribution to reveal cell type similarity between Reg vs non Reg 
+
+###### Subcluster Composition Plot
+
+For each subtype within a cell type:
+
+1. Count cells from condition A
+2. Count cells from condition B  
+3. Calculate total = A + B
+4. Proportion A = A / total
+5. Proportion B = B / total
+6. Red bar = Proportion A
+7. Blue bar = Proportion B
+
+Equal bars (both 0.5) = subtype equally represented in both conditions. Unequal bars = subtype enriched in one condition.
+
+<img src="figures/axt_Fibroblast_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Osteosarcoma_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Macrophage_subcluster_composition.png?v=1" width="33%" />
+
+<img src="figures/axt_Basophil_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Neutrophil_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Schwann_subcluster_composition.png?v=1" width="33%" />
+
+<img src="figures/axt_T-Cells_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Chondrocyte_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Osteoblast_subcluster_composition.png?v=1" width="33%" />
+
+<img src="figures/axt_Osteoclast_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Lymphatic_Endothelial_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_NailEpithelium_Keratinocyte_subcluster_composition.png?v=1" width="33%" />
+
+<img src="figures/axt_SMC_Pericyte_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_B-Cells_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_OsteoProgenitor_subcluster_composition.png?v=1" width="33%" />
+
+<img src="figures/axt_SweatGland_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Endothelial_subcluster_composition.png?v=1" width="33%" />
+
+###### Similarity Score Calculation
+
+Using the proportions calculated above, we compute a similarity score for each cell type:
+
+**Step 1:** For each subtype, calculate absolute difference = |Proportion A - Proportion B|
+
+**Step 2:** Average all subtype differences within the cell type
+
+**Step 3:** Similarity = 1 - (Average Difference)
+
+**Step 4:** One bar per cell type in the similarity barplot, where bar height = similarity score
+
+![](figures/axt_subcluster_similarity_barplot.png?v=1)
 
 ### A look into Proliferation Genes
 
