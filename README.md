@@ -420,51 +420,6 @@ Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test 
 
 [📊📊 Download here DGE for Osteosarcoma Reg vs non Reg with adj-pvalue \<0.05](https://docs.google.com/spreadsheets/d/1NbpSDUpz78nXY_4nH0Ksp0ip3VMUfFLsjfP-Aujh6GA/edit?usp=sharing)
 
-
-### How similar are Osteosarcoma cells in Reg vs non Reg 
-
-#### We used a random forest model, for each cell type, can we tell which sample a cell came from just by looking at its gene expression?
-
-To answer this:
-
-1. Take all cells from one cell type (example: all T cells)
-2. Some came from sample A, some from sample B
-3. Train a classifier to guess: based on gene expression, is this T cell from A or B?
-4. Give each cell a score: probability it belongs to sample A
-   - Score 0.9 = "this cell looks like sample A"
-   - Score 0.2 = "this cell looks like sample B"
-   - Score 0.5 = "I can't tell"
-
-Repeat for every cell type separately.
-
-#### What "Gene Expression Similar" Means
-
-**Gene expression similar = The classifier cannot tell which sample a cell came from.**
-
-This happens when:
-- Gene X is high in both sample A and sample B
-- Gene Y is low in both sample A and sample B
-- Every gene follows the same direction in both samples
-
-**Result:** Any sample that is similar to the reference will score 0.5 or above. The classifier leans toward the reference label because the expression patterns look alike.
-
-#### What "Gene Expression Different" Means
-
-**Gene expression different = The classifier can easily tell which sample a cell came from.**
-
-This happens when:
-- Gene X is high in sample A but low in sample B
-- Gene Y is low in sample A but high in sample B
-- Many genes flip direction between samples
-
-**Result:**
-- Sample A scores near **1** (looks like A)
-- Sample B scores near **0** (does not look like A)
-
-![](figures/Osteosarcoma_fidelity_violin.png?v=1)  
-
-
-
 ### A look into Proliferation Genes
 
 To rule out proliferation as a driver of the Reg vs nonReg transcriptional difference in Osteosarcoma, we examined expression of canonical proliferation markers.
@@ -618,12 +573,6 @@ Now overlapping with Secreted genes
 
 
 [📊📊Download Fibroblast DGE Reg vs non Reg with adj-pvalue \<0.05](https://docs.google.com/spreadsheets/d/11xskz0pwZ4XTII-RSRkLTfdnz2vGlNxauW287BD5dFs/edit?usp=sharing) 
-
-### How similar fibroblasts cells in Reg vs nonReg
-
-We used the same random forest model used to answer this question in Osteosarcoma. 
-
-![](figures/Fibroblast_fidelity_violin.png?v=1) 
 
 
 ### A look into Proliferation Genes
@@ -795,11 +744,37 @@ Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about 
 
 ![](figures/axt_cosine_similarity.png?v=7)
 
-### Method 2: Random Forests fidelity scores
+### PCA + Wasserstein Distance
 
-Similar to what we did in Osteosarcoma random forest model. 
+##### Step 1: PCA Dimensionality Reduction
 
-![](figures/axt_fidelity_violin.png?v=1) 
+Every cell has thousands of gene expression values. PCA compresses this into just a few coordinates (PC1, PC2, etc.). Each cell becomes a single point in this simplified space, with its position representing its entire transcriptional state.
+
+##### Step 2: Cloud Representation
+
+For any two groups you want to compare—whether different cell types, different samples, or different conditions—you plot each group as a cloud of points in the PC space.
+
+##### Step 3: Wasserstein Distance Calculation
+
+The Wasserstein distance calculates how much the points in one cloud would need to move to perfectly overlap the other cloud.
+
+- **Small distance** = clouds already overlap = groups are transcriptionally similar
+- **Large distance** = clouds are far apart = groups are transcriptionally different
+
+##### Step 4: Convert to Similarity Score
+
+Similarity = 1 - (distance / max_distance)
+
+- **Higher number (close to 1)** = more similar
+- **Lower number (close to 0)** = more different
+
+##### Output
+
+A similarity score between 0 and 1 for any pair of groups, where higher means more transcriptionally similar.
+ 
+![](figures/axt_celltype_similarity_heatmap.png?v=1)
+
+![](figures/axt_pca_all_celltypes.png?v=1)
 
 ### A look into Proliferation Genes
 
