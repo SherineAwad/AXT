@@ -122,8 +122,7 @@ def main():
     # 1. Heatmap of similarity (1 - normalized distance) - CHANGED TO RED-WHITE-BLUE
     fig, ax = plt.subplots(figsize=(max(8, n_ct * 0.6), max(6, n_ct * 0.5)))
     
-    im = ax.imshow(similarity_matrix, cmap='RdBu_r', aspect='auto', vmin=0, vmax=1)
-    
+    im = ax.imshow(similarity_matrix, cmap='viridis', aspect='auto', vmin=0, vmax=1) 
     ax.set_xticks(range(n_ct))
     ax.set_yticks(range(n_ct))
     ax.set_xticklabels(celltype_list, rotation=45, ha='right', fontsize=9)
