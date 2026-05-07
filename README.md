@@ -776,6 +776,12 @@ A similarity score between 0 and 1 for any pair of groups, where higher means mo
 
 ![](figures/axt_pca_all_celltypes.png?v=2)
 
+| Aspect | Cosine Similarity | PCA + Wasserstein |
+|--------|-------------------|-------------------|
+| **What it reflects** | Whether the average expression pattern is the same | Whether the entire population structure is the same |
+| **What it tells you** | If the average expression across all cells is similar between groups | If all cells (rare subpopulations, activated states, full heterogeneity) are similarly distributed |
+
+
 ### A look into Proliferation Genes
 
 To rule out proliferation as a driver of the Reg vs nonReg transcriptional difference, we examined expression of canonical proliferation markers.
