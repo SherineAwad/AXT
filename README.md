@@ -822,7 +822,7 @@ Using the proportions calculated above, we compute a similarity score for each c
 
 **Step 4:** One bar per cell type in the similarity barplot, where bar height = similarity score
 
-![](figures/axt_subcluster_similarity_barplot.png?v=1)
+![](figures/axt_subcluster_similarity_barplot.png?v=2)
 
 ### A look into Proliferation Genes
 

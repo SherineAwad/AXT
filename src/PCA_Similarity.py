@@ -21,7 +21,6 @@ def get_X(adata):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", required=True)
-    parser.add_argument("--output", required=True)
     parser.add_argument("--prefix", required=True)
     parser.add_argument("--n_pcs", type=int, default=50, help="Number of PCA components")
     parser.add_argument("--max_cells", type=int, default=10000, help="Max cells per cell type")
@@ -178,7 +177,6 @@ def main():
     print(f"Saved: {pca_file}")
     plt.close()
 
-    print(f"\nDone: {args.output}")
 
 if __name__ == "__main__":
     main()
