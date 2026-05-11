@@ -778,7 +778,7 @@ Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about 
 
 ![](figures/axt_cosine_similarity.png?v=7)
 
-### PCA + Wasserstein Distance
+### Method 2: PCA + Wasserstein Distance
 
 # How the Cell Type Similarity Script Works
 
