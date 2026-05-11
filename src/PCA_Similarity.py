@@ -49,6 +49,9 @@ def main():
     celltypes2 = set(adata2.obs["celltype"].unique())
     common_celltypes = sorted(list(celltypes1.intersection(celltypes2)))
     print(f"Common cell types: {common_celltypes}", flush=True)
+    
+    n_ct = len(common_celltypes)
+    print(f"Number of common cell types: {n_ct}", flush=True)
 
     # ------------------------------------------------
     # 1. Build combined matrix for PCA (no concat)
@@ -88,7 +91,7 @@ def main():
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X_combined)
     pca = PCA(n_components=min(args.n_pcs, X_scaled.shape[1], X_scaled.shape[0]))
-    X_pca = pca.fit_transform(X_scaled)
+    pca.fit(X_scaled)
     print(f"  PCA fitted with {pca.n_components_} components", flush=True)
 
     # ------------------------------------------------
@@ -128,7 +131,6 @@ def main():
         dists = [wasserstein_distance(projA[:, i], projB[:, i]) for i in range(n_pcs)]
         return np.mean(dists)
 
-    n_ct = len(common_celltypes)
     dist_matrix = np.zeros((n_ct, n_ct))
     
     print("\nCalculating pairwise distances...", flush=True)
@@ -137,7 +139,7 @@ def main():
             dist_matrix[i, j] = calc_wdist(proj1[ct1], proj2[ct2])
         print(f"  Done: {ct1}", flush=True)
 
-    # FIX 1: Make the distance matrix symmetric
+    # Make the distance matrix symmetric
     dist_matrix = (dist_matrix + dist_matrix.T) / 2
 
     # Normalise to similarity
@@ -154,7 +156,7 @@ def main():
     
     print("\nGenerating plots...", flush=True)
     
-    # Heatmap
+    # 1. Heatmap
     fig, ax = plt.subplots(figsize=(max(10, n_ct * 0.6), max(8, n_ct * 0.5)))
     im = ax.imshow(sim_matrix, cmap='viridis', aspect='auto', vmin=0, vmax=1)
     ax.set_xticks(range(n_ct))
@@ -174,7 +176,7 @@ def main():
     print(f"  Saved: {sim_heatmap}", flush=True)
     plt.close()
 
-    # PCA visualization (first 2 PCs)
+    # 2. PCA visualization (first 2 PCs)
     all_pcs = []
     all_labels = []
     for ct in common_celltypes:
@@ -203,19 +205,25 @@ def main():
     print(f"  Saved: {pca_file}", flush=True)
     plt.close()
 
-    # FIX 2: Diagonal bar plot with wider figure to prevent x-label overlap
-    fig, ax = plt.subplots(figsize=(max(12, n_ct * 0.8), 6))
+    # 3. Diagonal bar plot - FIXED: one bar per cell type
     diag_sims = [sim_matrix[i, i] for i in range(n_ct)]
-    bars = ax.bar(common_celltypes, diag_sims, color=plt.cm.viridis(np.linspace(0.2, 0.8, n_ct)))
+    
+    fig, ax = plt.subplots(figsize=(max(12, n_ct * 0.8), 6))
+    bars = ax.bar(range(n_ct), diag_sims, color=plt.cm.viridis(np.linspace(0.2, 0.8, n_ct)))
+    
     ax.set_xlabel('Cell Type', fontsize=10)
     ax.set_ylabel('Cross-Sample Similarity', fontsize=10)
     ax.set_title(f'Same Cell Type Across Samples\n{args.sample1} vs {args.sample2}', fontsize=12, fontweight='bold')
     ax.set_ylim([0, 1.05])
-    ax.tick_params(axis='x', rotation=45, labelsize=10)
+    ax.set_xticks(range(n_ct))
+    ax.set_xticklabels(common_celltypes, rotation=45, ha='right', fontsize=10)
     ax.axhline(y=0.5, color='red', linestyle='--', alpha=0.5)
     ax.grid(alpha=0.3, axis='y')
+    
     for bar, val in zip(bars, diag_sims):
-        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.02, f'{val:.3f}', ha='center', va='bottom', fontsize=9)
+        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.02, 
+                f'{val:.3f}', ha='center', va='bottom', fontsize=9)
+    
     plt.tight_layout()
     bar_file = os.path.join("figures", f"{args.prefix}_diagonal_similarities.png")
     plt.savefig(bar_file, dpi=300, bbox_inches='tight')
