@@ -806,7 +806,11 @@ Similarity = 1 - (distance / max_distance)
 
 A similarity score between 0 and 1 for any pair of groups, where higher means more transcriptionally similar.
  
-![](figures/axt_celltype_similarity_heatmap.png?v=2)
+![](figures/axt_celltype_similarity_heatmap.png?v=4) 
+ 
+![](figures/axt_pca_all_celltypes.png?v=1)
+
+![](figures/axt_diagonal_similarities.png?v=1) 
 
 | Aspect | Cosine Similarity | PCA + Wasserstein |
 |--------|-------------------|-------------------|
