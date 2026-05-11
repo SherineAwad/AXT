@@ -655,6 +655,31 @@ Here, we followed the same approach we did in Osteosarcoma for dge, but we compa
 
 ![](figures/dotplot__OsteoProgenitor_dotplot.png?v=1)
 
+## Zooming into Fibroblast and OsteoProgentior together
+
+We subset the Fibroblast and OsteoProgenitor together and a summary is below:
+
+| Metric | Value |
+|--------|------|
+| Cells  | 6724  |
+| Genes  | 27808 |
+
+| Sample Type | Count |
+|-------------|-------|
+| Reg         | 4100  |
+| nonReg      | 2624  |
+
+![](figures/Fibroblast_OsteoProgenitor_umap.png?v=1)
+
+![](figures/Fibroblast_OsteoProgenitor_perSample_umap.png?v=1)
+
+![](figures/Fibroblast_OsteoProgenitor_volcano.png?v=1)
+
+<img src="figures/Fibroblast_OsteoProgenitor_Bmp2_featureplot.png?v=1" width="33%" /><img src="figures/Fibroblast_OsteoProgenitor_Bmp5_featureplot.png?v=1" width="33%" /><img src="figures/Fibroblast_OsteoProgenitor_Bmp4_featureplot.png?v=1" width="33%" />
+
+<img src="figures/Fibroblast_OsteoProgenitor_Bmp2_violin.png?v=1" width="33%" /><img src="figures/Fibroblast_OsteoProgenitor_Bmp5_violin.png?v=1" width="33%" /><img src="figures/Fibroblast_OsteoProgenitor_Bmp4_violin.png?v=1" width="33%" />
+
+![](figures/dotplot__Fibroblast_OsteoProgenitor_dotplot.png?v=1)
 
 ## Zooming into celltypes
 

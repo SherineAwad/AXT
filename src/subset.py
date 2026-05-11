@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 parser = argparse.ArgumentParser()
 parser.add_argument("--input", required=True, help="Input h5ad file")
 parser.add_argument("--output", required=True, help="Output h5ad file")
-parser.add_argument("--celltype", required=True, help="Celltype to subset (e.g., T cells)")
+parser.add_argument("--celltype", required=True, help="Celltype(s) to subset (e.g., 'T cells' or 'T cells,B cells' or 'T cells,B cells,Macrophages')")
 parser.add_argument("--prefix", default="output", help="Prefix for saved figures")
 args = parser.parse_args()
 
@@ -21,19 +21,24 @@ adata = sc.read_h5ad(args.input)
 if "celltype" not in adata.obs.columns:
     raise ValueError("celltype column not found in adata.obs")
 
-if args.celltype not in adata.obs["celltype"].unique():
+# Parse celltypes (support comma-separated list)
+celltypes = [ct.strip() for ct in args.celltype.split(",")]
+
+# Check all celltypes exist
+invalid = [ct for ct in celltypes if ct not in adata.obs["celltype"].unique()]
+if invalid:
     available = adata.obs["celltype"].unique()
-    raise ValueError(f"Celltype '{args.celltype}' not found. Available: {available}")
+    raise ValueError(f"Celltype(s) '{invalid}' not found. Available: {available}")
 
 if "sample" not in adata.obs.columns:
     raise ValueError("sample column not found in adata.obs")
 
 # -------------------------
-# Subset
+# Subset (works for 1, 2, or 3+ celltypes)
 # -------------------------
-adata_subset = adata[adata.obs["celltype"] == args.celltype].copy()
+adata_subset = adata[adata.obs["celltype"].isin(celltypes)].copy()
 
-print(f"Subsetted {args.celltype}: {adata_subset.n_obs} cells, {adata_subset.n_vars} genes")
+print(f"Subsetted {celltypes}: {adata_subset.n_obs} cells, {adata_subset.n_vars} genes")
 
 # -------------------------
 # Create output dir
