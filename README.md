@@ -780,32 +780,42 @@ Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about 
 
 ### PCA + Wasserstein Distance
 
-##### Step 1: PCA Dimensionality Reduction
+# How the Cell Type Similarity Script Works
 
-Every cell has thousands of gene expression values. PCA compresses this into just a few coordinates (PC1, PC2, etc.). Each cell becomes a single point in this simplified space, with its position representing its entire transcriptional state.
+## What it does
 
-##### Step 2: Cloud Representation
+It measures how **transcriptionally similar** each cell type is between two samples (e.g., "Reg" vs "nonReg"). For example: are T-cells in Reg similar to T-cells in nonReg? Also, it can compare different cell types (e.g., T-cells in Reg vs B-cells in nonReg).
 
-For any two groups you want to compare—whether different cell types, different samples, or different conditions—you plot each group as a cloud of points in the PC space.
+### Step 1: Find common cell types
+Look at both samples, find which cell types appear in both (e.g., both have T-cells, B-cells, etc.).
 
-##### Step 3: Wasserstein Distance Calculation
+### Step 2: Build one shared "reference space"
+Take a balanced subset of cells from all common cell types (from both samples), stack them together, and fit a **single PCA** on this combined data. This creates one fixed coordinate system where all cells will live.
 
-The Wasserstein distance calculates how much the points in one cloud would need to move to perfectly overlap the other cloud.
+### Step 3: Project all cells into that space
+Take every cell from every cell type (in both samples) and project it into the PCA space from Step 2. Now every cell has coordinates (PC1, PC2, ...) in the **same reference system**.
 
-- **Small distance** = clouds already overlap = groups are transcriptionally similar
-- **Large distance** = clouds are far apart = groups are transcriptionally different
+### Step 4: Compare distributions
+For each pair of cell types (one from sample1, one from sample2), take their PCA coordinates and compare their distributions using **Wasserstein distance** (Earth Mover's Distance). This measures how much you'd need to "move" one group of cells to match the other group, PC by PC. Then average across PCs.
 
-##### Step 4: Convert to Similarity Score
+### Step 5: Convert to similarity
+All distances are normalized to a 0–1 scale where 1 means "identical distributions" (very similar) and 0 means "completely different".
 
-Similarity = 1 - (distance / max_distance)
+### Step 6: Visualize
+- **Heatmap**: Shows similarity between every pair of cell types (sample1 rows vs sample2 columns)
+- **Diagonal bar plot**: Zooms in on same-cell-type comparisons (T-cells vs T-cells, B-cells vs B-cells, etc.)
+- **PCA scatter**: Shows all cells in the first 2 PCs, colored by cell type and sample
 
-- **Higher number (close to 1)** = more similar
-- **Lower number (close to 0)** = more different
 
-##### Output
+By using **one shared PCA** (instead of separate PCAs per cell type), PC1 means the same biological direction for **all** groups. So when you compare T-cells from sample1 vs T-cells from sample2 on PC1, you're comparing the same biological axis. This makes the Wasserstein distance meaningful.
 
-A similarity score between 0 and 1 for any pair of groups, where higher means more transcriptionally similar.
- 
+## What the output tells you
+
+| Similarity Score | Meaning |
+|------------------|---------|
+| Close to 1 (high) | The cell type looks transcriptionally similar between conditions – possibly unaffected by your treatment/condition |
+| Close to 0 (low) | The cell type changed its expression profile between conditions – possibly responding to your treatment |
+
 ![](figures/axt_celltype_similarity_heatmap.png?v=5)
  
 ![](figures/axt_pca_all_celltypes.png?v=2)
