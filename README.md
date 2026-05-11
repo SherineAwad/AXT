@@ -647,6 +647,15 @@ Here, we followed the same approach we did in Osteosarcoma for dge, but we compa
 [📊📊 Downdload here: Reg vs nonReg DGE with cutoff \<0.05](https://docs.google.com/spreadsheets/d/11-FSqCPBHs091N812u3h6CLEcuL40yKE7gKELVwnX84/edit?usp=sharing)
 
 
+![](figures/OsteoProgenitor_volcano.png?v=1)
+
+<img src="figures/OsteoProgenitor_Bmp2_featureplot.png?v=1" width="33%" /><img src="figures/OsteoProgenitor_Bmp5_featureplot.png?v=1" width="33%" /><img src="figures/OsteoProgenitor_Bmp4_featureplot.png?v=1" width="33%" />
+
+<img src="figures/OsteoProgenitor_Bmp5_violin.png?v=1" width="33%" /><img src="figures/OsteoProgenitor_Bmp4_violin.png?v=1" width="33%" /><img src="figures/OsteoProgenitor_Bmp2_violin.png?v=1" width="33%" />
+
+![](figures/dotplot__OsteoProgenitor_dotplot.png?v=1)
+
+
 ## Zooming into celltypes
 
 We performed differential gene expression (DGE) analysis to identify genes differentially expressed across cell types. For each cell type, we applied a Wilcoxon rank-sum test using Scanpy’s rank_genes_groups function with celltype as the grouping variable, comparing each cell type against all remaining cells (one-vs-rest approach). We extracted log fold-changes and adjusted p-values for each comparison, and filtered results using an adjusted p-value threshold of 0.05 to retain statistically significant genes. For downstream visualisation, we selected the top 10 upregulated and top 10 downregulated genes per cell type (--N 10), ranking genes primarily by adjusted p-value with log fold-change used as a secondary criterion within each direction. The final results were visualised in a heatmap displaying log fold-changes of the selected genes across all cell types.
