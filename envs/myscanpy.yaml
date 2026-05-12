@@ -1,0 +1,46 @@
+name: myscanpy
+
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies:
+  - python=3.11.15
+
+  # single-cell core
+  - scanpy=1.11.5
+  - anndata=0.12.10
+  - squidpy=1.8.1
+  - scrublet=0.2.3
+  - umap-learn=0.5.11
+
+  # ML / stats
+  - numpy
+  - scipy=1.17.1
+  - pandas
+  - scikit-learn=1.8.0
+  - statsmodels=0.14.6
+
+  # visualization
+  - matplotlib
+  - seaborn=0.13.2
+  - bokeh=3.9.0
+
+  # spatial / imaging
+  - spatialdata=0.7.2
+  - spatialdata-plot=0.3.0
+  - scikit-image=0.26.0
+  - tifffile
+
+  # distributed / large data
+  - dask=2026.1.1
+  - distributed=2026.1.1
+  - fsspec=2026.2.0
+
+  # IO / utilities
+  - pyyaml=6.0.3
+  - requests=2.32.5
+  - tqdm=4.67.3
+  - ipykernel
+  - fsspec
