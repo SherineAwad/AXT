@@ -827,6 +827,20 @@ By using **one shared PCA** (instead of separate PCAs per cell type), PC1 means 
 | **What it reflects** | Whether the average expression pattern is the same | Whether the entire population structure is the same |
 | **What it tells you** | If the average expression across all cells is similar between groups | If all cells (rare subpopulations, activated states, full heterogeneity) are similarly distributed |
 
+####### WILL ADD MORE DETAILS HERE
+##### PCA Wasserstein HVG 
+![](figures/AXT_pca_wasserstein_hvg5000.png?v=1) 
+
+##### PCA MMD HVG
+
+![](figures/AXT_pca_mmd_hvg5000.png?v=1) 
+
+
+##### Optimal Transport POT HVG
+
+![](figures/AXT_pot_hvg5000_matrix.png?v=1) 
+
+
 
 ### Celltypes similarities between Reg vs non Reg
 
