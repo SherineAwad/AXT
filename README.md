@@ -838,7 +838,7 @@ By using **one shared PCA** (instead of separate PCAs per cell type), PC1 means 
 
 ##### Optimal Transport POT HVG
 
-![](figures/AXT_pot_hvg5000_matrix.png?v=1) 
+![](figures/AXT_pot_hvg5000_matrix.png?v=2) 
 
 
 
