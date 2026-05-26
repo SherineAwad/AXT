@@ -6,7 +6,6 @@ import argparse
 import matplotlib.pyplot as plt
 import palantir
 from palantir.core import run_palantir
-from palantir.presults import compute_gene_trends, cluster_gene_trends
 
 if __name__ == '__main__':
     # -------------------------
@@ -95,23 +94,14 @@ if __name__ == '__main__':
     for branch in pr_res.branch_probs.columns:
         adata.obs[f'palantir_branch_prob_{branch}'] = pr_res.branch_probs[branch].values
     
-    # Add terminal annotation (pseudotime > 0.9 = terminal)
-    adata.obs['terminal_annotation'] = 'non-terminal'
-    terminal_cells = adata.obs['palantir_pseudotime'] > 0.9
-    adata.obs.loc[terminal_cells, 'terminal_annotation'] = 'terminal'
-    
     print("[DEBUG] Palantir completed")
 
     # -------------------------
-    # generate Palantir plots with terminal annotation
+    # generate Palantir plots
     # -------------------------
     print("[DEBUG] Saving Palantir pseudotime UMAP...")
     sc.pl.umap(adata, color="palantir_pseudotime", 
                save=f"_{args.prefix}_palantir_pseudotime.png", show=False)
-    
-    print("[DEBUG] Saving terminal annotation on UMAP...")
-    sc.pl.umap(adata, color="terminal_annotation", 
-               save=f"_{args.prefix}_terminal_on_umap.png", show=False)
     
     print("[DEBUG] Saving Palantir entropy UMAP...")
     sc.pl.umap(adata, color="palantir_entropy",
@@ -130,33 +120,31 @@ if __name__ == '__main__':
                        save=f"_{args.prefix}_branch_{branch_name}.png", show=False)
     
     # -------------------------
-    # PAGA plots with pseudotime and terminal annotation
+    # PAGA with pseudotime
     # -------------------------
     if args.cluster_key in adata.obs.columns:
         print("[DEBUG] Computing PAGA...")
         sc.tl.paga(adata, groups=args.cluster_key)
-        
-        print("[DEBUG] Saving PAGA with pseudotime...")
         sc.pl.paga(adata, color="palantir_pseudotime", 
                    save=f"_{args.prefix}_paga_pseudotime.png", show=False)
-        
-        print("[DEBUG] Saving PAGA with terminal annotation...")
-        sc.pl.paga(adata, color="terminal_annotation", 
-                   save=f"_{args.prefix}_paga_terminal.png", show=False)
 
     # -------------------------
-    # Print terminal branch information
+    # Print terminal branch information and save to CSV
     # -------------------------
     print("\n" + "="*50)
     print("PALANTIR RESULTS")
     print("="*50)
     
+    # Create a list to store results for CSV
+    results_list = []
+    
     # Identify terminal branches
     branch_cols = [c for c in adata.obs.columns if c.startswith("palantir_branch_prob_")]
     if len(branch_cols) > 0:
         print(f"Number of terminal branches detected: {len(branch_cols)}")
-        print("\nTerminal branches and their dominant cell types:")
+        results_list.append({"Metric": "Number of terminal branches", "Value": len(branch_cols)})
         
+        print("\nTerminal branches and their dominant cell types:")
         for branch_col in branch_cols:
             branch_name = branch_col.replace("palantir_branch_prob_", "")
             # Find cells with high probability (>0.8) for this branch
@@ -165,25 +153,37 @@ if __name__ == '__main__':
                 # Get most common cell type in this branch
                 celltype_counts = high_prob_cells[args.cluster_key].value_counts()
                 dominant_celltype = celltype_counts.index[0]
-                print(f"  Branch '{branch_name}': {dominant_celltype} ({len(high_prob_cells)} cells with >0.8 probability)")
-            else:
-                print(f"  Branch '{branch_name}': No cells >0.8 probability")
+                n_cells = len(high_prob_cells)
+                print(f"  Branch '{branch_name}': {dominant_celltype} ({n_cells} cells with >0.8 probability)")
+                results_list.append({"Metric": f"Branch '{branch_name}' dominant cell type", "Value": dominant_celltype})
+                results_list.append({"Metric": f"Branch '{branch_name}' cells with >0.8 probability", "Value": n_cells})
     else:
         print("No branch probabilities found - linear trajectory detected")
+        results_list.append({"Metric": "Trajectory type", "Value": "linear"})
     
     # Print pseudotime range
     if "palantir_pseudotime" in adata.obs.columns:
         pt_min = adata.obs["palantir_pseudotime"].min()
         pt_max = adata.obs["palantir_pseudotime"].max()
         print(f"\nPseudotime range: {pt_min:.2f} to {pt_max:.2f}")
+        results_list.append({"Metric": "Pseudotime min", "Value": pt_min})
+        results_list.append({"Metric": "Pseudotime max", "Value": pt_max})
     
-    # Count terminal vs non-terminal cells
-    n_terminal = terminal_cells.sum()
-    n_non_terminal = (~terminal_cells).sum()
-    print(f"\nTerminal cells (pseudotime > 0.9): {n_terminal}")
-    print(f"Non-terminal cells: {n_non_terminal}")
+    # Add root cell type
+    results_list.append({"Metric": "Root cell type", "Value": args.root})
+    
+    # Add total cells
+    results_list.append({"Metric": "Total cells", "Value": adata.n_obs})
     
     print("="*50 + "\n")
+
+    # -------------------------
+    # Save results to CSV
+    # -------------------------
+    results_df = pd.DataFrame(results_list)
+    csv_filename = f"{args.prefix}_palantir_summary.csv"
+    results_df.to_csv(csv_filename, index=False)
+    print(f"[DEBUG] Summary saved to: {csv_filename}")
 
     # -------------------------
     # summary
@@ -196,10 +196,9 @@ if __name__ == '__main__':
     print(f"Number of terminal branches: {len(branch_cols)}")
     print(f"\nOutputs saved to figures/ directory:")
     print(f"  - Palantir pseudotime: figures/umap_{args.prefix}_palantir_pseudotime.png")
-    print(f"  - Terminal annotation on UMAP: figures/umap_{args.prefix}_terminal_on_umap.png")
     print(f"  - Palantir entropy: figures/umap_{args.prefix}_palantir_entropy.png")
-    print(f"  - PAGA with pseudotime: figures/paga_{args.prefix}_paga_pseudotime.png")
-    print(f"  - PAGA with terminal annotation: figures/paga_{args.prefix}_paga_terminal.png")
     print(f"  - Branch probability UMAPs per terminal branch")
-    print(f"\nOutput file: {args.output}")
+    print(f"  - PAGA with pseudotime: figures/paga_{args.prefix}_paga_pseudotime.png")
+    print(f"\nCSV summary saved to: {csv_filename}")
+    print(f"Output file: {args.output}")
     print("="*50)
