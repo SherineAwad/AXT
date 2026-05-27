@@ -281,9 +281,9 @@ We used the above marker genes to annotate our celltypes as follows:
 #### Cdkn2a > 2.0 and EGFP < 1.0 
 We decontaminate the Osteosarcoma population by removing cells that express Cdkn2a at levels > 2.0, provided that their EGFP expression is < 1.0.
 
-![](figures/umap_axt_before_minExp2.0_maxEGFP1.0.png?v=1)
+![](figures/umap_axt_before_minExp2.0_maxEGFP1.0.png?v=2)
 
-![](figures/umap_axt_after_minExp2.0_maxEGFP1.0.png?v=1)
+![](figures/umap_axt_after_minExp2.0_maxEGFP1.0.png?v=2)
 
 | Stage   | Cells  |
 |---------|-------:|
@@ -295,9 +295,9 @@ We decontaminate the Osteosarcoma population by removing cells that express Cdkn
 #### Cdkn2a > 2.0 and EGFP < 0.5 
 We decontaminate the Osteosarcoma population by removing cells that express Cdkn2a at levels > 2.0, provided that their EGFP expression is < 0.5.
 
-![](figures/umap_axt_before_minExp2.0_maxEGFP0.5.png?v=1) 
+![](figures/umap_axt_before_minExp2.0_maxEGFP0.5.png?v=2) 
 
-![](figures/umap_axt_after_minExp2.0_maxEGFP0.5.png?v=1)
+![](figures/umap_axt_after_minExp2.0_maxEGFP0.5.png?v=2)
 
 | Metric   | Cells |
 |----------|------:|
@@ -311,9 +311,9 @@ We decontaminate the Osteosarcoma population by removing cells that express Cdkn
 
 We decontaminate the Osteosarcoma population by removing cells that express Cdkn2a at levels > 1.5, provided that their EGFP expression is < 0.5.
 
-![](figures/umap_axt_before_minExp1.5_maxEGFP0.5.png?v=1)
+![](figures/umap_axt_before_minExp1.5_maxEGFP0.5.png?v=2)
 
-![](figures/umap_axt_after_minExp1.5_maxEGFP0.5.png?v=1)
+![](figures/umap_axt_after_minExp1.5_maxEGFP0.5.png?v=2)
 
 | Metric   | Cells |
 |----------|------:|
@@ -326,9 +326,9 @@ We decontaminate the Osteosarcoma population by removing cells that express Cdkn
 
 We decontaminate the Osteosarcoma population by removing cells that express Cdkn2a at levels > 1.0, provided that their EGFP expression is < 0.5.
 
-![](figures/umap_axt_before_minExp1.0_maxEGFP0.5.png?v=1)
+![](figures/umap_axt_before_minExp1.0_maxEGFP0.5.png?v=2)
 
-![](figures/umap_axt_after_minExp1.0_maxEGFP0.5.png?v=1)
+![](figures/umap_axt_after_minExp1.0_maxEGFP0.5.png?v=2)
 
 | Metric   | Cells |
 |----------|------:|
@@ -363,7 +363,7 @@ We decontaminate the Osteosarcoma population by removing cells that express Cdkn
 | T-Cells                  | 523   | 1014  | 1537  |
 | **Total**                | 11608 | 18878 | 30486 |
 
-![](figures/axt_decontaminated_cell_ratios.png?v=1)
+![](figures/axt_decontaminated_cell_ratios.png?v=2)
 
 ## 🚨⚠️ **We have to repeat the downstream analysis after the deconatimantion step** ⚠️  🚨
 `
@@ -400,7 +400,7 @@ Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test 
 
 #### Dotplot for genes of interest in Osteosarcoma 
 
-![](figures/dotplot__Osteosarcoma_dotplot.png?v=1)
+![](figures/dotplot__Osteosarcoma_dotplot.png?v=2)
 
 #### Violin plots for genes of interest in Osteosarcoma 
 
@@ -412,11 +412,11 @@ Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test 
 
 #### Feature plots for genes of interest in Osteosarcoma
 
-<img src="figures/Osteosarcoma_Notum_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Bglap2_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Aspn_featureplot.png?v=1" width="33%" />
-<img src="figures/Osteosarcoma_Bglap_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Nbl1_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Panx3_featureplot.png?v=1" width="33%" />
-<img src="figures/Osteosarcoma_Kazald1_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Dcn_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Wif1_featureplot.png?v=1" width="33%" />
-<img src="figures/Osteosarcoma_Cdkn1a_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Alpl_featureplot.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Omd_featureplot.png?v=1" width="33%" />
-<img src="figures/Osteosarcoma_Sparc_featureplot.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Notum_featureplot.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Bglap2_featureplot.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Aspn_featureplot.png?v=2" width="33%" />
+<img src="figures/Osteosarcoma_Bglap_featureplot.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Nbl1_featureplot.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Panx3_featureplot.png?v=2" width="33%" />
+<img src="figures/Osteosarcoma_Kazald1_featureplot.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Dcn_featureplot.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Wif1_featureplot.png?v=2" width="33%" />
+<img src="figures/Osteosarcoma_Cdkn1a_featureplot.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Alpl_featureplot.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Omd_featureplot.png?v=2" width="33%" />
+<img src="figures/Osteosarcoma_Sparc_featureplot.png?v=2" width="33%" />
 
 [📊📊 Download here DGE for Osteosarcoma Reg vs non Reg with adj-pvalue \<0.05](https://docs.google.com/spreadsheets/d/1NbpSDUpz78nXY_4nH0Ksp0ip3VMUfFLsjfP-Aujh6GA/edit?usp=sharing)
 
@@ -430,7 +430,7 @@ To rule out proliferation as a driver of the Reg vs nonReg transcriptional diffe
 
 To rule out inflammation as a driver of the Reg vs nonReg transcriptional difference in Osteosarcoma, we examined expression of canonical inflammatory markers.
 
-![](figures/dotplot__Inflammation_Osteosarcoma_dotplot.png?v=1) 
+![](figures/dotplot__Inflammation_Osteosarcoma_dotplot.png?v=2) 
 
 ## Pathways and GO Enrichment for  Osteosarcoma 
 
@@ -443,7 +443,7 @@ For each GO pathway, we walk through the ranked gene list and asks: are genes fr
 
 We plot the top 15 enriched (highest NES) and top 15 depleted (lowest NES) pathways. X-axis = NES (positive right, negative left). Dot size = |NES| (bigger = stronger). Dot color = -log10(FDR) (darker = more significant). The plot saves to figures/ directory.
 
-![](figures/OsteosarcomaGSEA_dotplot.png?v=1)
+![](figures/OsteosarcomaGSEA_dotplot.png?v=2)
 
 [Download here the full list of Osteosarcoma GSEA](https://docs.google.com/spreadsheets/d/1bJ09-pqIcwq0liNOfoOlPIxs1TCgSPrBq1jRFR21isk/edit?usp=sharing)
 
@@ -482,7 +482,7 @@ We performed over‑representation enrichment analysis using g:Profiler against 
 
 #### A selective GO plot for interesting enrichments 
 
-![](figures/axt_GO_enrichment_dotplot.png?v=1)
+![](figures/axt_GO_enrichment_dotplot.png?v=2)
 
 [Download here the Osteosarcoma GO enrichments](https://docs.google.com/spreadsheets/d/1WMmBSIl0G6ohwbj5UM__B_VqlxE4wHztsTT1ixJeZrQ/edit?usp=sharing)
 
@@ -585,7 +585,7 @@ As we did in Osteosarcoma, to rule out proliferation as a driver of the Reg vs n
 
 As we did in Osteosarcoma, to rule out inflammation as a driver of the Reg vs nonReg transcriptional difference in Fibroblast, we examined expression of canonical inflammatory markers.
 
-![](figures/dotplot__Inflammation_Fibroblast_dotplot.png?v=1)
+![](figures/dotplot__Inflammation_Fibroblast_dotplot.png?v=2)
 
 
 ### GOProfiler: Pathways and GO enrichments for Fibroblast  
@@ -647,13 +647,13 @@ Here, we followed the same approach we did in Osteosarcoma for dge, but we compa
 [📊📊 Downdload here: Reg vs nonReg DGE with cutoff \<0.05](https://docs.google.com/spreadsheets/d/11-FSqCPBHs091N812u3h6CLEcuL40yKE7gKELVwnX84/edit?usp=sharing)
 
 
-![](figures/OsteoProgenitor_volcano.png?v=1)
+![](figures/OsteoProgenitor_volcano.png?v=2)
 
-<img src="figures/OsteoProgenitor_Bmp2_featureplot.png?v=1" width="33%" /><img src="figures/OsteoProgenitor_Bmp5_featureplot.png?v=1" width="33%" /><img src="figures/OsteoProgenitor_Bmp4_featureplot.png?v=1" width="33%" />
+<img src="figures/OsteoProgenitor_Bmp2_featureplot.png?v=2" width="33%" /><img src="figures/OsteoProgenitor_Bmp5_featureplot.png?v=2" width="33%" /><img src="figures/OsteoProgenitor_Bmp4_featureplot.png?v=2" width="33%" />
 
-<img src="figures/OsteoProgenitor_Bmp5_violin.png?v=1" width="33%" /><img src="figures/OsteoProgenitor_Bmp4_violin.png?v=1" width="33%" /><img src="figures/OsteoProgenitor_Bmp2_violin.png?v=1" width="33%" />
+<img src="figures/OsteoProgenitor_Bmp5_violin.png?v=2" width="33%" /><img src="figures/OsteoProgenitor_Bmp4_violin.png?v=2" width="33%" /><img src="figures/OsteoProgenitor_Bmp2_violin.png?v=2" width="33%" />
 
-![](figures/dotplot__OsteoProgenitor_dotplot.png?v=1)
+![](figures/dotplot__OsteoProgenitor_dotplot.png?v=2)
 
 ## Zooming into Fibroblast and OsteoProgentior together
 
@@ -669,17 +669,17 @@ We subset the Fibroblast and OsteoProgenitor together and a summary is below:
 | Reg         | 4100  |
 | nonReg      | 2624  |
 
-![](figures/Fibroblast_OsteoProgenitor_umap.png?v=1)
+![](figures/Fibroblast_OsteoProgenitor_umap.png?v=2)
 
-![](figures/Fibroblast_OsteoProgenitor_perSample_umap.png?v=1)
+![](figures/Fibroblast_OsteoProgenitor_perSample_umap.png?v=2)
 
-![](figures/Fibroblast_OsteoProgenitor_volcano.png?v=1)
+![](figures/Fibroblast_OsteoProgenitor_volcano.png?v=2)
 
-<img src="figures/Fibroblast_OsteoProgenitor_Bmp2_featureplot.png?v=1" width="33%" /><img src="figures/Fibroblast_OsteoProgenitor_Bmp5_featureplot.png?v=1" width="33%" /><img src="figures/Fibroblast_OsteoProgenitor_Bmp4_featureplot.png?v=1" width="33%" />
+<img src="figures/Fibroblast_OsteoProgenitor_Bmp2_featureplot.png?v=2" width="33%" /><img src="figures/Fibroblast_OsteoProgenitor_Bmp5_featureplot.png?v=2" width="33%" /><img src="figures/Fibroblast_OsteoProgenitor_Bmp4_featureplot.png?v=2" width="33%" />
 
-<img src="figures/Fibroblast_OsteoProgenitor_Bmp2_violin.png?v=1" width="33%" /><img src="figures/Fibroblast_OsteoProgenitor_Bmp5_violin.png?v=1" width="33%" /><img src="figures/Fibroblast_OsteoProgenitor_Bmp4_violin.png?v=1" width="33%" />
+<img src="figures/Fibroblast_OsteoProgenitor_Bmp2_violin.png?v=2" width="33%" /><img src="figures/Fibroblast_OsteoProgenitor_Bmp5_violin.png?v=2" width="33%" /><img src="figures/Fibroblast_OsteoProgenitor_Bmp4_violin.png?v=2" width="33%" />
 
-![](figures/dotplot__Fibroblast_OsteoProgenitor_dotplot.png?v=1)
+![](figures/dotplot__Fibroblast_OsteoProgenitor_dotplot.png?v=2)
 
 ## Zooming into celltypes
 
@@ -687,7 +687,7 @@ We performed differential gene expression (DGE) analysis to identify genes diffe
 
 ### Here, we used N=5 per celltype 
 
-![](figures/axt_celltype_heatmap.png?v=11)
+![](figures/axt_celltype_heatmap.png?v=21)
 
 [📊📊 Downdload here: per celltype DGE with cutoff \<0.05](https://docs.google.com/spreadsheets/d/1DnR2domO66krErCqKF8BEU3zf5IzG5T6EZ1Ioekt9lE/edit?usp=sharing) 
 
@@ -829,11 +829,11 @@ By using **one shared PCA** (instead of separate PCAs per cell type), PC1 means 
 
 ####### WILL ADD MORE DETAILS HERE
 ##### PCA Wasserstein HVG 
-![](figures/AXT_pca_wasserstein_hvg5000.png?v=1) 
+![](figures/AXT_pca_wasserstein_hvg5000.png?v=2) 
 
 ##### PCA MMD HVG
 
-![](figures/AXT_pca_mmd_hvg5000.png?v=1) 
+![](figures/AXT_pca_mmd_hvg5000.png?v=2) 
 
 
 ##### Optimal Transport POT HVG
@@ -860,17 +860,17 @@ For each subtype within a cell type:
 
 Equal bars (both 0.5) = subtype equally represented in both conditions. Unequal bars = subtype enriched in one condition.
 
-<img src="figures/axt_Fibroblast_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Osteosarcoma_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Macrophage_subcluster_composition.png?v=1" width="33%" />
+<img src="figures/axt_Fibroblast_subcluster_composition.png?v=2" width="33%" /><img src="figures/axt_Osteosarcoma_subcluster_composition.png?v=2" width="33%" /><img src="figures/axt_Macrophage_subcluster_composition.png?v=2" width="33%" />
 
-<img src="figures/axt_Basophil_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Neutrophil_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Schwann_subcluster_composition.png?v=1" width="33%" />
+<img src="figures/axt_Basophil_subcluster_composition.png?v=2" width="33%" /><img src="figures/axt_Neutrophil_subcluster_composition.png?v=2" width="33%" /><img src="figures/axt_Schwann_subcluster_composition.png?v=2" width="33%" />
 
-<img src="figures/axt_T-Cells_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Chondrocyte_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Osteoblast_subcluster_composition.png?v=1" width="33%" />
+<img src="figures/axt_T-Cells_subcluster_composition.png?v=2" width="33%" /><img src="figures/axt_Chondrocyte_subcluster_composition.png?v=2" width="33%" /><img src="figures/axt_Osteoblast_subcluster_composition.png?v=2" width="33%" />
 
-<img src="figures/axt_Osteoclast_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Lymphatic_Endothelial_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_NailEpithelium_Keratinocyte_subcluster_composition.png?v=1" width="33%" />
+<img src="figures/axt_Osteoclast_subcluster_composition.png?v=2" width="33%" /><img src="figures/axt_Lymphatic_Endothelial_subcluster_composition.png?v=2" width="33%" /><img src="figures/axt_NailEpithelium_Keratinocyte_subcluster_composition.png?v=2" width="33%" />
 
-<img src="figures/axt_SMC_Pericyte_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_B-Cells_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_OsteoProgenitor_subcluster_composition.png?v=1" width="33%" />
+<img src="figures/axt_SMC_Pericyte_subcluster_composition.png?v=2" width="33%" /><img src="figures/axt_B-Cells_subcluster_composition.png?v=2" width="33%" /><img src="figures/axt_OsteoProgenitor_subcluster_composition.png?v=2" width="33%" />
 
-<img src="figures/axt_SweatGland_subcluster_composition.png?v=1" width="33%" /><img src="figures/axt_Endothelial_subcluster_composition.png?v=1" width="33%" />
+<img src="figures/axt_SweatGland_subcluster_composition.png?v=2" width="33%" /><img src="figures/axt_Endothelial_subcluster_composition.png?v=2" width="33%" />
 
 ###### Similarity Score Calculation
 
@@ -933,31 +933,23 @@ Since the true biological root is not known in advance, we ran Palantir using ev
 
 Lets cluster Osteosarcoma for Palantir 
 
-![](figures/umap_Osteosarcoma_clusters.png?v=1) 
+![](figures/umap_Osteosarcoma_clusters.png?v=2) 
 
 
 ### Trajectory per each Leiden as a root
 
 Each panel shows the Palantir-derived trajectory path superimposed on the UMAP for a different root cluster (0-14). The trajectory is shown as a solid line connecting the root to the terminal end of the trajectory. The line itself does not show pseudotime gradient; pseudotime is instead shown in separate UMAP plots. In all panels, the trajectory forms a continuous linear path spanning the UMAP from one end to the opposite end. The orientation of the trajectory (which end connects to the root) depends on the chosen root cluster.
 
-<img src="figures/Osteosarcoma_Palantir_0_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_1_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_2_trajectories.png?v=1" width="33%" />
-<img src="figures/Osteosarcoma_Palantir_3_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_4_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_5_trajectories.png?v=1" width="33%" />
-<img src="figures/Osteosarcoma_Palantir_6_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_7_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_8_trajectories.png?v=1" width="33%" />
-<img src="figures/Osteosarcoma_Palantir_9_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_10_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_11_trajectories.png?v=1" width="33%" />
-<img src="figures/Osteosarcoma_Palantir_12_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_13_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_14_trajectories.png?v=1" width="33%" />
-
-### Pseudotime UMAP per each Leiden cluster as a root
-
 Each UMAP shows cells colored by Palantir pseudotime using a different Leiden cluster (0–14) as the root. Dark purple represents early cells (pseudotime near 0, corresponding to the selected root), while bright yellow represents late cells (pseudotime near 1).
 
 For each root choice, Palantir assigns a continuous pseudotime ordering across the transcriptional manifold. The location of pseudotime 0 shifts to the selected root cluster, while higher pseudotime values are assigned to transcriptionally distant cell states. This illustrates the inferred direction of transcriptional progression under different root assumptions.
 
-<img src="figures/umap_Osteosarcoma_Palantir_0_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_1_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_2_palantir_pseudotime.png?v=1" width="33%" />
-<img src="figures/umap_Osteosarcoma_Palantir_3_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_4_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_5_palantir_pseudotime.png?v=1" width="33%" />
-<img src="figures/umap_Osteosarcoma_Palantir_6_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_7_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_8_palantir_pseudotime.png?v=1" width="33%" />
-<img src="figures/umap_Osteosarcoma_Palantir_9_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_10_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_11_palantir_pseudotime.png?v=1" width="33%" />
-<img src="figures/umap_Osteosarcoma_Palantir_12_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_13_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_14_palantir_pseudotime.png?v=1" width="33%" />
 
+<img src="figures/Osteosarcoma_Palantir_0_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_1_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_2_trajectories.png?v=2" width="33%" />
+<img src="figures/Osteosarcoma_Palantir_3_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_4_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_5_trajectories.png?v=2" width="33%" />
+<img src="figures/Osteosarcoma_Palantir_6_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_7_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_8_trajectories.png?v=2" width="33%" />
+<img src="figures/Osteosarcoma_Palantir_9_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_10_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_11_trajectories.png?v=2" width="33%" />
+<img src="figures/Osteosarcoma_Palantir_12_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_13_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_14_trajectories.png?v=2" width="33%" />
 
 ## MORE ANALYSIS ON THE WAY 
 

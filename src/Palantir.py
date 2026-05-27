@@ -135,39 +135,18 @@ if __name__ == '__main__':
         root_prefix = f"{args.prefix}_{current_root}"
         
         # -------------------------
-        # Plot 1: Pseudotime UMAP
-        # -------------------------
-        print("[DEBUG] Saving Palantir pseudotime UMAP...")
-        sc.pl.umap(adata, color="palantir_pseudotime", show=False)
-        plt.savefig(f"figures/umap_{root_prefix}_palantir_pseudotime.png", dpi=150, bbox_inches="tight")
-        plt.close()
-        print(f"[DEBUG] Saved: figures/umap_{root_prefix}_palantir_pseudotime.png")
-        
-        # -------------------------
-        # Plot 2: Trajectories using branch masks (from tutorial)
+        # Plot: Trajectories using branch masks (from tutorial)
         # -------------------------
         try:
             print("[DEBUG] Plotting trajectories with branch masks...")
             fig, ax = plt.subplots(figsize=(10, 8))
-            palantir.plot.plot_trajectories(adata, cell_color="branch_selection", pseudotime_interval=(0, 0.9), ax=ax)
+            palantir.plot.plot_trajectories(adata, cell_color="palantir_pseudotime")
             plt.title(f"Trajectories (root: {current_root})")
             plt.savefig(f"figures/{root_prefix}_trajectories.png", dpi=150, bbox_inches="tight")
             plt.close()
             print(f"[DEBUG] Trajectories plot saved: figures/{root_prefix}_trajectories.png")
         except Exception as e:
             print(f"[WARNING] Could not plot trajectories with branch_selection: {e}")
-            # Fallback: try without branch_selection
-            try:
-                print("[DEBUG] Trying trajectory plot without branch_selection...")
-                fig, ax = plt.subplots(figsize=(10, 8))
-                palantir.plot.plot_trajectories(adata, pseudotime_interval=(0, 0.9), ax=ax)
-                plt.title(f"Trajectories (root: {current_root})")
-                plt.savefig(f"figures/{root_prefix}_trajectories.png", dpi=150, bbox_inches="tight")
-                plt.close()
-                print(f"[DEBUG] Trajectories plot saved (fallback): figures/{root_prefix}_trajectories.png")
-            except Exception as e2:
-                print(f"[WARNING] Could not plot trajectories (fallback): {e2}")
-        
         # -------------------------
         # Calculate entropy based on cell assignments (not broken branch probabilities)
         # This matches Palantir's theoretical entropy calculation
@@ -284,7 +263,6 @@ if __name__ == '__main__':
             print(f"Cells per branch: {[int(x) for x in cells_per_branch]}")
         print(f"\nOutputs saved:")
         print(f"  - Cluster UMAP: figures/umap_{args.prefix}_{args.cluster_key}.png")
-        print(f"  - Pseudotime UMAP: figures/umap_{root_prefix}_palantir_pseudotime.png")
         print(f"  - Trajectories plot: figures/{root_prefix}_trajectories.png")
         print(f"  - CSV summary: {csv_filename}")
         print("="*50)
