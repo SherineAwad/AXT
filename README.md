@@ -923,11 +923,22 @@ We performed over‑representation enrichment analysis using g:Profiler similar 
 
 ## Trajectory analysis 
 
+Palantir is an algorithm that orders cells along a continuous path based on transcriptional similarity. 
+
+First, Palantir reduces gene expression to principal components, then builds a graph where each cell is a node and edges connect transcriptionally similar cells. It then simulates random walks on this graph — imagine a "walker" jumping from cell to cell, with higher probability of jumping to more similar cells. By analyzing the flow of these random walks, Palantir computes pseudotime (scored from 0 to 1, where 0 = early and 1 = late). The algorithm requires the user to specify a root cell as the starting point.
+
+Since the true biological root is not known in advance, we ran Palantir using every Leiden cluster as a potential root. This allows us to evaluate whether the inferred trajectory is consistent regardless of the chosen starting point.
+
 #### Zooming on Osteosarcoma 
 
 Lets cluster Osteosarcoma for Palantir 
 
 ![](figures/umap_Osteosarcoma_clusters.png?v=1) 
+
+
+### Trajectory per each Leiden as a root
+
+Each panel shows the Palantir-derived trajectory path superimposed on the UMAP for a different root cluster (0-14). The trajectory is shown as a solid line connecting the root to the terminal end of the trajectory. The line itself does not show pseudotime gradient; pseudotime is instead shown in separate UMAP plots. In all panels, the trajectory forms a continuous linear path spanning the UMAP from one end to the opposite end. The orientation of the trajectory (which end connects to the root) depends on the chosen root cluster.
 
 <img src="figures/Osteosarcoma_Palantir_0_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_1_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_2_trajectories.png?v=1" width="33%" />
 <img src="figures/Osteosarcoma_Palantir_3_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_4_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_5_trajectories.png?v=1" width="33%" />
@@ -935,7 +946,11 @@ Lets cluster Osteosarcoma for Palantir
 <img src="figures/Osteosarcoma_Palantir_9_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_10_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_11_trajectories.png?v=1" width="33%" />
 <img src="figures/Osteosarcoma_Palantir_12_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_13_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_14_trajectories.png?v=1" width="33%" />
 
-and Pseudotime umap 
+### Pseudotime UMAP per each Leiden cluster as a root
+
+Each UMAP shows cells colored by Palantir pseudotime using a different Leiden cluster (0–14) as the root. Dark purple represents early cells (pseudotime near 0, corresponding to the selected root), while bright yellow represents late cells (pseudotime near 1).
+
+For each root choice, Palantir assigns a continuous pseudotime ordering across the transcriptional manifold. The location of pseudotime 0 shifts to the selected root cluster, while higher pseudotime values are assigned to transcriptionally distant cell states. This illustrates the inferred direction of transcriptional progression under different root assumptions.
 
 <img src="figures/umap_Osteosarcoma_Palantir_0_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_1_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_2_palantir_pseudotime.png?v=1" width="33%" />
 <img src="figures/umap_Osteosarcoma_Palantir_3_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_4_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_5_palantir_pseudotime.png?v=1" width="33%" />
