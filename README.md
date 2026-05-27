@@ -919,6 +919,31 @@ We performed over‑representation enrichment analysis using g:Profiler similar 
 
 [Go to how to read go profiler results section](#how-to-read-go-profiler-results)
 
+
+
+## Trajectory analysis 
+
+#### Zooming on Osteosarcoma 
+
+Lets cluster Osteosarcoma for Palantir 
+
+![](figures/umap_Osteosarcoma_clusters.png?v=1) 
+
+<img src="figures/Osteosarcoma_Palantir_0_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_1_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_2_trajectories.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Palantir_3_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_4_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_5_trajectories.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Palantir_6_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_7_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_8_trajectories.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Palantir_9_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_10_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_11_trajectories.png?v=1" width="33%" />
+<img src="figures/Osteosarcoma_Palantir_12_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_13_trajectories.png?v=1" width="33%" /><img src="figures/Osteosarcoma_Palantir_14_trajectories.png?v=1" width="33%" />
+
+and Pseudotime umap 
+
+<img src="figures/umap_Osteosarcoma_Palantir_0_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_1_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_2_palantir_pseudotime.png?v=1" width="33%" />
+<img src="figures/umap_Osteosarcoma_Palantir_3_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_4_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_5_palantir_pseudotime.png?v=1" width="33%" />
+<img src="figures/umap_Osteosarcoma_Palantir_6_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_7_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_8_palantir_pseudotime.png?v=1" width="33%" />
+<img src="figures/umap_Osteosarcoma_Palantir_9_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_10_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_11_palantir_pseudotime.png?v=1" width="33%" />
+<img src="figures/umap_Osteosarcoma_Palantir_12_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_13_palantir_pseudotime.png?v=1" width="33%" /><img src="figures/umap_Osteosarcoma_Palantir_14_palantir_pseudotime.png?v=1" width="33%" />
+
+
 ## MORE ANALYSIS ON THE WAY 
 
 
