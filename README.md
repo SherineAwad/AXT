@@ -575,6 +575,44 @@ Now overlapping with Secreted genes
 [📊📊Download Fibroblast DGE Reg vs non Reg with adj-pvalue \<0.05](https://docs.google.com/spreadsheets/d/11xskz0pwZ4XTII-RSRkLTfdnz2vGlNxauW287BD5dFs/edit?usp=sharing) 
 
 
+
+### Zooming into Macrophage: A look into subtypes
+
+We subset Macrophage:
+
+![](figures/Macrophage_umap.png?v=1)
+![](figures/Macrophage_perSample_umap.png?v=1) 
+
+Then further cluster to see subtypes: 
+
+![](figures/umap_Macrophage_clusters.png?v=1)  
+
+
+#### A look into marker genes of Macrophage subtypes 
+
+![](figures/dotplot__MacrophageSubtypes_dotplot.png?v=1)
+
+<img src="figures/umap_MacrophageSubtypes_Atp6v1b2.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Ccr2.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Lyz2.png?v=1" width="33%" />
+
+<img src="figures/umap_MacrophageSubtypes_C5ar1.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Cd74.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_C1qa.png?v=1" width="33%" />
+
+<img src="figures/umap_MacrophageSubtypes_H2-Aa.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Trem2.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Csf1r.png?v=1" width="33%" />
+
+<img src="figures/umap_MacrophageSubtypes_Ccl3.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_H2-Ab1.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Ccl4.png?v=1" width="33%" />
+
+<img src="figures/umap_MacrophageSubtypes_H2-Eb1.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Ctsk.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Uqcr11.png?v=1" width="33%" />
+
+<img src="figures/umap_MacrophageSubtypes_Plac8.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Aif1.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Atp6v0d2.png?v=1" width="33%" />
+
+<img src="figures/umap_MacrophageSubtypes_Uqcr10.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Cd209a.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_H2-DMa.png?v=1" width="33%" />
+
+<img src="figures/umap_MacrophageSubtypes_Ccr7.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Mrc1.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_S100a8.png?v=1" width="33%" />
+
+<img src="figures/umap_MacrophageSubtypes_C1qb.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_G0s2.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Cxcl2.png?v=1" width="33%" />
+
+<img src="figures/umap_MacrophageSubtypes_Mmp9.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_C1qc.png?v=1" width="33%" />
+
+
 ### A look into Proliferation Genes
 
 As we did in Osteosarcoma, to rule out proliferation as a driver of the Reg vs nonReg transcriptional difference in Fibroblast, we examined expression of canonical proliferation markers.
