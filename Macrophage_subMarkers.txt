@@ -1,0 +1,5 @@
+Monocyte:Plac8,Ccr2
+Inflamation: C5ar1,G0s2,S100a8,Ccl3,Ccl4,Cxcl2,Ll1a,Ll1b
+Resolution:Aif1,Mrc1,C1qa,C1qb,C1qc,Lyz2,Csf1r,Trem2
+Dendritic:H2-Eb1,Cd74,H2-Ab1,H2-DMa,H2-Aa,Ccr7,Cd209a,H2-Dmb1
+Osteoclast:Ctsk,Mmp9,Atp6v0d2,Atp6v1b2,Uqcr10,Uqcr11,Nfact1

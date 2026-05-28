@@ -590,7 +590,7 @@ Then further cluster to see subtypes:
 
 #### A look into marker genes of Macrophage subtypes 
 
-![](figures/dotplot__MacrophageSubtypes_dotplot.png?v=1)
+![](figures/dotplot__MacrophageSubtypes_dotplot.png?v=2) 
 
 <img src="figures/umap_MacrophageSubtypes_Atp6v1b2.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Ccr2.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Lyz2.png?v=1" width="33%" />
 
