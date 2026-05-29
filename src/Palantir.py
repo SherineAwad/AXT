@@ -266,7 +266,9 @@ if __name__ == '__main__':
         print(f"  - Trajectories plot: figures/{root_prefix}_trajectories.png")
         print(f"  - CSV summary: {csv_filename}")
         print("="*50)
-    
+    # Save annotated data
+    adata.write_h5ad(args.output)
+    print(f"[DEBUG] Saved annotated data to {args.output}") 
     # -------------------------
     # Create summary table comparing all roots
     # -------------------------
