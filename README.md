@@ -514,6 +514,29 @@ We performed over‑representation enrichment analysis using g:Profiler against 
 | **gene_count** | Your custom added field that is exactly the same as intersection_size, just renamed for clarity in your plotting code |
 | **neg_log10_pval** | Your custom calculated field which is -log10(p_value), where small p-values become larger positive numbers (p=0.001 becomes 3, p=0.000001 becomes 6), making visualization easier on plots |
 
+
+### Pseudotime trajectory for Osteosarcoma
+
+Lets cluster Osteosarcoma for Palantir
+
+![](figures/umap_Osteosarcoma_clusters.png?v=2)
+
+
+## Trajectory per each Leiden as a root
+
+Each panel shows the Palantir-derived trajectory path superimposed on the UMAP for a different root cluster (0-14). The trajectory is shown as a solid line connecting the root to the terminal end of the trajectory. The line itself does not show pseudotime gradient; pseudotime is instead shown in separate UMAP plots. In all panels, the trajectory forms a continuous linear path spanning the UMAP from one end to the opposite end. The orientation of the trajectory (which end connects to the root) depends on the chosen root cluster.
+
+Each UMAP shows cells colored by Palantir pseudotime using a different Leiden cluster (0–14) as the root. Dark purple represents early cells (pseudotime near 0, corresponding to the selected root), while bright yellow represents late cells (pseudotime near 1).
+
+For each root choice, Palantir assigns a continuous pseudotime ordering across the transcriptional manifold. The location of pseudotime 0 shifts to the selected root cluster, while higher pseudotime values are assigned to transcriptionally distant cell states. This illustrates the inferred direction of transcriptional progression under different root assumptions.
+
+
+<img src="figures/Osteosarcoma_Palantir_0_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_1_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_2_trajectories.png?v=2" width="33%" />
+<img src="figures/Osteosarcoma_Palantir_3_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_4_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_5_trajectories.png?v=2" width="33%" />
+<img src="figures/Osteosarcoma_Palantir_6_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_7_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_8_trajectories.png?v=2" width="33%" />
+<img src="figures/Osteosarcoma_Palantir_9_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_10_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_11_trajectories.png?v=2" width="33%" />
+<img src="figures/Osteosarcoma_Palantir_12_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_13_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_14_trajectories.png?v=2" width="33%" />
+
 ## Zooming on Fibroblast 
 
 We subset Fibroblast cell type, below is a summary:
@@ -611,6 +634,18 @@ Then further cluster to see subtypes:
 <img src="figures/umap_MacrophageSubtypes_C1qb.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_G0s2.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Cxcl2.png?v=1" width="33%" />
 
 <img src="figures/umap_MacrophageSubtypes_Mmp9.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_C1qc.png?v=1" width="33%" />
+
+
+### Pseudotime trajectory for Macrophage 
+
+Similar to pseudotime trajectory in Osteosarcoma, we used Palantir to detect the pseudotime trajectory, loopign through different roots as we lack the biological prior info about the early state. 
+
+<img src="figures/Macrophage_Palantir_0_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_1_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_2_trajectories.png?v=1" width="33%" />
+<img src="figures/Macrophage_Palantir_3_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_4_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_5_trajectories.png?v=1" width="33%" />
+<img src="figures/Macrophage_Palantir_6_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_7_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_8_trajectories.png?v=1" width="33%" />
+<img src="figures/Macrophage_Palantir_9_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_10_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_11_trajectories.png?v=1" width="33%" />
+<img src="figures/Macrophage_Palantir_12_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_13_trajectories.png?v=1" width="33%" />
+
 
 
 ### A look into Proliferation Genes
