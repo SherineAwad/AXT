@@ -105,16 +105,16 @@ if __name__ == '__main__':
             seed=42
         )
         
-        # Add results to adata
-        adata.obs['palantir_pseudotime'] = pr_res.pseudotime
-        adata.obs['palantir_entropy'] = pr_res.entropy
+        # Add results to adata with root-specific column names
+        adata.obs[f'palantir_pseudotime_{current_root}'] = pr_res.pseudotime
+        adata.obs[f'palantir_entropy_{current_root}'] = pr_res.entropy
         
-        # Add branch probabilities
+        # Add branch probabilities with root-specific names
         for branch in pr_res.branch_probs.columns:
-            adata.obs[f'palantir_branch_prob_{branch}'] = pr_res.branch_probs[branch].values
+            adata.obs[f'palantir_branch_prob_{current_root}_{branch}'] = pr_res.branch_probs[branch].values
         
         # Normalize branch probabilities to sum to 1
-        branch_cols = [c for c in adata.obs.columns if c.startswith("palantir_branch_prob_")]
+        branch_cols = [c for c in adata.obs.columns if c.startswith(f"palantir_branch_prob_{current_root}_")]
         if len(branch_cols) > 0:
             prob_sum = adata.obs[branch_cols].sum(axis=1)
             prob_sum = prob_sum.replace(0, 1)
@@ -140,20 +140,23 @@ if __name__ == '__main__':
         try:
             print("[DEBUG] Plotting trajectories with branch masks...")
             fig, ax = plt.subplots(figsize=(10, 8))
-            palantir.plot.plot_trajectories(adata, cell_color="palantir_pseudotime")
+            # Use the root-specific pseudotime for coloring
+            adata.obs['temp_pseudotime'] = adata.obs[f'palantir_pseudotime_{current_root}']
+            palantir.plot.plot_trajectories(adata, cell_color="temp_pseudotime")
             plt.title(f"Trajectories (root: {current_root})")
             plt.savefig(f"figures/{root_prefix}_trajectories.png", dpi=150, bbox_inches="tight")
             plt.close()
+            # Clean up temporary column
+            del adata.obs['temp_pseudotime']
             print(f"[DEBUG] Trajectories plot saved: figures/{root_prefix}_trajectories.png")
         except Exception as e:
-            print(f"[WARNING] Could not plot trajectories with branch_selection: {e}")
+            print(f"[WARNING] Could not plot trajectories: {e}")
+        
         # -------------------------
-        # Calculate entropy based on cell assignments (not broken branch probabilities)
-        # This matches Palantir's theoretical entropy calculation
+        # Calculate entropy based on cell assignments
         # -------------------------
-        branch_cols = [c for c in adata.obs.columns if c.startswith("palantir_branch_prob_")]
+        branch_cols = [c for c in adata.obs.columns if c.startswith(f"palantir_branch_prob_{current_root}_")]
         branch_assignment_entropy = 0.0
-        branch_prob_from_counts = []
         
         if len(branch_cols) > 0:
             # Get cell assignments (which branch each cell belongs to)
@@ -186,7 +189,7 @@ if __name__ == '__main__':
         print("="*50)
         
         results_list = []
-        branch_cols = [c for c in adata.obs.columns if c.startswith("palantir_branch_prob_")]
+        branch_cols = [c for c in adata.obs.columns if c.startswith(f"palantir_branch_prob_{current_root}_")]
         
         if len(branch_cols) > 0:
             print(f"Number of terminal branches detected: {len(branch_cols)}")
@@ -200,7 +203,7 @@ if __name__ == '__main__':
             
             print("\nTerminal branches:")
             for i, branch_col in enumerate(branch_cols):
-                branch_name = branch_col.replace("palantir_branch_prob_", "")
+                branch_name = branch_col.replace(f"palantir_branch_prob_{current_root}_", "")
                 branch_assignments = np.argmax(branch_prob_matrix, axis=1)
                 cells_in_branch = (branch_assignments == i).sum()
                 
@@ -219,14 +222,15 @@ if __name__ == '__main__':
             print("No branch probabilities found - linear trajectory detected")
             results_list.append({"Metric": "Trajectory type", "Value": "linear"})
         
-        if "palantir_pseudotime" in adata.obs.columns:
-            pt_min = adata.obs["palantir_pseudotime"].min()
-            pt_max = adata.obs["palantir_pseudotime"].max()
+        pt_col = f'palantir_pseudotime_{current_root}'
+        if pt_col in adata.obs.columns:
+            pt_min = adata.obs[pt_col].min()
+            pt_max = adata.obs[pt_col].max()
             print(f"\nPseudotime range: {pt_min:.2f} to {pt_max:.2f}")
             results_list.append({"Metric": "Pseudotime min", "Value": pt_min})
             results_list.append({"Metric": "Pseudotime max", "Value": pt_max})
         
-        # Add entropy from cell assignments (this is the correct theoretical entropy)
+        # Add entropy from cell assignments
         results_list.append({"Metric": "Branch entropy (from cell counts)", "Value": branch_assignment_entropy})
         results_list.append({"Metric": "Branch distribution (cells per branch)", "Value": str([int(x) for x in cells_per_branch]) if len(branch_cols) > 0 else "linear"})
         
@@ -247,8 +251,8 @@ if __name__ == '__main__':
             "Num_branches": len(branch_cols),
             "Branch_entropy_from_counts": branch_assignment_entropy,
             "Cells_per_branch": str([int(x) for x in cells_per_branch]) if len(branch_cols) > 0 else "linear",
-            "Pseudotime_min": pt_min if "palantir_pseudotime" in adata.obs.columns else np.nan,
-            "Pseudotime_max": pt_max if "palantir_pseudotime" in adata.obs.columns else np.nan
+            "Pseudotime_min": pt_min if pt_col in adata.obs.columns else np.nan,
+            "Pseudotime_max": pt_max if pt_col in adata.obs.columns else np.nan
         })
         
         # Summary for this root
@@ -266,9 +270,11 @@ if __name__ == '__main__':
         print(f"  - Trajectories plot: figures/{root_prefix}_trajectories.png")
         print(f"  - CSV summary: {csv_filename}")
         print("="*50)
-    # Save annotated data
+    
+    # Save annotated data with all root-specific columns
     adata.write_h5ad(args.output)
-    print(f"[DEBUG] Saved annotated data to {args.output}") 
+    print(f"[DEBUG] Saved annotated data to {args.output}")
+    
     # -------------------------
     # Create summary table comparing all roots
     # -------------------------
@@ -285,21 +291,16 @@ if __name__ == '__main__':
         print(f"\n[DEBUG] Summary table saved to: {summary_csv}")
         
         # Determine most probable trajectory based on entropy from cell counts
-        # Higher entropy = more balanced branching = more likely to be a true branch point
-        # Roots with entropy near 0 are effectively linear
         if "Branch_entropy_from_counts" in summary_df.columns:
-            # Filter out roots with linear trajectory (0 entropy) for branching candidate
             branching_roots = summary_df[summary_df["Branch_entropy_from_counts"] > 0.1]
             if len(branching_roots) > 0:
                 best_branching_root = branching_roots.loc[branching_roots["Branch_entropy_from_counts"].idxmax(), "Root"]
                 best_entropy = branching_roots["Branch_entropy_from_counts"].max()
                 print(f"\n[INFO] Most probable branching trajectory: Root {best_branching_root} (entropy: {best_entropy:.4f})")
-                print(f"       Higher entropy indicates more balanced branching between fates.")
             else:
                 print("\n[INFO] No roots show evidence of branching (all entropy near 0).")
                 print("       The data most likely follows a linear trajectory.")
             
-            # Also list linear trajectory roots (entropy = 0 or effectively 0)
             linear_roots = summary_df[summary_df["Branch_entropy_from_counts"] == 0]["Root"].tolist()
             if len(linear_roots) > 0:
                 print(f"\n[INFO] Roots producing linear trajectory (1 effective branch): {linear_roots}")
