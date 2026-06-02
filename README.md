@@ -774,7 +774,7 @@ We performed differential gene expression (DGE) analysis to identify genes diffe
 [📊📊 Downdload here: per celltype DGE with cutoff \<0.05](https://docs.google.com/spreadsheets/d/1DnR2domO66krErCqKF8BEU3zf5IzG5T6EZ1Ioekt9lE/edit?usp=sharing) 
 
 
-## 🧬 Cell–Cell Interaction Analysis (LIANA)
+## 🧬 CLigand-receptor Interaction Analysis (LIANA)
 
 This pipeline identifies potential **ligand–receptor interactions** from single-cell RNA-seq data using the LIANA framework. LIANA integrates multiple established methods into a single consensus scoring system.
 
