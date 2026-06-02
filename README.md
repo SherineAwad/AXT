@@ -780,9 +780,17 @@ This pipeline identifies potential **ligand–receptor interactions** from singl
 
 #### Top lrScores interactions with minimum |logFC| 0.0 (Mostly rank by lrScore)
 
-![](figures/axt_liana_dotplot.png?=7)
+###### In Reg samples
 
-[📊📊Download full list of liana ligand-receptors interactions](https://docs.google.com/spreadsheets/d/1R2F82YcbmA1HZVSJf199n3f2_aNu_c1T5DaK8LR1iwk/edit?usp=sharing)
+![](figures/axt_Reg_liana_dotplot.png?v=1)
+
+[📊📊Download full list Reg liana interactions](https://docs.google.com/spreadsheets/d/1n3rmnXfr2sJ2uviMtL7ka2wO3z5v-G6c7GK__mgSXIY/edit?usp=sharing)
+
+##### In nonReg samples 
+
+![](figures/axt_nonReg_liana_dotplot.png?v=1)
+
+[📊📊Download full list of non Reg liana interactions](https://docs.google.com/spreadsheets/d/12CKVWoDvgwXmxkREkMPPZPiNkc15iRt7CHolILmlS0M/edit?usp=sharing) 
 
 ### Ligand–receptor inference (LIANA)
 The script runs `liana.mt.rank_aggregate`, which integrates multiple tools:

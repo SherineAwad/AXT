@@ -6,8 +6,21 @@ import matplotlib.pyplot as plt
 parser = argparse.ArgumentParser()
 parser.add_argument("--input", required=True, help="Input h5ad file")
 parser.add_argument("--output", required=True, help="Output h5ad file")
-parser.add_argument("--celltype", required=True, help="Celltype(s) to subset (e.g., 'T cells' or 'T cells,B cells' or 'T cells,B cells,Macrophages')")
+
+parser.add_argument(
+    "--celltype",
+    default=None,
+    help="Celltype(s) to subset (comma-separated)"
+)
+
+parser.add_argument(
+    "--sample",
+    default=None,
+    help="Sample(s) to subset (comma-separated)"
+)
+
 parser.add_argument("--prefix", default="output", help="Prefix for saved figures")
+
 args = parser.parse_args()
 
 # -------------------------
@@ -21,24 +34,36 @@ adata = sc.read_h5ad(args.input)
 if "celltype" not in adata.obs.columns:
     raise ValueError("celltype column not found in adata.obs")
 
-# Parse celltypes (support comma-separated list)
-celltypes = [ct.strip() for ct in args.celltype.split(",")]
-
-# Check all celltypes exist
-invalid = [ct for ct in celltypes if ct not in adata.obs["celltype"].unique()]
-if invalid:
-    available = adata.obs["celltype"].unique()
-    raise ValueError(f"Celltype(s) '{invalid}' not found. Available: {available}")
-
 if "sample" not in adata.obs.columns:
     raise ValueError("sample column not found in adata.obs")
 
 # -------------------------
-# Subset (works for 1, 2, or 3+ celltypes)
+# Subset by celltype (if provided)
 # -------------------------
-adata_subset = adata[adata.obs["celltype"].isin(celltypes)].copy()
+if args.celltype is not None:
+    celltypes = [ct.strip() for ct in args.celltype.split(",")]
 
-print(f"Subsetted {celltypes}: {adata_subset.n_obs} cells, {adata_subset.n_vars} genes")
+    invalid = [ct for ct in celltypes if ct not in adata.obs["celltype"].unique()]
+    if invalid:
+        available = adata.obs["celltype"].unique()
+        raise ValueError(f"Celltype(s) '{invalid}' not found. Available: {available}")
+
+    adata = adata[adata.obs["celltype"].isin(celltypes)].copy()
+
+# -------------------------
+# Subset by sample (if provided)
+# -------------------------
+if args.sample is not None:
+    samples = [s.strip() for s in args.sample.split(",")]
+
+    invalid = [s for s in samples if s not in adata.obs["sample"].unique()]
+    if invalid:
+        available = adata.obs["sample"].unique()
+        raise ValueError(f"Sample(s) '{invalid}' not found. Available: {available}")
+
+    adata = adata[adata.obs["sample"].isin(samples)].copy()
+
+print(f"Subset result: {adata.n_obs} cells, {adata.n_vars} genes")
 
 # -------------------------
 # Create output dir
@@ -51,7 +76,7 @@ os.makedirs("figures", exist_ok=True)
 fig, ax = plt.subplots(figsize=(6, 5))
 
 sc.pl.umap(
-    adata_subset,
+    adata,
     color="sample",
     size=20,
     ax=ax,
@@ -65,7 +90,7 @@ plt.close()
 # -------------------------
 # PER-SAMPLE UMAP
 # -------------------------
-samples = adata_subset.obs["sample"].unique()
+samples = adata.obs["sample"].unique()
 
 fig, axes = plt.subplots(1, len(samples), figsize=(5 * len(samples), 5))
 
@@ -75,7 +100,7 @@ if len(samples) == 1:
 
 for i, s in enumerate(samples):
     sc.pl.umap(
-        adata_subset[adata_subset.obs["sample"] == s],
+        adata[adata.obs["sample"] == s],
         color="sample",
         size=20,
         title=f"{s}",
@@ -90,13 +115,13 @@ plt.close()
 # -------------------------
 # Save subset
 # -------------------------
-adata_subset.write_h5ad(args.output)
+adata.write_h5ad(args.output)
 print(f"Saved: {args.output}")
 
 # -------------------------
 # Summary
 # -------------------------
 print("\nSummary:")
-print(f"  Cells: {adata_subset.n_obs}")
-print(f"  Genes: {adata_subset.n_vars}")
-print(f"  Samples: {adata_subset.obs['sample'].value_counts().to_dict()}")
+print(f"  Cells: {adata.n_obs}")
+print(f"  Genes: {adata.n_vars}")
+print(f"  Samples: {adata.obs['sample'].value_counts().to_dict()}")
