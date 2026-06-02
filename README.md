@@ -851,90 +851,77 @@ This analysis reveals:
 | **magnitude_rank** | Rank of interaction strength | Lower rank = stronger interaction compared to others |
 
 
-## Celltypes similarities between samples
 
-### Method 1: Cosine similarity 
+## Celltype similarities 
 
-- Cosine similarity measures the **angle** between two vectors. **1** = same direction. **0** = perpendicular.
+## Celltype similarity 
 
-- It only cares about **pattern**, not total expression level. If all genes are 2x higher in one sample but relative pattern is the same → similarity = 1.
+### Using Pearson correlation, Spearman Correlation, and Cosine similarity 
 
-- It shows the **pattern** of which genes are high and low in cell type A is the same as in cell type B.
+| Method | What it asks |
+|----------|-------------|
+| **Pearson** | "Do the same genes increase and decrease together?" |
+| **Spearman** | "Do genes keep the same rank order?" |
+| **Cosine** | "Do the two groups have the same overall expression pattern?" |
 
-- It doesn't tell you how much higher or lower a specific gene is (e.g., 3 vs 30). Magnitude is ignored.
+### Quick interpretation
 
+- **Pearson** → Similarity of gene expression changes.
+- **Spearman** → Similarity of gene rankings.
+- **Cosine** → Similarity of the overall transcriptional program.
 
-Cosine similarity = 1 (if all genes scaled equally) → Tells you nothing about the 10x change. Use log fold change instead.
+### Main difference
 
-![](figures/axt_cosine_similarity.png?v=7)
+- **Pearson** cares about expression values.
+- **Spearman** cares about gene order/ranking.
+- **Cosine** cares about expression pattern shape.
 
-### Method 2: PCA + Wasserstein Distance
+![](figures/axt_pearson_similarity.png?v=1)
 
-# How the Cell Type Similarity Script Works
+![](figures/axt_spearman_similarity.png?v=1)
 
-## What it does
+![](figures/axt_cosine_similarity.png?v=1)
 
-It measures how **transcriptionally similar** each cell type is between two samples (e.g., "Reg" vs "nonReg"). For example: are T-cells in Reg similar to T-cells in nonReg? Also, it can compare different cell types (e.g., T-cells in Reg vs B-cells in nonReg).
-
-### Step 1: Find common cell types
-Look at both samples, find which cell types appear in both (e.g., both have T-cells, B-cells, etc.).
-
-### Step 2: Build one shared "reference space"
-Take a balanced subset of cells from all common cell types (from both samples), stack them together, and fit a **single PCA** on this combined data. This creates one fixed coordinate system where all cells will live.
-
-### Step 3: Project all cells into that space
-Take every cell from every cell type (in both samples) and project it into the PCA space from Step 2. Now every cell has coordinates (PC1, PC2, ...) in the **same reference system**.
-
-### Step 4: Compare distributions
-For each pair of cell types (one from sample1, one from sample2), take their PCA coordinates and compare their distributions using **Wasserstein distance** (Earth Mover's Distance). This measures how much you'd need to "move" one group of cells to match the other group, PC by PC. Then average across PCs.
-
-### Step 5: Convert to similarity
-All distances are normalized to a 0–1 scale where 1 means "identical distributions" (very similar) and 0 means "completely different".
-
-### Step 6: Visualize
-- **Heatmap**: Shows similarity between every pair of cell types (sample1 rows vs sample2 columns)
-- **Diagonal bar plot**: Zooms in on same-cell-type comparisons (T-cells vs T-cells, B-cells vs B-cells, etc.)
-- **PCA scatter**: Shows all cells in the first 2 PCs, colored by cell type and sample
-
-
-By using **one shared PCA** (instead of separate PCAs per cell type), PC1 means the same biological direction for **all** groups. So when you compare T-cells from sample1 vs T-cells from sample2 on PC1, you're comparing the same biological axis. This makes the Wasserstein distance meaningful.
-
-## What the output tells you
-
-| Similarity Score | Meaning |
-|------------------|---------|
-| Close to 1 (high) | The cell type looks transcriptionally similar between conditions – possibly unaffected by your treatment/condition |
-| Close to 0 (low) | The cell type changed its expression profile between conditions – possibly responding to your treatment |
-
-![](figures/axt_celltype_similarity_heatmap.png?v=5)
+### Using PCA (MMD, and Optimal Transport) 
  
-![](figures/axt_pca_all_celltypes.png?v=2)
+| Method | What it asks |
+|----------|-------------|
+| **PCA + MMD** | "Do these groups come from the same underlying cellular population?" |
+| **PCA + OT (Sinkhorn/POT)** | "How easily can cells from one group be matched to cells in the other group?" |
 
-![](figures/axt_diagonal_similarities.png?v=2) 
+### Quick interpretation
 
-| Aspect | Cosine Similarity | PCA + Wasserstein |
-|--------|-------------------|-------------------|
-| **What it reflects** | Whether the average expression pattern is the same | Whether the entire population structure is the same |
-| **What it tells you** | If the average expression across all cells is similar between groups | If all cells (rare subpopulations, activated states, full heterogeneity) are similarly distributed |
+- **PCA + MMD** → Compares whether the overall population structure looks the same.
+- **PCA + OT (Sinkhorn/POT)** → Compares how well cells from one group can be aligned to cells from another group.
 
-####### WILL ADD MORE DETAILS HERE
-##### PCA Wasserstein HVG 
-![](figures/AXT_pca_wasserstein_hvg5000.png?v=2) 
+### Main difference from Pearson / Spearman / Cosine
 
-##### PCA MMD HVG
+Pearson, Spearman and Cosine compare:
 
-![](figures/AXT_pca_mmd_hvg5000.png?v=2) 
+> One average expression profile vs another average expression profile.
+
+PCA + Wasserstein, MMD and OT compare:
+
+> Entire populations of cells vs entire populations of cells.
+
+So they can detect differences in:
+- cell-state composition
+- population structure
+- subpopulations
+- distribution of cells across states
+
+even when the average expression profile looks similar.
 
 
-##### Optimal Transport POT HVG
+![](figures/AXT_pca_mmd.png?v=1) 
 
-![](figures/AXT_pot_hvg5000_matrix.png?v=2) 
+![](figures/AXT_pot_matrix.png?v=1) 
 
 
+### 🚨🚨🚨 SCOT+ approach: SCOT+ is missing -- software issue -- contacting author 
 
-### Celltypes similarities between Reg vs non Reg
-
-#### We use subtype distribution to reveal cell type similarity between Reg vs non Reg 
+#### Subtypes as a clue for similarities between celltypes 
+- We use subtype distribution to reveal cell type similarity between Reg vs non Reg 
 
 ###### Subcluster Composition Plot
 
