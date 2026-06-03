@@ -961,6 +961,34 @@ Using the proportions calculated above, we compute a similarity score for each c
 
 ![](figures/axt_subcluster_similarity_barplot.png?v=2)
 
+
+
+### Pseudotime Trajectory and transcriptional similarity 
+
+
+#### PAGA (Partition-based Graph Abstraction)
+
+PAGA creates a simplified graph where:
+
+- **Nodes** = Cell clusters (cell types/states)  
+- **Edges** = Transcriptional similarity between clusters  
+- **Thickness** = Strength of similarity (more intermediate cells = thicker line)  
+- Transcriptional similarity means: Two cell types look alike in terms of which genes are turned on and how active those genes are.
+
+##### What it tells you
+Which cell types are transcriptionally connected and how strongly.
+
+##### What it does NOT tell you
+Direction (which comes first in time) or causal relationships.
+
+##### Best for
+Visualizing relationships between cell types when you don't know the developmental order yet.
+
+##### Transcriptional similarity means
+Two cell types express many of the same genes at similar levels, making them look alike in their RNA profiles.
+
+![](figures/paga_axt_paga.png?v=1) 
+
 ### A look into Proliferation Genes
 
 To rule out proliferation as a driver of the Reg vs nonReg transcriptional difference, we examined expression of canonical proliferation markers.
