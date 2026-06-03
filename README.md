@@ -854,8 +854,6 @@ This analysis reveals:
 
 ## Celltype similarities 
 
-## Celltype similarity 
-
 ### Using Pearson correlation, Spearman Correlation, and Cosine similarity 
 
 | Method | What it asks |
@@ -913,9 +911,9 @@ So they can detect differences in:
 even when the average expression profile looks similar.
 
 
-![](figures/AXT_pca_mmd.png?v=1) 
+![](figures/axt_pca_mmd.png?v=1) 
 
-![](figures/AXT_pot_matrix.png?v=1) 
+![](figures/axt_pot_matrix.png?v=1) 
 
 
 ### 🚨🚨🚨 SCOT+ approach: SCOT+ is missing -- software issue -- contacting author 
