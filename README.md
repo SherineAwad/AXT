@@ -515,37 +515,6 @@ We performed over‑representation enrichment analysis using g:Profiler against 
 | **neg_log10_pval** | Your custom calculated field which is -log10(p_value), where small p-values become larger positive numbers (p=0.001 becomes 3, p=0.000001 becomes 6), making visualization easier on plots |
 
 
-### Pseudotime trajectory for Osteosarcoma
-
-Palantir is an algorithm that orders cells along a continuous path based on transcriptional similarity.
-
-First, Palantir reduces gene expression to principal components, then builds a graph where each cell is a node and edges connect transcriptionally similar cells. It then simulates random walks on this graph — imagine a "walker" jumping from cell to cell, with higher probability of jumping to more similar cells. By analyzing the flow of these random walks, Palantir computes pseudotime (scored from 0 to 1, where 0 = early and 1 = late). The algorithm requires the user to specify a root cell as the starting point.
-
-Since the true biological root is not known in advance, we ran Palantir using every Leiden cluster as a potential root. This allows us to evaluate whether the inferred trajectory is consistent regardless of the chosen starting point.
-
-#### Zooming on Osteosarcoma
-
-Lets cluster Osteosarcoma for Palantir
-
-![](figures/umap_Osteosarcoma_clusters.png?v=2)
-
-
-### Trajectory per each Leiden as a root
-
-Each panel shows the Palantir-derived trajectory path superimposed on the UMAP for a different root cluster (0-14). The trajectory is shown as a solid line connecting the root to the terminal end of the trajectory. The line itself does not show pseudotime gradient; pseudotime is instead shown in separate UMAP plots. In all panels, the trajectory forms a continuous linear path spanning the UMAP from one end to the opposite end. The orientation of the trajectory (which end connects to the root) depends on the chosen root cluster.
-
-Each UMAP shows cells colored by Palantir pseudotime using a different Leiden cluster (0–14) as the root. Dark purple represents early cells (pseudotime near 0, corresponding to the selected root), while bright yellow represents late cells (pseudotime near 1).
-
-For each root choice, Palantir assigns a continuous pseudotime ordering across the transcriptional manifold. The location of pseudotime 0 shifts to the selected root cluster, while higher pseudotime values are assigned to transcriptionally distant cell states. This illustrates the inferred direction of transcriptional progression under different root assumptions.
-
-
-<img src="figures/Osteosarcoma_Palantir_0_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_1_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_2_trajectories.png?v=2" width="33%" />
-<img src="figures/Osteosarcoma_Palantir_3_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_4_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_5_trajectories.png?v=2" width="33%" />
-<img src="figures/Osteosarcoma_Palantir_6_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_7_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_8_trajectories.png?v=2" width="33%" />
-<img src="figures/Osteosarcoma_Palantir_9_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_10_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_11_trajectories.png?v=2" width="33%" />
-<img src="figures/Osteosarcoma_Palantir_12_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_13_trajectories.png?v=2" width="33%" /><img src="figures/Osteosarcoma_Palantir_14_trajectories.png?v=2" width="33%" />
-
-
 ## Zooming on Fibroblast 
 
 We subset Fibroblast cell type, below is a summary:
@@ -643,18 +612,6 @@ Then further cluster to see subtypes:
 <img src="figures/umap_MacrophageSubtypes_C1qb.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_G0s2.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_Cxcl2.png?v=1" width="33%" />
 
 <img src="figures/umap_MacrophageSubtypes_Mmp9.png?v=1" width="33%" /><img src="figures/umap_MacrophageSubtypes_C1qc.png?v=1" width="33%" />
-
-
-### Pseudotime trajectory for Macrophage 
-
-Similar to pseudotime trajectory in Osteosarcoma, we used Palantir to detect the pseudotime trajectory, loopign through different roots as we lack the biological prior info about the early state. 
-
-<img src="figures/Macrophage_Palantir_0_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_1_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_2_trajectories.png?v=1" width="33%" />
-<img src="figures/Macrophage_Palantir_3_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_4_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_5_trajectories.png?v=1" width="33%" />
-<img src="figures/Macrophage_Palantir_6_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_7_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_8_trajectories.png?v=1" width="33%" />
-<img src="figures/Macrophage_Palantir_9_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_10_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_11_trajectories.png?v=1" width="33%" />
-<img src="figures/Macrophage_Palantir_12_trajectories.png?v=1" width="33%" /><img src="figures/Macrophage_Palantir_13_trajectories.png?v=1" width="33%" />
-
 
 
 ### A look into Proliferation Genes
@@ -1009,7 +966,28 @@ Additional cell fates may appear as **thinner branches** extending from the main
 
 ![](figures/axt_PAGA_paga_clusters.png?v=1)
 
-#### CellRank2 (Going on -  stay tuned) 
+
+### Pseudotime trajectory 
+
+Palantir is an algorithm that orders cells along a continuous path based on transcriptional similarity.
+
+First, Palantir reduces gene expression to principal components, then builds a graph where each cell is a node and edges connect transcriptionally similar cells. It then simulates random walks on this graph — imagine a "walker" jumping from cell to cell, with higher probability of jumping to more similar cells. By analyzing the flow of these random walks, Palantir computes pseudotime (scored from 0 to 1, where 0 = early and 1 = late). The algorithm requires the user to specify a root cell as the starting point.
+
+Since the true biological root is not known in advance, we ran Palantir using every Leiden cluster or celltype as a potential root. This allows us to evaluate whether the inferred trajectory is consistent regardless of the chosen starting point.
+
+<img src="figures/axt_Palantir_Osteosarcoma_trajectories.png?v=4" width="33%" /><img src="figures/axt_Palantir_Fibroblast_trajectories.png?v=4" width="33%" /><img src="figures/axt_Palantir_Macrophage_trajectories.png?v=4" width="33%" />
+
+<img src="figures/axt_Palantir_Endothelial_trajectories.png?v=4" width="33%" /><img src="figures/axt_Palantir_OsteoProgenitor_trajectories.png?v=4" width="33%" /><img src="figures/axt_Palantir_B-Cells_trajectories.png?v=4" width="33%" />
+
+<img src="figures/axt_Palantir_SweatGland_trajectories.png?v=4" width="33%" /><img src="figures/axt_Palantir_NailEpithelium_Keratinocyte_trajectories.png?v=4" width="33%" /><img src="figures/axt_Palantir_SMC_Pericyte_trajectories.png?v=4" width="33%" />
+
+<img src="figures/axt_Palantir_Lymphatic_Endothelial_trajectories.png?v=4" width="33%" /><img src="figures/axt_Palantir_Chondrocyte_trajectories.png?v=4" width="33%" /><img src="figures/axt_Palantir_Osteoclast_trajectories.png?v=4" width="33%" />
+
+<img src="figures/axt_Palantir_Osteoblast_trajectories.png?v=4" width="33%" /><img src="figures/axt_Palantir_T-Cells_trajectories.png?v=4" width="33%" /><img src="figures/axt_Palantir_Neutrophil_trajectories.png?v=4" width="33%" />
+
+<img src="figures/axt_Palantir_Schwann_trajectories.png?v=4" width="33%" />
+
+### CellRank2 (Going on -  stay tuned) 
 
 **CellRank** figures out which cell types are the "end points" of development and which genes drive cells toward those end points.
 
