@@ -968,26 +968,68 @@ Using the proportions calculated above, we compute a similarity score for each c
 
 #### PAGA (Partition-based Graph Abstraction)
 
-PAGA creates a simplified graph where:
+PAGA identifies which clusters of cells (cell types or cell states) are **connected** to each other in the underlying cell-cell graph.
 
-- **Nodes** = Cell clusters (cell types/states)  
-- **Edges** = Transcriptional similarity between clusters  
-- **Thickness** = Strength of similarity (more intermediate cells = thicker line)  
-- Transcriptional similarity means: Two cell types look alike in terms of which genes are turned on and how active those genes are.
+In other words, it asks:
 
-##### What it tells you
-Which cell types are transcriptionally connected and how strongly.
+> "Do many cells from cluster A have neighboring cells in cluster B?"
 
-##### What it does NOT tell you
-Direction (which comes first in time) or causal relationships.
+If the answer is yes, PAGA draws an edge between the two clusters.
 
-##### Best for
-Visualizing relationships between cell types when you don't know the developmental order yet.
 
-##### Transcriptional similarity means
-Two cell types express many of the same genes at similar levels, making them look alike in their RNA profiles.
+##### Thick Edge
+A **thick line** indicates a **strong connection** between clusters.
 
-![](figures/paga_axt_paga.png?v=1) 
+- Many cells from cluster A are neighbors to cells from cluster B.
+- This often suggests the clusters are biologically related.
+- Commonly observed along differentiation or developmental trajectories.
+
+##### Thin Edge
+A **thin line** indicates a **weak connection** between clusters.
+
+- Only a small number of cells connect the two clusters.
+- May represent:
+  - Rare transitional cells
+  - A minor biological relationship
+  - Technical noise
+
+##### No Edge
+If there is **no edge** between two clusters:
+
+- PAGA found no meaningful connectivity between them.
+- The clusters are likely biologically distinct or disconnected.
+
+##### Developmental Trajectories in PAGA
+
+A developmental process often appears as a **thick main path**, for example:
+
+```text
+Progenitor → Intermediate → Mature
+```
+
+Additional cell fates may appear as **thinner branches** extending from the main trajectory, representing alternative differentiation paths or less common transitions.
+```
+
+![](figures/axt_PAGA_paga_clusters.png?v=1)
+
+#### CellRank2 (Going on -  stay tuned) 
+
+**CellRank** figures out which cell types are the "end points" of development and which genes drive cells toward those end points.
+
+##### How it works 
+
+1. It builds a map of how cells connect to each other based on how similar their gene expression is  
+2. It looks for "basins" — groups of cells that are stuck together with no easy path out  
+3. Basins at the edge = **terminal states** (mature cells that don't change further)  
+4. It then calculates: for any given cell, how likely it is to end up in each terminal state  
+5. Finally, it identifies which genes are responsible for pushing cells toward specific terminal fates  
+
+##### What you get
+
+- Which cell types are terminally differentiated  
+- For each cell, its "fate bias" (e.g., 70% going to neuron fate, 30% to glia fate)  
+- Which genes control these decisions  
+
 
 ### A look into Proliferation Genes
 
