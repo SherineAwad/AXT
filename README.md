@@ -774,7 +774,7 @@ We performed differential gene expression (DGE) analysis to identify genes diffe
 [📊📊 Downdload here: per celltype DGE with cutoff \<0.05](https://docs.google.com/spreadsheets/d/1DnR2domO66krErCqKF8BEU3zf5IzG5T6EZ1Ioekt9lE/edit?usp=sharing) 
 
 
-## 🧬 CLigand-receptor Interaction Analysis (LIANA)
+## 🧬  Ligand-receptor Interaction Analysis (LIANA)
 
 This pipeline identifies potential **ligand–receptor interactions** from single-cell RNA-seq data using the LIANA framework. LIANA integrates multiple established methods into a single consensus scoring system.
 
@@ -965,9 +965,7 @@ Using the proportions calculated above, we compute a similarity score for each c
 
 ### Pseudotime Trajectory and transcriptional similarity 
 
-
-#### PAGA (Partition-based Graph Abstraction)
-
+#### PAGA
 PAGA identifies which clusters of cells (cell types or cell states) are **connected** to each other in the underlying cell-cell graph.
 
 In other words, it asks:
@@ -1008,7 +1006,6 @@ Progenitor → Intermediate → Mature
 ```
 
 Additional cell fates may appear as **thinner branches** extending from the main trajectory, representing alternative differentiation paths or less common transitions.
-```
 
 ![](figures/axt_PAGA_paga_clusters.png?v=1)
 
