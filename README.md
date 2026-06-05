@@ -922,7 +922,8 @@ Using the proportions calculated above, we compute a similarity score for each c
 
 ### Pseudotime Trajectory and transcriptional similarity 
 
-#### PAGA
+####  Developmental Trajectories in PAGA
+
 PAGA identifies which clusters of cells (cell types or cell states) are **connected** to each other in the underlying cell-cell graph.
 
 In other words, it asks:
@@ -954,9 +955,8 @@ If there is **no edge** between two clusters:
 - PAGA found no meaningful connectivity between them.
 - The clusters are likely biologically distinct or disconnected.
 
-##### Developmental Trajectories in PAGA
 
-A developmental process often appears as a **thick main path**, for example:
+- A developmental process often appears as a **thick main path**, for example:
 
 ```text
 Progenitor → Intermediate → Mature
@@ -967,7 +967,7 @@ Additional cell fates may appear as **thinner branches** extending from the main
 ![](figures/axt_PAGA_paga_clusters.png?v=1)
 
 
-### Pseudotime trajectory 
+### Directed Pseudotime trajectory 
 
 Palantir is an algorithm that orders cells along a continuous path based on transcriptional similarity.
 
