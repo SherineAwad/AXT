@@ -922,7 +922,7 @@ Using the proportions calculated above, we compute a similarity score for each c
 
 ### Pseudotime Trajectory and transcriptional similarity 
 
-####  Developmental Trajectories in PAGA
+###  Developmental Trajectories in PAGA
 
 PAGA identifies which clusters of cells (cell types or cell states) are **connected** to each other in the underlying cell-cell graph.
 
