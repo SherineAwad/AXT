@@ -5,6 +5,7 @@ import scanpy as sc
 import cellrank as cr
 import matplotlib.pyplot as plt
 import palantir
+import numpy as np
 import os
 import warnings
 warnings.simplefilter(action="ignore", category=Warning)
@@ -32,28 +33,48 @@ for pt_col in pt_columns:
     pt_est = cr.estimators.GPCCA(pt_kernel)
     pt_est.fit(cluster_key='celltype')
     
-    # Get macrostates
     adata.obs['macrostates'] = pt_est.macrostates
-    macro_names = adata.obs['macrostates'].cat.categories.tolist()
     
-    # Plot Macrostates
+    # Plot 1: Macrostates on Palantir trajectory (unchanged)
     palantir.plot.plot_trajectories(adata, cell_color='macrostates')
     plt.title(f"Macrostates - Root: {root_name}")
-    plt.figtext(0.5, 0.01, f"Macrostates: {', '.join(macro_names)}", ha="center", fontsize=8, bbox=dict(facecolor='white', alpha=0.9, edgecolor='black'))
     plt.savefig(f"figures/{args.prefix}_{root_name}_macrostates.png", dpi=150, bbox_inches="tight")
     plt.close()
     
-    # Get terminal states
     pt_est.predict_terminal_states()
     adata.obs['term_states_fwd'] = pt_est.terminal_states
+    
     terminal_names = adata.obs['term_states_fwd'].cat.categories.tolist()
     
-    # Plot Terminal States
+    # Plot 2: Terminal states on Palantir trajectory (unchanged)
     palantir.plot.plot_trajectories(adata, cell_color='term_states_fwd')
     plt.title(f"Terminal States - Root: {root_name}")
-    plt.figtext(0.5, 0.01, f"Terminal states: {', '.join(terminal_names)}", ha="center", fontsize=8, bbox=dict(facecolor='white', alpha=0.9, edgecolor='black'))
+    plt.figtext(0.5, 0.01, f"Terminal states: {', '.join(terminal_names)}", ha="center", fontsize=8, bbox=dict(facecolor='white', alpha=0.8))
     plt.savefig(f"figures/{args.prefix}_{root_name}_terminal_states.png", dpi=150, bbox_inches="tight")
     plt.close()
+    
+    # Compute fate probabilities
+    pt_est.compute_fate_probabilities()
+    
+    # Store fate probabilities as columns
+    for lineage in pt_est.fate_probabilities.names:
+        adata.obs[f'fate_prob_{root_name}_{lineage}'] = np.array(pt_est.fate_probabilities[lineage])
+    
+    # Plot 3: Fate probabilities on Palantir trajectory (one per lineage)
+    for lineage in pt_est.fate_probabilities.names:
+        palantir.plot.plot_trajectories(adata, cell_color=f'fate_prob_{root_name}_{lineage}')
+        plt.title(f"Fate Probability: {lineage} (Root: {root_name})")
+        plt.savefig(f"figures/{args.prefix}_{root_name}_fate_{lineage}.png", dpi=150, bbox_inches="tight")
+        plt.close()
+    
+    # Plot 4: Driver genes (one per lineage)
+    for lineage in pt_est.fate_probabilities.names:
+        drivers = pt_est.compute_lineage_drivers(lineages=[lineage], cluster_key='celltype')
+        drivers_sorted = drivers.sort_values(by=f'{lineage}_corr', ascending=False)
+        top_genes = drivers_sorted.index.tolist()[1:10]
+        sc.pl.umap(adata, color=top_genes, legend_loc='on data', legend_fontsize='x-small', use_raw=False, ncols=3)
+        plt.savefig(f"figures/{args.prefix}_{root_name}_drivers_{lineage}.png", dpi=150, bbox_inches="tight")
+        plt.close()
 
 adata.write_h5ad(args.output)
 print(f"Done. Output saved to {args.output}")
