@@ -4,6 +4,7 @@ import argparse
 import scanpy as sc
 import cellrank as cr
 import matplotlib.pyplot as plt
+import scvelo as scv
 import palantir
 import numpy as np
 import os
@@ -35,7 +36,6 @@ for pt_col in pt_columns:
     
     adata.obs['macrostates'] = pt_est.macrostates
     
-    # Plot 1: Macrostates on Palantir trajectory (unchanged)
     palantir.plot.plot_trajectories(adata, cell_color='macrostates')
     plt.title(f"Macrostates - Root: {root_name}")
     plt.savefig(f"figures/{args.prefix}_{root_name}_macrostates.png", dpi=150, bbox_inches="tight")
@@ -46,28 +46,42 @@ for pt_col in pt_columns:
     
     terminal_names = adata.obs['term_states_fwd'].cat.categories.tolist()
     
-    # Plot 2: Terminal states on Palantir trajectory (unchanged)
     palantir.plot.plot_trajectories(adata, cell_color='term_states_fwd')
     plt.title(f"Terminal States - Root: {root_name}")
     plt.figtext(0.5, 0.01, f"Terminal states: {', '.join(terminal_names)}", ha="center", fontsize=8, bbox=dict(facecolor='white', alpha=0.8))
     plt.savefig(f"figures/{args.prefix}_{root_name}_terminal_states.png", dpi=150, bbox_inches="tight")
     plt.close()
     
-    # Compute fate probabilities
     pt_est.compute_fate_probabilities()
     
-    # Store fate probabilities as columns
     for lineage in pt_est.fate_probabilities.names:
         adata.obs[f'fate_prob_{root_name}_{lineage}'] = np.array(pt_est.fate_probabilities[lineage])
     
-    # Plot 3: Fate probabilities on Palantir trajectory (one per lineage)
-    for lineage in pt_est.fate_probabilities.names:
-        palantir.plot.plot_trajectories(adata, cell_color=f'fate_prob_{root_name}_{lineage}')
-        plt.title(f"Fate Probability: {lineage} (Root: {root_name})")
-        plt.savefig(f"figures/{args.prefix}_{root_name}_fate_{lineage}.png", dpi=150, bbox_inches="tight")
-        plt.close()
+    # ONE FIGURE with all fate probabilities as panels
+    lineages = pt_est.fate_probabilities.names
+    n_lineages = len(lineages)
+    ncols = 3
+    nrows = (n_lineages + ncols - 1) // ncols
     
-    # Plot 4: Driver genes (one per lineage)
+    fig, axes = plt.subplots(nrows, ncols, figsize=(15, 5 * nrows))
+    if n_lineages > 1:
+        axes = axes.flatten()
+    else:
+        axes = [axes]
+    
+    for i, lineage in enumerate(lineages):
+        scv.pl.scatter(adata, color=f'fate_prob_{root_name}_{lineage}', 
+                      basis='X_umap', ax=axes[i], show=False, title=lineage)
+    
+    for i in range(n_lineages, len(axes)):
+        axes[i].axis('off')
+    
+    plt.suptitle(f"Fate Probabilities - Root: {root_name}", fontsize=14)
+    plt.tight_layout()
+    plt.savefig(f"figures/{args.prefix}_{root_name}_fate_probabilities.png", dpi=150, bbox_inches="tight")
+    plt.close()
+    
+    # Driver genes (one figure per lineage, multiple gene panels)
     for lineage in pt_est.fate_probabilities.names:
         drivers = pt_est.compute_lineage_drivers(lineages=[lineage], cluster_key='celltype')
         drivers_sorted = drivers.sort_values(by=f'{lineage}_corr', ascending=False)
