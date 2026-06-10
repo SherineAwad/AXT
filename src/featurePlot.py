@@ -29,13 +29,15 @@ def plot_gene_two_sample_panels(adata, gene, outdir, prefix):
     if len(samples) == 1:
         axes = [axes]
 
+    # FIX: global scaling across BOTH samples
+    gene_data = adata[:, gene].X
+    vmin = gene_data.min()
+    vmax = gene_data.max()
+
     for i, s in enumerate(samples):
         ax = axes[i]
 
         ad = adata[adata.obs["sample"] == s]
-
-        vmin = ad[:, gene].X.min()
-        vmax = ad[:, gene].X.max()
 
         sc.pl.umap(
             ad,
@@ -47,7 +49,7 @@ def plot_gene_two_sample_panels(adata, gene, outdir, prefix):
             cmap="viridis",
             vmin=vmin,
             vmax=vmax,
-            size=20   # 🔴 FIX: constant dot size across samples
+            size=20
         )
 
     fig.suptitle(f"{prefix} | {gene}")
