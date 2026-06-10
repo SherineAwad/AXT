@@ -29,14 +29,14 @@ def plot_gene_two_sample_panels(adata, gene, outdir, prefix):
     if len(samples) == 1:
         axes = [axes]
 
-    # FIXED COLOR SCALE ACROSS PANELS
-    vmin = adata[:, gene].X.min()
-    vmax = adata[:, gene].X.max()
-
     for i, s in enumerate(samples):
         ax = axes[i]
 
         ad = adata[adata.obs["sample"] == s]
+
+        # CHANGED: per-sample scaling (no longer shared)
+        vmin = ad[:, gene].X.min()
+        vmax = ad[:, gene].X.max()
 
         sc.pl.umap(
             ad,
@@ -76,7 +76,6 @@ def main():
     outdir = "figures"
     os.makedirs(outdir, exist_ok=True)
 
-    # ensure UMAP exists
     if "X_umap" not in adata.obsm:
         print("[INFO] computing UMAP")
         sc.pp.normalize_total(adata)

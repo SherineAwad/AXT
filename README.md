@@ -420,13 +420,13 @@ Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test 
 
 #### Per sample feature plots for genes of interest in Osteosarcoma 
 
-<img src="figures/Osteosarcoma_Bmp2.png?v=1" width="50%" /><img src="figures/Osteosarcoma_Bmp4.png?v=1" width="50%" />
-<img src="figures/Osteosarcoma_Bmp5.png?v=1" width="50%" /><img src="figures/Osteosarcoma_Wif1.png?v=1" width="50%" />
-<img src="figures/Osteosarcoma_Notum.png?v=1" width="50%" /><img src="figures/Osteosarcoma_Cxcr4.png?v=1" width="50%" />
-<img src="figures/Osteosarcoma_Cxcl12.png?v=1" width="50%" /><img src="figures/Osteosarcoma_Nog.png?v=1" width="50%" />
-<img src="figures/Osteosarcoma_Bmpr1a.png?v=1" width="50%" /><img src="figures/Osteosarcoma_Bmpr1b.png?v=1" width="50%" />
-<img src="figures/Osteosarcoma_Bmpr2.png?v=1" width="50%" /><img src="figures/Osteosarcoma_Acvr2a.png?v=1" width="50%" />
-<img src="figures/Osteosarcoma_Acvr2b.png?v=1" width="50%" /><img src="figures/Osteosarcoma_Ackr3.png?v=1" width="50%" />
+<img src="figures/Osteosarcoma_Bmp2.png?v=2" width="50%" /><img src="figures/Osteosarcoma_Bmp4.png?v=2" width="50%" />
+<img src="figures/Osteosarcoma_Bmp5.png?v=2" width="50%" /><img src="figures/Osteosarcoma_Wif1.png?v=2" width="50%" />
+<img src="figures/Osteosarcoma_Notum.png?v=2" width="50%" /><img src="figures/Osteosarcoma_Cxcr4.png?v=2" width="50%" />
+<img src="figures/Osteosarcoma_Cxcl12.png?v=2" width="50%" /><img src="figures/Osteosarcoma_Nog.png?v=2" width="50%" />
+<img src="figures/Osteosarcoma_Bmpr1a.png?v=2" width="50%" /><img src="figures/Osteosarcoma_Bmpr1b.png?v=2" width="50%" />
+<img src="figures/Osteosarcoma_Bmpr2.png?v=2" width="50%" /><img src="figures/Osteosarcoma_Acvr2a.png?v=2" width="50%" />
+<img src="figures/Osteosarcoma_Acvr2b.png?v=2" width="50%" /><img src="figures/Osteosarcoma_Ackr3.png?v=2" width="50%" />
 
 [📊📊 Download here DGE for Osteosarcoma Reg vs non Reg with adj-pvalue \<0.05](https://docs.google.com/spreadsheets/d/1NbpSDUpz78nXY_4nH0Ksp0ip3VMUfFLsjfP-Aujh6GA/edit?usp=sharing)
 
