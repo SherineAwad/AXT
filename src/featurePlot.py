@@ -34,7 +34,6 @@ def plot_gene_two_sample_panels(adata, gene, outdir, prefix):
 
         ad = adata[adata.obs["sample"] == s]
 
-        # CHANGED: per-sample scaling (no longer shared)
         vmin = ad[:, gene].X.min()
         vmax = ad[:, gene].X.max()
 
@@ -47,7 +46,8 @@ def plot_gene_two_sample_panels(adata, gene, outdir, prefix):
             title=str(s),
             cmap="viridis",
             vmin=vmin,
-            vmax=vmax
+            vmax=vmax,
+            size=20   # 🔴 FIX: constant dot size across samples
         )
 
     fig.suptitle(f"{prefix} | {gene}")
