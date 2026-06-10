@@ -4,6 +4,7 @@ import scanpy as sc
 import matplotlib.pyplot as plt
 import argparse
 import os
+import numpy as np
 
 
 def load_markers(path):
@@ -21,23 +22,30 @@ def plot_gene_two_sample_panels(adata, gene, outdir, prefix):
 
     samples = list(adata.obs["sample"].unique())
 
-    if len(samples) != 2:
-        print(f"[WARN] Expected 2 samples, got {len(samples)}")
-
     fig, axes = plt.subplots(1, len(samples), figsize=(12, 5))
 
     if len(samples) == 1:
         axes = [axes]
 
-    # FIX: global scaling across BOTH samples
-    gene_data = adata[:, gene].X
-    vmin = gene_data.min()
-    vmax = gene_data.max()
+    # ---- TRUE GLOBAL EXPRESSION SCALE (robust for sparse/dense) ----
+    expr = adata[:, gene].X
+
+    if hasattr(expr, "toarray"):
+        expr = expr.toarray().flatten()
+    else:
+        expr = np.array(expr).flatten()
+
+    vmin = np.nanmin(expr)
+    vmax = np.nanmax(expr)
+
+    # avoid broken scaling if constant expression
+    if vmin == vmax:
+        vmax = vmin + 1e-9
 
     for i, s in enumerate(samples):
         ax = axes[i]
 
-        ad = adata[adata.obs["sample"] == s]
+        ad = adata[adata.obs["sample"] == s].copy()
 
         sc.pl.umap(
             ad,
@@ -49,7 +57,7 @@ def plot_gene_two_sample_panels(adata, gene, outdir, prefix):
             cmap="viridis",
             vmin=vmin,
             vmax=vmax,
-            size=20
+            use_raw=False
         )
 
     fig.suptitle(f"{prefix} | {gene}")
