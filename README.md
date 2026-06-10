@@ -431,11 +431,11 @@ Differential gene expression (DGE) was performed using a Wilcoxon rank-sum test 
 
 #### Per sample feature plots for the same genes accross all celltypes
 
-<img src="figures/axt_Bmp2_featureplot.png?v=1" width="33%" /><img src="figures/axt_Bmp4_featureplot.png?v=1" width="33%" /><img src="figures/axt_Bmp5_featureplot.png?v=1" width="33%" />
-<img src="figures/axt_Wif1_featureplot.png?v=1" width="33%" /><img src="figures/axt_Notum_featureplot.png?v=1" width="33%" /><img src="figures/axt_Cxcr4_featureplot.png?v=1" width="33%" />
-<img src="figures/axt_Cxcl12_featureplot.png?v=1" width="33%" /><img src="figures/axt_Nog_featureplot.png?v=1" width="33%" /><img src="figures/axt_Bmpr1a_featureplot.png?v=1" width="33%" />
-<img src="figures/axt_Bmpr1b_featureplot.png?v=1" width="33%" /><img src="figures/axt_Bmpr2_featureplot.png?v=1" width="33%" /><img src="figures/axt_Acvr2a_featureplot.png?v=1" width="33%" />
-<img src="figures/axt_Acvr2b_featureplot.png?v=1" width="33%" /><img src="figures/axt_Ackr3_featureplot.png?v=1" width="33%" />
+<img src="figures/axt_Bmp2.png?v=1" width="33%" /><img src="figures/axt_Bmp4.png?v=1" width="33%" /><img src="figures/axt_Bmp5.png?v=1" width="33%" />
+<img src="figures/axt_Wif1.png?v=1" width="33%" /><img src="figures/axt_Notum.png?v=1" width="33%" /><img src="figures/axt_Cxcr4.png?v=1" width="33%" />
+<img src="figures/axt_Cxcl12.png?v=1" width="33%" /><img src="figures/axt_Nog.png?v=1" width="33%" /><img src="figures/axt_Bmpr1a.png?v=1" width="33%" />
+<img src="figures/axt_Bmpr1b.png?v=1" width="33%" /><img src="figures/axt_Bmpr2.png?v=1" width="33%" /><img src="figures/axt_Acvr2a.png?v=1" width="33%" />
+<img src="figures/axt_Acvr2b.png?v=1" width="33%" /><img src="figures/axt_Ackr3.png?v=1" width="33%" />
 
 
 [📊📊 Download here DGE for Osteosarcoma Reg vs non Reg with adj-pvalue \<0.05](https://docs.google.com/spreadsheets/d/1NbpSDUpz78nXY_4nH0Ksp0ip3VMUfFLsjfP-Aujh6GA/edit?usp=sharing)
