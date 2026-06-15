@@ -96,6 +96,7 @@ Cells are filtered to remove **low-quality cells**, **dead cells**, and **double
 <img src="figures/umap_axt_Reg.png?v=4" width="600" /> <img src="figures/umap_axt_nonReg.png?v=4" width="600" />
 
 
+
 ## Top PC genes 
 
 #### PC1 positive genes
@@ -826,6 +827,36 @@ This analysis reveals:
 | **specificity_rank** | Rank of specificity | Lower rank = more cell-type-specific interaction |
 | **magnitude_rank** | Rank of interaction strength | Lower rank = stronger interaction compared to others |
 
+## Ligand/Receptor Signal pathways 
+
+After identifying likely ligand–receptor interactions, we assess whether each receptor is connected through protein–protein interaction networks to downstream transcription factors in the receiving cell, indicating potential ability of the interaction to propagate into transcriptional regulation.
+
+
+###### Regenerative 
+
+[Full list](https://docs.google.com/spreadsheets/d/1jDzsd3qLCpBwrcQ2GiSoOwZvWSVTtQGzE9Qdn8IQzOQ/edit?usp=sharing) 
+
+![](figures/axt_Reg_liana_omnipath_tf_best.png?v=1)
+
+###### Non Regenerative 
+
+[Full list](https://docs.google.com/spreadsheets/d/1aYP85tktwk3vRhqviiZRr7C5D2c7LlwFZ2QHFXadcpA/edit?usp=sharing)
+
+![](figures/axt_nonReg_liana_omnipath_tf_best.png?v=1)
+
+
+Where the table fields are summerised as below:
+
+| Field             | Meaning                                                                   |
+| ----------------- | ------------------------------------------------------------------------- |
+| sender_ct         | Cell type sending the ligand signal                                       |
+| receiver_ct       | Cell type receiving the ligand signal                                     |
+| ligand            | Ligand involved in the interaction                                        |
+| receptor          | Receptor involved in the interaction                                      |
+| lrscore           | LIANA ligand–receptor interaction score                                   |
+| TF                | Transcription factor identified for this ligand–receptor interaction      |
+| Path Length       | Shortest path length from receptor to the selected transcription factor   |
+| integration_score | Combined score of ligand–receptor strength and downstream TF connectivity |
 
 
 ## Celltype similarities 
