@@ -834,13 +834,13 @@ After identifying likely ligand–receptor interactions, we assess whether each 
 
 ###### Regenerative 
 
-[Download here full list of Regenerative Omnipaths TFs](https://docs.google.com/spreadsheets/d/1jDzsd3qLCpBwrcQ2GiSoOwZvWSVTtQGzE9Qdn8IQzOQ/edit?usp=sharing) 
+[Download here top 50 Regenerative Omnipaths TFs](https://docs.google.com/spreadsheets/d/1jDzsd3qLCpBwrcQ2GiSoOwZvWSVTtQGzE9Qdn8IQzOQ/edit?usp=sharing) 
 
 ![](figures/axt_Reg_liana_omnipath_tf_best.png?v=1)
 
 ###### Non Regenerative 
 
-[Download here full list of non Regenerative Omnipaths TFs](https://docs.google.com/spreadsheets/d/1aYP85tktwk3vRhqviiZRr7C5D2c7LlwFZ2QHFXadcpA/edit?usp=sharing)
+[Download here top 50 non Regenerative Omnipaths TFs](https://docs.google.com/spreadsheets/d/1aYP85tktwk3vRhqviiZRr7C5D2c7LlwFZ2QHFXadcpA/edit?usp=sharing)
 
 ![](figures/axt_nonReg_liana_omnipath_tf_best.png?v=1)
 
