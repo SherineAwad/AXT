@@ -124,7 +124,8 @@ if __name__ == '__main__':
         
         # Select branch cells for trajectory plotting (from tutorial)
         try:
-            masks = palantir.presults.select_branch_cells(adata, q=0.01, eps=0.01)
+            # FIX: pass pr_res as first argument, and use the returned masks
+            masks = palantir.presults.select_branch_cells(pr_res, adata, q=0.01, eps=0.01)
             print("[DEBUG] Branch masks computed using select_branch_cells")
         except Exception as e:
             print(f"[WARNING] Could not compute branch masks: {e}")
@@ -142,7 +143,8 @@ if __name__ == '__main__':
             fig, ax = plt.subplots(figsize=(10, 8))
             # Use the root-specific pseudotime for coloring
             adata.obs['temp_pseudotime'] = adata.obs[f'palantir_pseudotime_{current_root}']
-            palantir.plot.plot_trajectories(adata, cell_color="temp_pseudotime")
+            # FIX: pass branch_masks=masks to actually draw trajectories
+            palantir.plot.plot_trajectories(adata, branch_masks=masks, cell_color="temp_pseudotime")
             plt.title(f"Trajectories (root: {current_root})")
             plt.savefig(f"figures/{root_prefix}_trajectories.png", dpi=150, bbox_inches="tight")
             plt.close()
