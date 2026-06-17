@@ -836,13 +836,15 @@ After identifying likely ligand–receptor interactions, we assess whether each 
 
 [Download here top 50 Regenerative Omnipaths TFs](https://docs.google.com/spreadsheets/d/1jDzsd3qLCpBwrcQ2GiSoOwZvWSVTtQGzE9Qdn8IQzOQ/edit?usp=sharing) 
 
-![](figures/axt_Reg_liana_omnipath_tf_best.png?v=1)
 
 ###### Non Regenerative 
 
 [Download here top 50 non Regenerative Omnipaths TFs](https://docs.google.com/spreadsheets/d/1aYP85tktwk3vRhqviiZRr7C5D2c7LlwFZ2QHFXadcpA/edit?usp=sharing)
 
-![](figures/axt_nonReg_liana_omnipath_tf_best.png?v=1)
+
+##### Interesting Ligand Receptor in Osteosarcoma 
+
+![](figures/lianaIntersection_receptor_axt_Reg_liana.csv_dotplot.png?v=1)
 
 
 Where the table fields are summerised as below:
