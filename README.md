@@ -972,50 +972,20 @@ Using the proportions calculated above, we compute a similarity score for each c
 
 ### Pseudotime Trajectory and transcriptional similarity 
 
-###  Developmental Trajectories in PAGA
+###  Trajectory inference using PAGA
 
-PAGA identifies which clusters of cells (cell types or cell states) are **connected** to each other in the underlying cell-cell graph.
-
-In other words, it asks:
-
-> "Do many cells from cluster A have neighboring cells in cluster B?"
-
-If the answer is yes, PAGA draws an edge between the two clusters.
+Circles (Nodes) represent your cell clusters (e.g., different cell types or states).
+Lines (Edges) represent a statistically significant connection between two clusters.
+A line connecting two clusters in a PAGA graph indicates that there are cells in an intermediate state between them.
+This is the key finding: it suggests that cells from one cluster are likely able to transition or differentiate into cells of the other cluster
+These links are inferred from similarities in gene expression patterns between cells, summarised at the level of cell populations rather than individual cells.
 
 
-##### Thick Edge
-A **thick line** indicates a **strong connection** between clusters.
+###### Reg 
+![](figures/axt_PAGA_sample-Reg_paga_clusters.png?v=1)
 
-- Many cells from cluster A are neighbors to cells from cluster B.
-- This often suggests the clusters are biologically related.
-- Commonly observed along differentiation or developmental trajectories.
-
-##### Thin Edge
-A **thin line** indicates a **weak connection** between clusters.
-
-- Only a small number of cells connect the two clusters.
-- May represent:
-  - Rare transitional cells
-  - A minor biological relationship
-  - Technical noise
-
-##### No Edge
-If there is **no edge** between two clusters:
-
-- PAGA found no meaningful connectivity between them.
-- The clusters are likely biologically distinct or disconnected.
-
-
-- A developmental process often appears as a **thick main path**, for example:
-
-```text
-Progenitor → Intermediate → Mature
-```
-
-Additional cell fates may appear as **thinner branches** extending from the main trajectory, representing alternative differentiation paths or less common transitions.
-
-![](figures/axt_PAGA_paga_clusters.png?v=1)
-
+###### non Reg
+![](figures/axt_PAGA_sample-nonReg_paga_clusters.png?v=1)
 
 ### Directed Pseudotime trajectory 
 
@@ -1036,24 +1006,6 @@ Since the true biological root is not known in advance, we ran Palantir using ev
 <img src="figures/axt_Palantir_Osteoblast_trajectories.png?v=4" width="33%" /><img src="figures/axt_Palantir_T-Cells_trajectories.png?v=4" width="33%" /><img src="figures/axt_Palantir_Neutrophil_trajectories.png?v=4" width="33%" />
 
 <img src="figures/axt_Palantir_Schwann_trajectories.png?v=4" width="33%" />
-
-### CellRank2 (Going on -  stay tuned) 
-
-**CellRank** figures out which cell types are the "end points" of development and which genes drive cells toward those end points.
-
-##### How it works 
-
-1. It builds a map of how cells connect to each other based on how similar their gene expression is  
-2. It looks for "basins" — groups of cells that are stuck together with no easy path out  
-3. Basins at the edge = **terminal states** (mature cells that don't change further)  
-4. It then calculates: for any given cell, how likely it is to end up in each terminal state  
-5. Finally, it identifies which genes are responsible for pushing cells toward specific terminal fates  
-
-##### What you get
-
-- Which cell types are terminally differentiated  
-- For each cell, its "fate bias" (e.g., 70% going to neuron fate, 30% to glia fate)  
-- Which genes control these decisions  
 
 
 ### A look into Proliferation Genes
