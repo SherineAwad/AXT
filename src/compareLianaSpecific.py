@@ -106,10 +106,10 @@ def main():
     # -------------------------
     # PREP
     # -------------------------
-    s1["interaction_stat"] = s1["lrscore"]
+    s1["lrscore"] = s1["lrscore"]
     s1["specificity"] = s1["specificity_rank"]
 
-    s1 = s1.sort_values("interaction_stat", ascending=False)
+    s1 = s1.sort_values("lrscore", ascending=False)
 
     top_n = min(20, len(s1))
 
@@ -118,10 +118,10 @@ def main():
     # -------------------------
     plot = li.pl.dotplot(
         liana_res=s1,
-        colour="interaction_stat",
+        colour="lrscore",
         size="specificity",
         inverse_size=True,
-        orderby="interaction_stat",
+        orderby="lrscore",
         orderby_ascending=False,
         orderby_absolute=True,
         top_n=top_n,
@@ -146,7 +146,6 @@ def main():
     plot.save(out_file, dpi=300, verbose=False)
 
     print("Saved:", out_file)
-    print("Saved:", csv_file)
     print("Rows:", len(s1))
 
 

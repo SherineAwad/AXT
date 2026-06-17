@@ -834,7 +834,7 @@ After identifying likely ligand–receptor interactions, we assess whether each 
 
 ##### Interesting Ligand Receptor in Osteosarcoma 
 
-![](figures/lianaIntersection_receptor_axt_Reg_liana.csv_dotplot.png?v=1)
+![](figures/lianaIntersection_receptor_axt_Reg_liana.csv_dotplot.png?v=2)
 
 
 Where the table fields are summerised as below:
