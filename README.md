@@ -851,8 +851,7 @@ Where the table fields are summerised as below:
 
 ### Signaling pathways 
 
-![](figures/figures/RegSignaling_lr_progeny_dotplot.png?v=1)
-
+![](figures/RegSignaling_lr_progeny_interest_plot.png?v=1)
 
 ## Celltype similarities 
 
@@ -1036,8 +1035,6 @@ We performed over‑representation enrichment analysis using g:Profiler similar 
 
 [Go to how to read go profiler results section](#how-to-read-go-profiler-results)
 
-
-## MORE ANALYSIS ON THE WAY 
 
 
 ## REFERENCES 
