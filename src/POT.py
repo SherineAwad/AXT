@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore")
 
 
 def get_X(adata, layer):
-    X = adata.layers[layer] if layer in adata.layers else adata.X
+    X = adata.layers["log1p"] if "log1p" in adata.layers else adata.X
     return X.toarray() if issparse(X) else X
 
 
@@ -48,7 +48,7 @@ def pot_score(A, B, max_cells, min_cells):
         a = np.ones(len(A_norm)) / len(A_norm)
         b = np.ones(len(B_norm)) / len(B_norm)
 
-        T = ot.sinkhorn(a, b, M, reg=0.1)
+        T = ot.emd(a, b, M)
 
         cost = np.sum(T * M)
         similarity = 1 - cost

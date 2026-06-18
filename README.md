@@ -910,9 +910,9 @@ So they can detect differences in:
 even when the average expression profile looks similar.
 
 
-![](figures/axt_pca_mmd.png?v=1) 
+![](figures/axt_pca_mmd.png?v=2) 
 
-![](figures/axt_pot_matrix.png?v=1) 
+![](figures/axt_pot_matrix.png?v=2) 
 
 
 ### 🚨🚨🚨 SCOT+ approach: SCOT+ is missing -- software issue -- contacting author 

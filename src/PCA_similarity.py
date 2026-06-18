@@ -18,7 +18,7 @@ warnings.simplefilter("ignore", RuntimeWarning)
 # GET MATRIX
 # ----------------------------
 def get_X(adata):
-    X = adata.X
+    X = adata.layers["log1p"]
     if issparse(X):
         return X.toarray()
     return np.asarray(X)
