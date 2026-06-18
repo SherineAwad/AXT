@@ -849,6 +849,10 @@ Where the table fields are summerised as below:
 | Path Length       | Shortest path length from receptor to the selected transcription factor   |
 | integration_score | Combined score of ligand–receptor strength and downstream TF connectivity |
 
+### Signaling pathways 
+
+![](figures/figures/RegSignaling_lr_progeny_dotplot.png?v=1)
+
 
 ## Celltype similarities 
 

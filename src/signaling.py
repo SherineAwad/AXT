@@ -11,7 +11,6 @@ from sklearn.preprocessing import MinMaxScaler
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input', required=True)
-parser.add_argument('--output', required=True)
 parser.add_argument('--celltype', default='celltype')
 parser.add_argument('--prefix', required=True)
 parser.add_argument('--organism', default='mouse')
@@ -187,6 +186,7 @@ if len(df) > 0:
 
     plt.close()
 
-adata.write_h5ad(args.output)
+# 🔥 ONLY CHANGE: save h5ad using prefix
+adata.write_h5ad(f"{args.prefix}.h5ad")
 
 print("Done")
