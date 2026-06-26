@@ -850,6 +850,9 @@ Where the table fields are summerised as below:
 | integration_score | Combined score of ligand–receptor strength and downstream TF connectivity |
 
 ### Signaling pathways 
+ - this plot is for ligand receptor signaling in Regenrative sample
+
+![](figures/RegSignaling_lr_progeny_dotplot.png?v=1)
 
 ## Celltype similarities 
 
