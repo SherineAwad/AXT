@@ -851,8 +851,6 @@ Where the table fields are summerised as below:
 
 ### Signaling pathways 
 
-![](figures/RegSignaling_lr_progeny_interest_plot.png?v=1)
-
 ## Celltype similarities 
 
 ### Using Pearson correlation, Spearman Correlation, and Cosine similarity 
